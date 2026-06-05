@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 
 import { useSiteStore } from "@/components/providers/site-store-provider";
@@ -24,25 +23,44 @@ function statusCopy(status: "idle" | "submitting" | "success" | "error", message
   return message;
 }
 
-export function RfqForm() {
+export interface RfqFormPrefills {
+  businessType: string;
+  companyName: string;
+  contactName: string;
+  country: string;
+  customizationRequirements: string;
+  email: string;
+  estimatedQuantity: string;
+  message: string;
+  phone: string;
+}
+
+const defaultPrefills: RfqFormPrefills = {
+  businessType: "",
+  companyName: "",
+  contactName: "",
+  country: "",
+  customizationRequirements: "",
+  email: "",
+  estimatedQuantity: "",
+  message: "",
+  phone: "",
+};
+
+interface RfqFormProps {
+  formKey?: string;
+  prefills?: RfqFormPrefills;
+}
+
+export function RfqForm({
+  formKey = "rfq-form",
+  prefills = defaultPrefills,
+}: RfqFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
-  const searchParams = useSearchParams();
   const { clearQuote, hydrated, quoteItems, removeFromQuote, updateQuoteItem } = useSiteStore();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requestNumber, setRequestNumber] = useState("");
-  const formKey = searchParams.toString();
-  const prefills = {
-    businessType: searchParams.get("project") ?? "",
-    companyName: searchParams.get("company") ?? "",
-    contactName: searchParams.get("contact") ?? "",
-    country: searchParams.get("country") ?? "",
-    customizationRequirements: searchParams.get("requirements") ?? "",
-    email: searchParams.get("email") ?? "",
-    estimatedQuantity: searchParams.get("volume") ?? "",
-    message: searchParams.get("message") ?? "",
-    phone: searchParams.get("phone") ?? "",
-  };
 
   async function handleSubmit(formData: FormData) {
     if (quoteItems.length === 0) {
