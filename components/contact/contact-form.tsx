@@ -7,10 +7,10 @@ import { FormInput } from "@/components/ui/FormInput";
 import { Input } from "@/components/ui/input";
 
 const inputClassName =
-  "min-h-14 rounded-[1.5rem] border border-black/12 bg-white px-5 text-base text-black shadow-none placeholder:text-black/34 focus:border-black/24 focus:bg-white";
+  "min-h-14 rounded-[1.5rem] border border-white/12 bg-white/[0.04] px-5 text-base text-white shadow-none placeholder:text-white/34 focus:border-white/24 focus:bg-white/[0.06]";
 
 const textareaClassName =
-  "min-h-[180px] w-full rounded-[1.5rem] border border-black/12 bg-white px-5 py-4 text-base text-black outline-none transition placeholder:text-black/34 focus:border-black/24";
+  "min-h-[180px] w-full rounded-[1.5rem] border border-white/12 bg-white/[0.04] px-5 py-4 text-base text-white outline-none transition placeholder:text-white/34 focus:border-white/24 focus:bg-white/[0.06]";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -38,26 +38,35 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <p className="text-xs uppercase tracking-[0.24em] text-black/42">Inquiry Form</p>
-        <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Send Message</h2>
+        <p className="text-xs uppercase tracking-[0.24em] text-white/42">Quick Contact</p>
+        <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Send Message</h2>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/64">
+          Use this for early project context. If no live backend is configured, the form still completes safely on the client and confirms receipt locally.
+        </p>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
-        <FormInput label="Name" htmlFor="contact-name">
+        <FormInput label="Name" htmlFor="contact-name" tone="dark">
           <Input id="contact-name" name="name" required className={inputClassName} />
         </FormInput>
-        <FormInput label="Company" htmlFor="contact-company">
+        <FormInput label="Company" htmlFor="contact-company" tone="dark">
           <Input id="contact-company" name="company" className={inputClassName} />
         </FormInput>
-        <FormInput label="Email" htmlFor="contact-email">
+        <FormInput label="Email" htmlFor="contact-email" tone="dark">
           <Input id="contact-email" name="email" type="email" required className={inputClassName} />
         </FormInput>
-        <FormInput label="Country" htmlFor="contact-country">
+        <FormInput label="Country" htmlFor="contact-country" tone="dark">
           <Input id="contact-country" name="country" className={inputClassName} />
+        </FormInput>
+        <FormInput label="WhatsApp / WeChat" htmlFor="contact-direct" tone="dark">
+          <Input id="contact-direct" name="direct_contact" className={inputClassName} />
+        </FormInput>
+        <FormInput label="Project Focus" htmlFor="contact-project-focus" tone="dark">
+          <Input id="contact-project-focus" name="project_focus" className={inputClassName} placeholder="OEM, retail display, gifting, installation" />
         </FormInput>
       </div>
 
-      <FormInput label="Message" htmlFor="contact-message">
+      <FormInput label="Message" htmlFor="contact-message" tone="dark">
         <textarea
           id="contact-message"
           name="message"
@@ -72,12 +81,12 @@ export function ContactForm() {
           {status === "loading" ? "Sending..." : "Send Message"}
         </button>
         <div
-          className={`rounded-full px-4 py-2 text-sm ${
+          className={`rounded-full border px-4 py-2 text-sm ${
             status === "success"
-              ? "bg-black text-white"
+              ? "border-white/16 bg-white/[0.08] text-white"
               : status === "error"
-                ? "bg-red-50 text-red-600"
-                : "bg-[#f5f5f2] text-black/48"
+                ? "border-red-400/24 bg-red-500/10 text-red-200"
+                : "border-white/12 bg-transparent text-white/48"
           }`}
           aria-live="polite"
         >

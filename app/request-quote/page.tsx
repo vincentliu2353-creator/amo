@@ -13,8 +13,8 @@ export const metadata = buildMetadata({
 export default function RequestQuotePage() {
   return (
     <InnerPageShell showHeader>
-      <section className="bg-white text-black">
-        <SectionContainer className="py-20 md:py-28">
+      <section className="bg-black text-white">
+        <SectionContainer className="py-28 md:py-32">
           <RequestQuoteInquiry />
         </SectionContainer>
       </section>

@@ -96,44 +96,84 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       />
 
       <InnerPageShell showHeader>
-        <section className="bg-white text-black">
+        <section className="bg-black text-white">
           <SectionContainer className="py-20 md:py-28">
-            <PageHeader
-              eyebrow={mapEditorialCategory(post.category)}
-              title={post.title}
-              description={post.excerpt}
-              align="center"
-            >
-              <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-black/48">
-                <span>{formatDate(post.publishedAt)}</span>
-                <span>•</span>
-                <span>{post.readTime}</span>
-              </div>
-            </PageHeader>
+            <div className="grid gap-10 border-b border-white/12 pb-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+              <PageHeader
+                eyebrow={mapEditorialCategory(post.category)}
+                title={post.title}
+                description={post.excerpt}
+                tone="dark"
+              />
 
-            <div className="mt-12 overflow-hidden rounded-[2rem] border border-black/10">
-              <div className="aspect-[16/7] bg-[#ecebe6]">
-                <div className="flex h-full items-end p-8">
-                  <span className="rounded-full border border-black/10 bg-white/80 px-4 py-2 text-xs uppercase tracking-[0.24em] text-black/54">
+              <div className="space-y-4 border-t border-white/12 pt-6 text-sm lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/40">Published</p>
+                  <p className="mt-3 text-white/72">{formatDate(post.publishedAt)}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/40">Read Time</p>
+                  <p className="mt-3 text-white/72">{post.readTime}</p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/40">Author</p>
+                  <p className="mt-3 text-white/72">{post.author}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/12">
+              <div className="aspect-[16/7] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_28%),linear-gradient(140deg,#161616,#090909_72%)]">
+                <div className="flex h-full items-end justify-between gap-4 p-8">
+                  <span className="rounded-full border border-white/14 bg-black/34 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/56">
                     AMO Journal
+                  </span>
+                  <span className="rounded-full border border-white/14 bg-black/34 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/40">
+                    Editorial Archive
                   </span>
                 </div>
               </div>
             </div>
 
-            <article className="mx-auto mt-16 max-w-[860px]">
-              <div className="space-y-8 text-lg leading-relaxed text-black/74">
-                {articleSections.map((section, index) => (
-                  <section key={`${section.heading}-${index}`} className="space-y-5">
-                    <h2 className="text-3xl font-semibold tracking-tight text-black md:text-4xl">{section.heading}</h2>
-                    <p>{section.body}</p>
-                    {index === 0 && post.sections.length === 0
-                      ? fallbackBody.slice(1).map((paragraph) => <p key={paragraph}>{paragraph}</p>)
-                      : null}
-                  </section>
-                ))}
-              </div>
-            </article>
+            <div className="mt-16 grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
+              <article className="max-w-[860px]">
+                <div className="space-y-8 text-lg leading-relaxed text-white/74">
+                  {articleSections.map((section, index) => (
+                    <section key={`${section.heading}-${index}`} className="space-y-5 border-b border-white/10 pb-8 last:border-b-0 last:pb-0">
+                      <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{section.heading}</h2>
+                      <p>{section.body}</p>
+                      {index === 0 && post.sections.length === 0
+                        ? fallbackBody.slice(1).map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+                        : null}
+                    </section>
+                  ))}
+                </div>
+              </article>
+
+              <aside className="space-y-4">
+                <div className="rounded-[1.75rem] border border-white/12 bg-white/[0.03] p-6">
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/40">Article Focus</p>
+                  <p className="mt-4 text-base leading-relaxed text-white/68">
+                    Product positioning, OEM evaluation, and applied levitation use cases for commercial and industrial teams.
+                  </p>
+                </div>
+
+                <div className="rounded-[1.75rem] border border-white/12 bg-white/[0.03] p-6">
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/40">Next Step</p>
+                  <p className="mt-4 text-base leading-relaxed text-white/68">
+                    Move from reading to specification with a quote request or direct product shortlist.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link href="/request-quote" className={buttonStyles({ size: "sm" })}>
+                      Request Quote
+                    </Link>
+                    <Link href="/favorites" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                      View Favorites
+                    </Link>
+                  </div>
+                </div>
+              </aside>
+            </div>
 
             <div className="mt-16 flex justify-center">
               <Link href="/blog" className={buttonStyles({ variant: "secondary", size: "sm" })}>
@@ -144,8 +184,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             <div className="mt-24">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-black/42">Related Articles</p>
-                  <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Continue reading</h2>
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/42">Related Articles</p>
+                  <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Continue reading</h2>
                 </div>
               </div>
 
@@ -186,6 +226,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     title={article.title}
                     excerpt={article.excerpt}
                     meta={`${formatDate(article.publishedAt)} · ${article.readTime}`}
+                    tone="dark"
                   />
                 ))}
               </div>

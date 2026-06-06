@@ -8,6 +8,7 @@ interface PageHeaderProps {
   description?: string;
   children?: ReactNode;
   align?: "left" | "center";
+  tone?: "light" | "dark";
   className?: string;
 }
 
@@ -17,14 +18,35 @@ export function PageHeader({
   description,
   children,
   align = "left",
+  tone = "light",
   className,
 }: PageHeaderProps) {
   return (
     <div className={cn(align === "center" ? "text-center" : "text-left", className)}>
-      <p className="text-xs uppercase tracking-[0.24em] text-black/45">{eyebrow}</p>
-      <h1 className="mt-4 text-5xl font-semibold tracking-tight text-black md:text-7xl">{title}</h1>
+      <p
+        className={cn(
+          "text-xs uppercase tracking-[0.24em]",
+          tone === "dark" ? "text-white/46" : "text-black/45",
+        )}
+      >
+        {eyebrow}
+      </p>
+      <h1
+        className={cn(
+          "mt-4 text-5xl font-semibold tracking-tight md:text-7xl",
+          tone === "dark" ? "text-white" : "text-black",
+        )}
+      >
+        {title}
+      </h1>
       {description ? (
-        <p className={cn("mt-6 text-base leading-relaxed text-black/68 md:text-lg", align === "center" ? "mx-auto max-w-3xl" : "max-w-3xl")}>
+        <p
+          className={cn(
+            "mt-6 text-base leading-relaxed md:text-lg",
+            tone === "dark" ? "text-white/68" : "text-black/68",
+            align === "center" ? "mx-auto max-w-3xl" : "max-w-3xl",
+          )}
+        >
           {description}
         </p>
       ) : null}

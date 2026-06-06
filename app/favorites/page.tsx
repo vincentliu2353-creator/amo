@@ -21,12 +21,13 @@ export default async function FavoritesRoute() {
 
     return (
       <InnerPageShell showHeader>
-        <section className="bg-white text-black">
+        <section className="bg-black text-white">
           <SectionContainer className="py-20 md:py-28">
             <PageHeader
               eyebrow="Saved Products"
               title="Saved Products"
               description="Products you&apos;ve selected for future reference."
+              tone="dark"
             />
 
             <div className="mt-14">
@@ -40,7 +41,7 @@ export default async function FavoritesRoute() {
   } catch (error) {
     return (
       <InnerPageShell showHeader>
-        <section className="bg-white text-black">
+        <section className="bg-black text-white">
           <SectionContainer className="py-20 md:py-28">
           <ProductsErrorState
             title="The favorites catalog is temporarily unavailable."

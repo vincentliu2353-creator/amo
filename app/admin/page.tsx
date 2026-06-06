@@ -37,7 +37,7 @@ export default async function AdminPage() {
 
   return (
     <InnerPageShell showHeader>
-      <section className="bg-white">
+      <section className="bg-black">
         <SectionContainer className="py-20 md:py-28">
           <AdminShell
             current="dashboard"
@@ -49,21 +49,21 @@ export default async function AdminPage() {
               </Link>
             }
           >
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div className="divide-y divide-white/10 rounded-[1.75rem] border border-white/10">
               {stats.map((stat) => (
-                <article key={stat.label} className="rounded-[1.75rem] border border-black/10 bg-white p-6">
-                  <p className="text-xs uppercase tracking-[0.24em] text-black/42">{stat.label}</p>
-                  <p className="mt-4 text-4xl font-semibold tracking-tight">{stat.value}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-black/56">{stat.caption}</p>
+                <article key={stat.label} className="grid gap-4 px-6 py-5 md:grid-cols-[10rem_8rem_minmax(0,1fr)] md:items-center">
+                  <p className="text-xs uppercase tracking-[0.24em] text-white/42">{stat.label}</p>
+                  <p className="text-4xl font-semibold tracking-tight text-white">{stat.value}</p>
+                  <p className="text-sm leading-relaxed text-white/56">{stat.caption}</p>
                 </article>
               ))}
             </div>
 
             <div className="mt-8 grid gap-5 xl:grid-cols-2">
-              <div className="rounded-[1.75rem] border border-black/10 bg-white p-6">
-                <p className="text-xs uppercase tracking-[0.24em] text-black/42">Products</p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight">Catalog operations</h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/62">
+              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
+                <p className="text-xs uppercase tracking-[0.24em] text-white/42">Products</p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">Catalog operations</h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/62">
                   Create, edit, publish, and review live product records without changing the public navigation or backend workflows.
                 </p>
                 <div className="mt-6">
@@ -73,10 +73,10 @@ export default async function AdminPage() {
                 </div>
               </div>
 
-              <div className="rounded-[1.75rem] border border-black/10 bg-white p-6">
-                <p className="text-xs uppercase tracking-[0.24em] text-black/42">Notes</p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight">Safe fallback behavior</h2>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/62">
+              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
+                <p className="text-xs uppercase tracking-[0.24em] text-white/42">Notes</p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">Safe fallback behavior</h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/62">
                   If live admin data is unavailable, the dashboard still renders with safe fallback counts and preserves the existing route structure.
                 </p>
               </div>

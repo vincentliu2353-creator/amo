@@ -19,10 +19,12 @@ export function HomePhilosophy() {
           >
             <h2
               id="home-philosophy-title"
-              className="font-sans text-[clamp(20px,5.2vw,72px)] font-medium uppercase leading-[1.06] tracking-normal text-black"
+              className="font-sans font-medium uppercase tracking-normal text-black"
             >
-              <span className="block whitespace-nowrap">Gravity Is A Law.</span>
-              <span className="mt-2 block whitespace-nowrap sm:mt-3">It Is Not A Design Limitation.</span>
+              <span className="block whitespace-nowrap text-[clamp(28px,7.4vw,104px)] leading-none">Gravity Is A Law.</span>
+              <span className="mt-4 block whitespace-nowrap text-[clamp(14px,3.3vw,36px)] leading-tight sm:mt-6">
+                It Is Not A Design Limitation.
+              </span>
             </h2>
           </ScrollReveal>
         </div>

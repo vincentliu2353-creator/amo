@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import { ScrollReveal } from "@/components/home/home-scroll";
@@ -110,60 +111,17 @@ function FeatureMark({ icon }: { icon: string }) {
 function TechnologyBackground() {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#030405_0%,#050608_48%,#020303_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:64px_64px] opacity-30" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(112,222,255,0.13),transparent_27%),radial-gradient(circle_at_50%_82%,rgba(255,255,255,0.08),transparent_22%)]" />
-
-      <svg viewBox="0 0 1440 900" preserveAspectRatio="none" className="absolute inset-0 h-full w-full opacity-70">
-        <defs>
-          <linearGradient id="tech-field" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-            <stop offset="50%" stopColor="rgba(135,229,255,0.34)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
-          <radialGradient id="tech-ring" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-            <stop offset="72%" stopColor="rgba(112,222,255,0.08)" />
-            <stop offset="100%" stopColor="rgba(112,222,255,0.34)" />
-          </radialGradient>
-        </defs>
-        {Array.from({ length: 9 }).map((_, index) => (
-          <path
-            key={index}
-            d={`M90 ${260 + index * 42} C 360 ${190 + index * 20}, 1050 ${332 - index * 8}, 1350 ${230 + index * 43}`}
-            fill="none"
-            stroke="url(#tech-field)"
-            strokeWidth="1"
-            opacity={0.22 + index * 0.025}
-          >
-            <animateTransform
-              attributeName="transform"
-              type="translate"
-              values="0 0; 0 18; 0 0"
-              dur={`${18 + index * 1.5}s`}
-              repeatCount="indefinite"
-            />
-          </path>
-        ))}
-        <ellipse cx="720" cy="610" rx="280" ry="72" fill="none" stroke="url(#tech-ring)" strokeWidth="2" opacity="0.72">
-          <animateTransform attributeName="transform" type="rotate" from="0 720 610" to="360 720 610" dur="42s" repeatCount="indefinite" />
-        </ellipse>
-        <ellipse cx="720" cy="610" rx="190" ry="44" fill="none" stroke="rgba(255,255,255,0.16)" strokeWidth="1" strokeDasharray="12 18" />
-        <line x1="1010" y1="285" x2="1010" y2="540" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="6 10" />
-        <line x1="1030" y1="285" x2="1030" y2="540" stroke="rgba(112,222,255,0.22)" strokeWidth="1" />
-      </svg>
-
-      <div className="absolute left-1/2 top-[55%] h-24 w-24 -translate-x-1/2 rounded-[24px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.02))] shadow-[0_0_110px_rgba(112,222,255,0.2)] sm:h-28 sm:w-28" />
-      <div className="absolute left-1/2 top-[71%] h-7 w-64 -translate-x-1/2 rounded-full bg-cyan-200/25 blur-2xl" />
-      <div className="animate-home-drift absolute left-[12%] top-[22%] h-1 w-1 rounded-full bg-cyan-100/45 shadow-[0_0_28px_rgba(165,243,252,0.7)]" />
-      <div className="animate-home-drift absolute right-[18%] top-[34%] h-1 w-1 rounded-full bg-white/45 shadow-[0_0_22px_rgba(255,255,255,0.55)]" />
-      <div className="animate-home-pulse absolute right-[24%] bottom-[20%] h-1.5 w-1.5 rounded-full bg-cyan-100/35 shadow-[0_0_24px_rgba(165,243,252,0.55)]" />
-      <div className="absolute bottom-10 left-10 hidden font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/18 lg:block">
-        Field Stability // Rotation Control // Load Calibration
-      </div>
-      <div className="absolute right-10 top-28 hidden font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/18 lg:block">
-        Levitation Height 18 MM
-      </div>
+      <Image
+        src="/images/home/technology/technology-bg.jpg"
+        alt=""
+        fill
+        quality={100}
+        sizes="100vw"
+        unoptimized
+        className="h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.42)_100%)]" />
     </div>
   );
 }
@@ -181,7 +139,6 @@ export function HomeTechnical() {
       aria-labelledby="home-technical-title"
     >
       <TechnologyBackground />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2),rgba(0,0,0,0.62))]" />
 
       <Container className="relative z-10 flex min-h-screen items-center justify-center py-20 sm:py-24">
         <ScrollReveal

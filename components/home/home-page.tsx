@@ -11,6 +11,7 @@ import { blogPosts } from "@/data/blog";
 const categories = [
   {
     accent: "150 223 255",
+    imageSrc: "/images/home/future-objects/clock.jpg",
     idLabel: "01 / LEVITATING CLOCKS",
     title: "Levitating Clocks",
     description: "Time objects redesigned for modern spaces.",
@@ -18,6 +19,7 @@ const categories = [
   },
   {
     accent: "255 210 168",
+    imageSrc: "/images/home/future-objects/lamp.jpg",
     idLabel: "02 / LEVITATING LAMPS",
     title: "Levitating Lamps",
     description: "Floating light sculptures for premium interiors.",
@@ -25,6 +27,7 @@ const categories = [
   },
   {
     accent: "180 255 229",
+    imageSrc: "/images/home/future-objects/art-object.jpg",
     idLabel: "03 / DISPLAY ART OBJECTS",
     title: "Display Art Objects",
     description: "Magnetic display systems for brands and exhibitions.",
@@ -32,6 +35,7 @@ const categories = [
   },
   {
     accent: "196 198 255",
+    imageSrc: "/images/home/future-objects/oem-module.jpg",
     idLabel: "04 / OEM MAGLEV MODULES",
     title: "OEM Maglev Modules",
     description: "Custom levitation platforms for product development.",
@@ -39,6 +43,7 @@ const categories = [
   },
   {
     accent: "226 252 170",
+    imageSrc: "/images/home/future-objects/display-base.jpg",
     idLabel: "05 / DISPLAY BASES",
     title: "Levitating Display Bases",
     description: "Floating stages for premium product launches, showcases, and collector presentation.",
@@ -46,6 +51,7 @@ const categories = [
   },
   {
     accent: "255 189 224",
+    imageSrc: "/images/home/future-objects/brand-installation.jpg",
     idLabel: "06 / BRAND INSTALLATIONS",
     title: "Custom Floating Installations",
     description: "Statement levitation pieces for hospitality lobbies, event spaces, and branded spatial design.",
@@ -95,36 +101,42 @@ const processSteps = [
 const scenarios = [
   {
     accent: "145 212 255",
+    imageSrc: "/images/home/applications/retail.jpg",
     title: "Retail Stores",
     caption: "Immersive Merchandising",
     blurb: "Floating presentation turns a product display into a spatial focal point, ideal for premium retail counters, flagship windows, and launch zones.",
   },
   {
     accent: "204 232 255",
+    imageSrc: "/images/home/applications/museum.jpg",
     title: "Museums",
     caption: "Curated Display",
     blurb: "Levitation adds distance, precision, and visual calm for collectible objects, historical replicas, and interpretive exhibition storytelling.",
   },
   {
     accent: "255 213 173",
+    imageSrc: "/images/home/applications/hotel.jpg",
     title: "Hotels",
     caption: "Hospitality Atmosphere",
     blurb: "Lobbies, suites, and lounge environments benefit from floating lighting and kinetic objects that feel intentional rather than decorative.",
   },
   {
     accent: "201 255 233",
+    imageSrc: "/images/home/applications/office.jpg",
     title: "Offices",
     caption: "Executive Presence",
     blurb: "Reception zones, boardrooms, and innovation centers can use levitation to express technology leadership and brand confidence.",
   },
   {
     accent: "229 230 255",
+    imageSrc: "/images/home/applications/exhibition.jpg",
     title: "Exhibitions",
     caption: "Trade Show Impact",
     blurb: "Spatial drama and controlled motion help draw traffic, isolate hero products, and create memorable booth signatures.",
   },
   {
     accent: "255 214 230",
+    imageSrc: "/images/home/applications/premium-gifts.jpg",
     title: "Premium Gifts",
     caption: "Collector Packaging",
     blurb: "Gift editions, private-label launches, and commemorative objects gain perceived value when the presentation itself feels engineered.",

@@ -1,26 +1,55 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, useState } from "react";
 
 import { useSiteStore } from "@/components/providers/site-store-provider";
 import { buttonStyles } from "@/components/ui/button";
-import { EmptyState } from "@/components/ui/EmptyState";
 import { FormInput } from "@/components/ui/FormInput";
 import { Input } from "@/components/ui/input";
 
+const projectTypes = [
+  {
+    title: "OEM Development",
+    description: "Custom magnetic levitation products for your brand.",
+  },
+  {
+    title: "ODM Development",
+    description: "Ready-to-develop product concepts with customization support.",
+  },
+  {
+    title: "Retail Display",
+    description: "Floating displays for premium retail environments.",
+  },
+  {
+    title: "Corporate Gifts",
+    description: "Memorable magnetic levitation gifts for business clients.",
+  },
+  {
+    title: "Museum Installation",
+    description: "Floating objects for cultural and exhibition spaces.",
+  },
+  {
+    title: "Custom Product",
+    description: "Unique levitation solutions based on your idea.",
+  },
+];
+
 const inputClassName =
-  "min-h-14 rounded-[1.5rem] border border-black/12 bg-white px-5 text-base text-black shadow-none placeholder:text-black/34 focus:border-black/24 focus:bg-white";
+  "min-h-[52px] rounded-[1.5rem] border border-white/20 bg-transparent px-5 text-base text-white shadow-none placeholder:text-white/40 focus:border-white focus:bg-white/[0.03]";
 
 const textareaClassName =
-  "min-h-[140px] w-full rounded-[1.5rem] border border-black/12 bg-white px-5 py-4 text-base text-black outline-none transition placeholder:text-black/34 focus:border-black/24";
+  "min-h-[160px] w-full rounded-[1.5rem] border border-white/20 bg-transparent px-5 py-4 text-base text-white outline-none transition placeholder:text-white/40 focus:border-white focus:bg-white/[0.03]";
 
 function statusCopy(status: "idle" | "submitting" | "success" | "error", message: string) {
   if (status === "idle") {
-    return "Selected products stay in local storage until the RFQ is submitted.";
+    return "We review serious quote inquiries within 24-48 hours.";
   }
 
   return message;
+}
+
+function normalizeProjectType(value: string) {
+  return projectTypes.find((projectType) => projectType.title === value)?.title ?? projectTypes[0].title;
 }
 
 export interface RfqFormPrefills {
@@ -57,10 +86,11 @@ export function RfqForm({
   prefills = defaultPrefills,
 }: RfqFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
-  const { clearQuote, hydrated, quoteItems, removeFromQuote, updateQuoteItem } = useSiteStore();
+  const { clearQuote, hydrated, quoteItems } = useSiteStore();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [requestNumber, setRequestNumber] = useState("");
+  const [selectedProjectType, setSelectedProjectType] = useState(normalizeProjectType(prefills.businessType));
 
   async function handleSubmit(formData: FormData) {
     if (quoteItems.length === 0) {
@@ -106,6 +136,7 @@ export function RfqForm({
       setRequestNumber(result.requestNumber ?? "");
       formRef.current?.reset();
       clearQuote();
+      setSelectedProjectType(normalizeProjectType(prefills.businessType));
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Unable to submit RFQ.");
@@ -114,15 +145,35 @@ export function RfqForm({
 
   if (!hydrated) {
     return (
-      <div className="grid gap-6 xl:grid-cols-[1fr_24rem]">
+      <div className="space-y-6">
         <div className="space-y-4">
-          <div className="h-10 w-56 animate-pulse rounded-full bg-black/6" />
-          <div className="h-56 animate-pulse rounded-[2rem] bg-black/6" />
+          <div className="h-10 w-56 animate-pulse rounded-full bg-white/8" />
+          <div className="h-56 animate-pulse rounded-[2rem] bg-white/8" />
         </div>
-        <div className="h-[36rem] animate-pulse rounded-[2rem] bg-black/6" />
+        <div className="h-[36rem] animate-pulse rounded-[2rem] bg-white/8" />
       </div>
     );
   }
+
+  const supportItems = [
+    { label: "Response Time", value: "Within 24-48 hours" },
+    { label: "Project Support", value: "OEM / ODM / Custom Development" },
+    { label: "Production Scope", value: "Prototype to mass production" },
+    { label: "Global Delivery", value: "Worldwide project support" },
+  ];
+
+  const buttonClassName = buttonStyles({
+    size: "lg",
+    fullWidth: true,
+    className: "sm:w-auto",
+  });
+
+  const statusClassName =
+    status === "success"
+      ? "border-white/16 text-white"
+      : status === "error"
+        ? "border-red-400/24 text-red-200"
+        : "border-white/12 text-white/52";
 
   return (
     <form
@@ -132,140 +183,100 @@ export function RfqForm({
         event.preventDefault();
         await handleSubmit(new FormData(event.currentTarget));
       }}
-      className="grid gap-10 xl:grid-cols-[1fr_24rem]"
     >
-      <div className="space-y-10">
-        <section>
-          <div className="flex flex-col gap-4 border-b border-black/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-black/42">Section 01</p>
-              <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Selected Products</h2>
-              <p className="mt-4 max-w-3xl text-base leading-relaxed text-black/62">
-                Review selected products and send your project details.
-              </p>
-            </div>
-            <div className="rounded-full border border-black/10 px-4 py-2 text-sm text-black/48">
-              {quoteItems.length} product{quoteItems.length === 1 ? "" : "s"}
-            </div>
-          </div>
+      <div className="border-b border-white/12 pb-14 md:pb-16">
+        <p className="text-xs uppercase tracking-[0.28em] text-white/42">AMO Project Inquiry</p>
+        <h1 className="mt-6 text-5xl font-semibold tracking-tight text-white md:text-7xl">
+          REQUEST A QUOTE
+        </h1>
+        <p className="mt-8 max-w-3xl text-base leading-relaxed text-white/66 md:text-lg">
+          Tell us what you want to build.
+          <br />
+          We will respond with pricing, lead time, and development recommendations.
+        </p>
+      </div>
 
-          <div className="mt-8 space-y-4">
-            {quoteItems.length === 0 ? (
-              <EmptyState
-                title="No products selected yet."
-                description="Add products to your quote list before submitting a request."
-                action={
-                  <Link href="/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
-                    View Products
-                  </Link>
-                }
-              />
-            ) : (
-              quoteItems.map((item) => (
-                <article
-                  key={item.product_slug}
-                  className="grid gap-5 rounded-[2rem] border border-black/10 bg-[#f5f5f2] p-5 md:grid-cols-[160px_1fr]"
+      <div className="grid gap-14 pt-14 xl:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] xl:gap-16 xl:pt-16">
+        <section className="xl:pr-10">
+          <p className="text-xs uppercase tracking-[0.24em] text-white/42">Project Type</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">Project Type</h2>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-white/62">
+            Choose the option closest to your project. This helps us understand your requirements faster.
+          </p>
+
+          <div className="mt-10 border-y border-white/12">
+            {projectTypes.map((projectType) => {
+              const selected = selectedProjectType === projectType.title;
+
+              return (
+                <button
+                  key={projectType.title}
+                  type="button"
+                  onClick={() => setSelectedProjectType(projectType.title)}
+                  className="relative flex w-full items-start gap-5 border-b border-white/12 py-6 text-left last:border-b-0"
                 >
-                  <div className="overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
-                    {item.product_image ? (
-                      <img src={item.product_image} alt={item.product_name} className="h-40 w-full object-cover" />
-                    ) : (
-                      <div className="flex h-40 items-end bg-[#ecebe6] p-4">
-                        <span className="rounded-full border border-black/10 bg-white/80 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-black/48">
-                          AMO Product
-                        </span>
-                      </div>
-                    )}
+                  <span
+                    className={`mt-2 h-2.5 w-2.5 shrink-0 rounded-full transition ${
+                      selected ? "bg-white" : "bg-white/18"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <div className="min-w-0">
+                    <h3 className={`text-[1.7rem] font-semibold tracking-tight transition ${selected ? "text-white" : "text-white/74 hover:text-white"}`}>
+                      {projectType.title}
+                    </h3>
+                    <p
+                      className={`mt-3 max-w-xl text-sm leading-7 transition md:text-base ${
+                        selected ? "text-white/72" : "text-white/46"
+                      }`}
+                    >
+                      {projectType.description}
+                    </p>
                   </div>
-
-                  <div className="space-y-4">
-                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.24em] text-black/40">{item.product_slug}</p>
-                        <h3 className="mt-3 text-2xl font-semibold tracking-tight">{item.product_name}</h3>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => removeFromQuote(item.product_slug)}
-                        className="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-black/54 transition hover:border-black/18 hover:text-black"
-                      >
-                        Remove
-                      </button>
-                    </div>
-
-                    <div className="grid gap-5 md:grid-cols-[10rem_1fr]">
-                      <FormInput label="Quantity" htmlFor={`rfq-qty-${item.product_slug}`}>
-                        <Input
-                          id={`rfq-qty-${item.product_slug}`}
-                          type="number"
-                          min={1}
-                          value={item.quantity}
-                          onChange={(event) =>
-                            updateQuoteItem(item.product_slug, {
-                              quantity: Number(event.target.value) > 0 ? Number(event.target.value) : 1,
-                            })
-                          }
-                          className={inputClassName}
-                        />
-                      </FormInput>
-
-                      <FormInput label="Notes" htmlFor={`rfq-notes-${item.product_slug}`}>
-                        <textarea
-                          id={`rfq-notes-${item.product_slug}`}
-                          rows={3}
-                          value={item.notes}
-                          onChange={(event) => updateQuoteItem(item.product_slug, { notes: event.target.value })}
-                          className={textareaClassName}
-                          placeholder="Share payload, environment, motion range, or integration notes."
-                        />
-                      </FormInput>
-                    </div>
-                  </div>
-                </article>
-              ))
-            )}
+                </button>
+              );
+            })}
           </div>
         </section>
 
-        <section>
-          <div className="border-b border-black/10 pb-6">
-            <p className="text-xs uppercase tracking-[0.24em] text-black/42">Section 02</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Inquiry Form</h2>
+        <section className="border-t border-white/12 pt-10 xl:border-l xl:border-t-0 xl:pl-12 xl:pt-0">
+          <div>
+            <p className="text-xs uppercase tracking-[0.24em] text-white/42">Project Details</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">Project Details</h2>
+            <p className="mt-4 text-base leading-relaxed text-white/62">
+              Share your company, contact details, quantity expectations, and project context so AMO can respond with the right next step.
+            </p>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <FormInput label="Company" htmlFor="rfq-company">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            <FormInput label="Company" htmlFor="rfq-company" tone="dark">
               <Input id="rfq-company" name="company_name" defaultValue={prefills.companyName} required className={inputClassName} />
             </FormInput>
-            <FormInput label="Contact Name" htmlFor="rfq-contact-name">
+            <FormInput label="Contact Name" htmlFor="rfq-contact-name" tone="dark">
               <Input id="rfq-contact-name" name="contact_name" defaultValue={prefills.contactName} required className={inputClassName} />
             </FormInput>
-            <FormInput label="Email" htmlFor="rfq-email">
+            <FormInput label="Email" htmlFor="rfq-email" tone="dark">
               <Input id="rfq-email" name="email" type="email" defaultValue={prefills.email} required className={inputClassName} />
             </FormInput>
-            <FormInput label="WhatsApp" htmlFor="rfq-whatsapp">
+            <FormInput label="WhatsApp" htmlFor="rfq-whatsapp" tone="dark">
               <Input id="rfq-whatsapp" name="whatsapp" defaultValue={prefills.phone} className={inputClassName} />
             </FormInput>
-            <FormInput label="Country" htmlFor="rfq-country">
-              <Input id="rfq-country" name="country" defaultValue={prefills.country} className={inputClassName} />
+            <FormInput label="Country" htmlFor="rfq-country" tone="dark">
+              <Input id="rfq-country" name="country" defaultValue={prefills.country} required className={inputClassName} />
             </FormInput>
-            <FormInput label="Business Type" htmlFor="rfq-business-type">
-              <select id="rfq-business-type" name="business_type" defaultValue={prefills.businessType} className={`${inputClassName} w-full`}>
-                <option value="" disabled>
-                  Select business type
-                </option>
-                <option value="OEM Development">OEM Development</option>
-                <option value="ODM Development">ODM Development</option>
-                <option value="Retail Display">Retail Display</option>
-                <option value="Corporate Gifts">Corporate Gifts</option>
-                <option value="Museum Installation">Museum Installation</option>
-                <option value="Custom Product">Custom Product</option>
-                <option value="Machine Builder">Machine Builder</option>
-                <option value="System Integrator">System Integrator</option>
-                <option value="Distributor">Distributor</option>
-              </select>
+
+            <FormInput label="Project Type" htmlFor="rfq-business-type" tone="dark">
+              <Input
+                id="rfq-business-type"
+                name="business_type"
+                value={selectedProjectType}
+                readOnly
+                required
+                className={inputClassName}
+              />
             </FormInput>
-            <FormInput label="Estimated Quantity" htmlFor="rfq-estimated-quantity">
+
+            <FormInput label="Estimated Quantity" htmlFor="rfq-estimated-quantity" tone="dark">
               <Input
                 id="rfq-estimated-quantity"
                 name="estimated_quantity"
@@ -273,60 +284,54 @@ export function RfqForm({
                 className={inputClassName}
               />
             </FormInput>
-            <FormInput label="Customization Requirements" htmlFor="rfq-customization">
-              <Input
-                id="rfq-customization"
-                name="customization_requirements"
-                defaultValue={prefills.customizationRequirements}
-                className={inputClassName}
-              />
-            </FormInput>
+
+            <input type="hidden" name="customization_requirements" value={prefills.customizationRequirements} />
+
             <div className="md:col-span-2">
-              <FormInput label="Message" htmlFor="rfq-message">
+              <FormInput label="Message" htmlFor="rfq-message" tone="dark">
                 <textarea
                   id="rfq-message"
                   name="message"
                   rows={6}
                   defaultValue={prefills.message}
+                  required
                   className={textareaClassName}
-                  placeholder="Add project goals, timing, technical constraints, and commercial notes."
+                  placeholder="Describe the idea, usage context, customization scope, and commercial timing."
                 />
               </FormInput>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className={buttonClassName}
+            >
+              {status === "submitting" ? "Submitting..." : "Request Quote"}
+            </button>
+
+            <div
+              className={`mt-5 border-t px-0 pt-5 text-sm leading-7 ${statusClassName}`}
+              aria-live="polite"
+            >
+              {statusCopy(status, message)}
+              {requestNumber ? <span className="block pt-3 text-xs uppercase tracking-[0.24em] text-white/56">Reference {requestNumber}</span> : null}
             </div>
           </div>
         </section>
       </div>
 
-      <aside className="space-y-4">
-        <div
-          className={`rounded-[2rem] border p-6 ${
-            status === "success"
-              ? "border-black bg-black text-white"
-              : status === "error"
-                ? "border-red-200 bg-red-50 text-red-700"
-                : "border-black/10 bg-[#f5f5f2] text-black"
-          }`}
-          aria-live="polite"
-        >
-          <p className={`text-xs uppercase tracking-[0.24em] ${status === "success" ? "text-white/48" : "text-current/50"}`}>Status</p>
-          <p className="mt-4 text-base leading-relaxed">{statusCopy(status, message)}</p>
-          {requestNumber ? <p className="mt-4 text-xs uppercase tracking-[0.24em]">Reference {requestNumber}</p> : null}
+      <div className="mt-16 border-t border-white/12 pt-8">
+        <div className="grid gap-6 divide-y divide-white/12 sm:grid-cols-2 sm:divide-y-0 xl:grid-cols-4 xl:divide-x xl:divide-white/12">
+          {supportItems.map((item) => (
+            <div key={item.label} className="pt-6 first:pt-0 sm:pt-0 xl:px-6 xl:first:pl-0 xl:last:pr-0">
+              <p className="text-xs uppercase tracking-[0.24em] text-white/42">{item.label}</p>
+              <p className="mt-4 max-w-[16rem] text-base leading-relaxed text-white/72">{item.value}</p>
+            </div>
+          ))}
         </div>
-
-        <div className="rounded-[2rem] border border-black/10 bg-[#f5f5f2] p-6">
-          <p className="text-xs uppercase tracking-[0.24em] text-black/42">Submit</p>
-          <p className="mt-4 text-base leading-relaxed text-black/62">
-            Preserve your selected products, then send the RFQ when the shortlist and project details are ready.
-          </p>
-          <button
-            type="submit"
-            disabled={status === "submitting" || quoteItems.length === 0}
-            className={`mt-6 ${buttonStyles({ size: "lg", fullWidth: true })}`}
-          >
-            {status === "submitting" ? "Submitting..." : "Request Quote"}
-          </button>
-        </div>
-      </aside>
+      </div>
     </form>
   );
 }

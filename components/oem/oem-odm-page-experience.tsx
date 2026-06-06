@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { startTransition, useState } from "react";
 
@@ -99,6 +100,8 @@ const customizationOptions = [
     title: "Product Shape",
     description: "Adapt the floating object and base geometry to your category, proportions, and visual tension.",
     details: ["Silhouette direction", "Balance tuning", "Object-to-base relationship"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-product-shape.jpg",
     visual: "shape",
   },
   {
@@ -107,6 +110,8 @@ const customizationOptions = [
     title: "Material",
     description: "Balance premium touch, production feasibility, and magnetic performance across shell and structural parts.",
     details: ["Plastic or metal shells", "Mixed-material construction", "Retail-safe durability"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-material.jpg",
     visual: "material",
   },
   {
@@ -115,6 +120,8 @@ const customizationOptions = [
     title: "Surface Finish",
     description: "Define the final visual language through texture, gloss, matte treatment, and coating precision.",
     details: ["Matte and soft-touch", "Metallic detailing", "Color depth control"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-surface-finish.jpg",
     visual: "finish",
   },
   {
@@ -123,6 +130,8 @@ const customizationOptions = [
     title: "Branding",
     description: "Integrate logos, marks, and signature cues without making the product feel over-designed.",
     details: ["Logo placement", "Subtle marks", "Premium identity integration"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-branding.jpg",
     visual: "branding",
   },
   {
@@ -131,6 +140,8 @@ const customizationOptions = [
     title: "Packaging",
     description: "Extend the product story into the unboxing system, protection strategy, and presentation layer.",
     details: ["Protective insert design", "Gift-ready packaging", "Export-aware presentation"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-packaging.jpg",
     visual: "packaging",
   },
   {
@@ -139,6 +150,8 @@ const customizationOptions = [
     title: "Magnetic Module",
     description: "Tune lift architecture, power behavior, and load handling around the real object and installation context.",
     details: ["Different weight classes", "Stable lift behavior", "Power and safety planning"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-magnetic-module.jpg",
     visual: "module",
   },
   {
@@ -147,6 +160,8 @@ const customizationOptions = [
     title: "Lighting",
     description: "Use glow, edge light, or quiet illumination to support the floating effect without distracting from it.",
     details: ["Halo lighting", "Object emphasis", "Ambient presentation"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-lighting.jpg",
     visual: "lighting",
   },
   {
@@ -155,6 +170,8 @@ const customizationOptions = [
     title: "Motion Effect",
     description: "Define how the object rotates, pauses, and presents itself to match the intended brand mood.",
     details: ["360° or 720° rotation", "Speed calibration", "Calm presentation rhythm"],
+    imagePosition: "center center",
+    imageSrc: "/images/oem/custom-motion-effect.jpg",
     visual: "motion",
   },
 ] as const;
@@ -191,44 +208,55 @@ const industryScenarios = [
   {
     accent: "145 214 255",
     caption: "Retail",
+    imagePosition: "center right",
+    imageSrc: "/images/oem/industry-retail.jpg",
     title: "Merchandising Focus",
     description: "Create a premium pause point for hero products, limited releases, and elevated counter displays.",
   },
   {
     accent: "209 231 255",
     caption: "Hospitality",
+    imagePosition: "center center",
+    imageSrc: "/images/oem/industry-hospitality.jpg",
     title: "Spatial Atmosphere",
     description: "Use floating light objects and sculptural display systems to give lounges, suites, and lobbies a calmer technological signature.",
   },
   {
     accent: "255 206 173",
     caption: "Museums",
+    imagePosition: "center center",
+    imageSrc: "/images/oem/industry-museums.jpg",
     title: "Curated Distance",
     description: "Present artifacts, replicas, or symbolic objects with a sense of silence, precision, and protected separation.",
   },
   {
     accent: "196 255 232",
     caption: "Corporate Gifts",
+    imagePosition: "center center",
+    imageSrc: "/images/oem/industry-corporate-gifts.jpg",
     title: "Collector Presence",
     description: "Turn limited editions, executive gifts, and commemorative launches into products that feel engineered rather than promotional.",
   },
   {
     accent: "201 204 255",
     caption: "Brand Activations",
+    imagePosition: "center center",
+    imageSrc: "/images/oem/industry-brand-activations.jpg",
     title: "Launch Drama",
     description: "Give campaigns and showroom moments a controlled kinetic focal point that supports product storytelling.",
   },
   {
     accent: "255 196 228",
     caption: "Exhibitions",
+    imagePosition: "center center",
+    imageSrc: "/images/oem/industry-exhibitions.jpg",
     title: "Booth Signature",
     description: "Draw attention in crowded halls with floating presentation that feels precise, spatial, and intentionally quiet.",
   },
 ] as const;
 
-function accentColor(accent: string, alpha: number) {
-  return `rgb(${accent} / ${alpha})`;
-}
+const developmentCapabilityImage = "/images/oem/development-capability.jpg" as const;
+const heroImage = "/images/oem/oem-hero.jpg" as const;
 
 function useLoopingIndex(length: number) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -360,39 +388,37 @@ function StepCounter({
   );
 }
 
+function CinematicBackgroundImage({
+  alt,
+  objectPosition = "center center",
+  priority = false,
+  src,
+}: {
+  alt: string;
+  objectPosition?: string;
+  priority?: boolean;
+  src: string;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      priority={priority}
+      quality={100}
+      sizes="100vw"
+      unoptimized
+      className="h-full w-full object-cover"
+      style={{ objectPosition }}
+    />
+  );
+}
+
 function DevelopmentCapabilityScene() {
   return (
-    <div className="relative h-[min(48vh,29rem)] min-h-[18rem] w-full overflow-hidden rounded-[3rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(115,229,255,0.16),transparent_22%),linear-gradient(180deg,#05070b_0%,#090c12_100%)] shadow-[0_34px_120px_rgba(0,0,0,0.42)]">
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-30" />
-      <svg viewBox="0 0 720 560" className="absolute inset-0 h-full w-full opacity-80">
-        <defs>
-          <linearGradient id="oem-development-field" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-            <stop offset="50%" stopColor="rgba(135,229,255,0.46)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </linearGradient>
-        </defs>
-        {Array.from({ length: 7 }).map((_, index) => (
-          <path
-            key={index}
-            d={`M74 ${140 + index * 42} C 226 ${96 + index * 18}, 462 ${212 + index * 16}, 646 ${124 + index * 46}`}
-            fill="none"
-            stroke="url(#oem-development-field)"
-            strokeWidth="1.15"
-            opacity={0.18 + index * 0.06}
-          />
-        ))}
-        <line x1="534" y1="108" x2="534" y2="400" stroke="rgba(255,255,255,0.16)" strokeWidth="1.1" strokeDasharray="7 9" />
-      </svg>
-
-      <div className="absolute left-1/2 top-[14%] h-14 w-32 -translate-x-1/2 rounded-[1.7rem] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.03))] shadow-[0_18px_50px_rgba(0,0,0,0.28)] animate-home-float" />
-      <div className="absolute left-1/2 top-[31%] h-12 w-48 -translate-x-1/2 rounded-[1.7rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.03))]" />
-      <div className="absolute left-1/2 top-[46%] h-10 w-60 -translate-x-1/2 rounded-[1.7rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.02))]" />
-      <div className="absolute left-1/2 top-[59%] h-12 w-72 -translate-x-1/2 rounded-[1.9rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.02))]" />
-      <div className="absolute left-1/2 top-[76%] h-6 w-40 -translate-x-1/2 rounded-full bg-cyan-200/28 blur-2xl" />
-      <div className="absolute left-8 top-8 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/44">
-        Exploded System
-      </div>
+    <div className="absolute inset-0 overflow-hidden">
+      <CinematicBackgroundImage alt="Exploded magnetic levitation system" src={developmentCapabilityImage} />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,3,4,0.48)_0%,rgba(2,3,4,0.18)_34%,rgba(2,3,4,0.72)_100%)]" />
     </div>
   );
 }
@@ -534,109 +560,16 @@ function ProcessStepIcon({
   );
 }
 
-function CustomizationObject({
-  accent,
-  visual,
-}: {
-  accent: string;
-  visual: (typeof customizationOptions)[number]["visual"];
-}) {
-  const shell = "border border-white/16 bg-[radial-gradient(circle_at_30%_24%,rgba(255,255,255,0.24),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.02)_55%)]";
-
-  if (visual === "shape") {
-    return <div className={cn("absolute left-1/2 top-[50%] h-44 w-44 -translate-x-1/2 rotate-[12deg] rounded-[32%] shadow-[0_0_90px_rgba(255,255,255,0.06)]", shell)} />;
-  }
-
-  if (visual === "material") {
-    return (
-      <>
-        <div className={cn("absolute left-[40%] top-[34%] h-36 w-28 -translate-x-1/2 rounded-[1.6rem]", shell)} />
-        <div className={cn("absolute left-[58%] top-[42%] h-40 w-32 -translate-x-1/2 rounded-[1.9rem]", shell)} />
-      </>
-    );
-  }
-
-  if (visual === "finish") {
-    return <div className={cn("absolute left-1/2 top-[38%] h-48 w-48 -translate-x-1/2 rounded-full shadow-[0_0_90px_rgba(255,255,255,0.08)]", shell)} />;
-  }
-
-  if (visual === "branding") {
-    return (
-      <div className={cn("absolute left-1/2 top-[40%] h-44 w-56 -translate-x-1/2 rounded-[2rem] shadow-[0_0_90px_rgba(255,255,255,0.06)]", shell)}>
-        <div className="absolute inset-x-[24%] top-[48%] h-px bg-white/42" />
-        <div className="absolute left-1/2 top-[41%] h-12 w-12 -translate-x-1/2 rounded-full border border-white/24" />
-      </div>
-    );
-  }
-
-  if (visual === "packaging") {
-    return (
-      <>
-        <div className={cn("absolute left-1/2 top-[49%] h-28 w-48 -translate-x-1/2 rounded-[1.6rem]", shell)} />
-        <div className={cn("absolute left-1/2 top-[34%] h-24 w-36 -translate-x-1/2 rounded-[1.4rem]", shell)} />
-      </>
-    );
-  }
-
-  if (visual === "module") {
-    return (
-      <>
-        <div className="absolute left-1/2 top-[34%] h-28 w-28 -translate-x-1/2 rounded-full border border-cyan-100/30" />
-        <div className="absolute left-1/2 top-[44%] h-44 w-44 -translate-x-1/2 rounded-full border border-white/16" />
-        <div className={cn("absolute left-1/2 top-[47%] h-20 w-20 -translate-x-1/2 rounded-full", shell)} />
-      </>
-    );
-  }
-
-  if (visual === "lighting") {
-    return (
-      <>
-        <div className="absolute left-1/2 top-[46%] h-52 w-52 -translate-x-1/2 rounded-full bg-cyan-100/10 blur-3xl" />
-        <div className={cn("absolute left-1/2 top-[44%] h-32 w-32 -translate-x-1/2 rounded-[30%]", shell)} />
-      </>
-    );
-  }
-
-  return (
-    <>
-      <div className="absolute left-1/2 top-[44%] h-56 w-56 -translate-x-1/2 rounded-full border border-white/12" />
-      <div className="absolute left-1/2 top-[44%] h-40 w-40 -translate-x-1/2 rounded-full border border-white/12 animate-home-orbit" />
-      <div className={cn("absolute left-1/2 top-[44%] h-24 w-24 -translate-x-1/2 rounded-[32%]", shell)} />
-    </>
-  );
-}
-
 function CustomizationScene({
-  accent,
-  visual,
+  option,
 }: {
-  accent: string;
-  visual: (typeof customizationOptions)[number]["visual"];
+  option: (typeof customizationOptions)[number];
 }) {
   return (
-    <div
-      className="relative h-[min(60vh,37rem)] min-h-[23rem] w-full overflow-hidden rounded-[3rem] border border-white/10 bg-black text-white shadow-[0_34px_110px_rgba(0,0,0,0.42)]"
-      style={{
-        backgroundImage: `radial-gradient(circle at 24% 18%, ${accentColor(accent, 0.18)}, transparent 20%), linear-gradient(180deg, #050607 0%, #0c0e13 100%)`,
-      }}
-    >
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-24" />
-      {Array.from({ length: 6 }).map((_, index) => (
-        <div
-          key={index}
-          className="absolute left-[8%] right-[8%] h-px"
-          style={{
-            top: `${18 + index * 11}%`,
-            background: `linear-gradient(90deg, transparent, ${accentColor(accent, 0.2)}, transparent)`,
-          }}
-        />
-      ))}
-      <div className="absolute inset-x-8 bottom-8 top-8 rounded-[2.4rem] border border-white/8" />
-      <div className="absolute left-[12%] top-[18%] h-32 w-32 rounded-full border border-white/10" />
-      <div className="absolute right-[12%] bottom-[18%] h-40 w-40 rounded-full border border-white/10" />
-      <CustomizationObject accent={accent} visual={visual} />
-      <div className="absolute left-1/2 top-[76%] h-7 w-44 -translate-x-1/2 rounded-full blur-xl" style={{ background: accentColor(accent, 0.3) }} />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black via-black/76 to-transparent" />
+    <div className="absolute inset-0 overflow-hidden">
+      <CinematicBackgroundImage alt={`${option.title} customization preview`} objectPosition={option.imagePosition} src={option.imageSrc} />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.18)_30%,rgba(0,0,0,0.14)_64%,rgba(0,0,0,0.8)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.08)_28%,rgba(0,0,0,0.08)_72%,rgba(0,0,0,0.3)_100%)]" />
     </div>
   );
 }
@@ -674,39 +607,12 @@ function EngineeringSelector({
   );
 }
 
-function IndustryScene({
-  accent,
-  index,
-}: {
-  accent: string;
-  index: number;
-}) {
-  const leftVariants = [
-    "left-[6%] top-[10%] h-[52%] w-[24%] rounded-[2.4rem]",
-    "left-[10%] top-[18%] h-[42%] w-[30%] rounded-[2.8rem]",
-    "left-[12%] top-[12%] h-[50%] w-[22%] rounded-[3rem]",
-  ] as const;
-  const rightVariants = [
-    "right-[6%] top-[8%] h-[56%] w-[32%] rounded-[3rem]",
-    "right-[10%] top-[18%] h-[44%] w-[26%] rounded-[2.4rem]",
-    "right-[8%] top-[10%] h-[58%] w-[30%] rounded-[3.2rem]",
-  ] as const;
-
+function IndustryScene({ scenario }: { scenario: (typeof industryScenarios)[number] }) {
   return (
-    <div
-      className="absolute inset-0 overflow-hidden text-white"
-      style={{
-        backgroundImage: `radial-gradient(circle at 20% 20%, ${accentColor(accent, 0.28)}, transparent 20%), linear-gradient(160deg, rgba(255,255,255,0.08), rgba(8,8,8,0.94) 62%)`,
-      }}
-    >
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:72px_72px] opacity-22" />
-      <div className={cn("absolute border border-white/10 bg-white/[0.05]", leftVariants[index % leftVariants.length])} />
-      <div className={cn("absolute border border-white/10 bg-white/[0.04]", rightVariants[index % rightVariants.length])} />
-      <div className="absolute inset-x-[8%] bottom-0 top-[14%] rounded-t-[3rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
-      <div className="absolute left-1/2 top-[54%] h-32 w-32 -translate-x-1/2 rounded-[30%] border border-white/16 bg-[radial-gradient(circle_at_32%_26%,rgba(255,255,255,0.26),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.04)_48%,rgba(255,255,255,0)_100%)] shadow-[0_0_120px_rgba(0,0,0,0.4)] animate-home-float" />
-      <div className="absolute left-1/2 top-[72%] h-6 w-48 -translate-x-1/2 rounded-full blur-xl" style={{ background: accentColor(accent, 0.32) }} />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.06),transparent_20%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black via-black/74 to-transparent" />
+    <div className="absolute inset-0 overflow-hidden text-white">
+      <CinematicBackgroundImage alt={`${scenario.caption} application scene`} objectPosition={scenario.imagePosition} src={scenario.imageSrc} />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.76)_0%,rgba(0,0,0,0.44)_32%,rgba(0,0,0,0.08)_70%,rgba(0,0,0,0.28)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0.1)_42%,rgba(0,0,0,0.62)_100%)]" />
     </div>
   );
 }
@@ -718,9 +624,8 @@ function DevelopmentCapabilitySection() {
       data-header-theme="dark"
       className="relative overflow-hidden bg-black py-20 text-white sm:py-24 lg:h-screen lg:py-0"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#030405_0%,#07090d_48%,#030405_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:72px_72px] opacity-26" />
-      <div className="pointer-events-none absolute inset-x-[6%] top-1/2 -translate-y-1/2 opacity-70">
+      <div className="pointer-events-none absolute inset-0">
         <DevelopmentCapabilityScene />
       </div>
       <Container className="relative z-10 lg:flex lg:h-full lg:items-center">
@@ -829,49 +734,42 @@ function CustomizationOptionsSection() {
       data-header-theme="dark"
       className="relative overflow-hidden bg-black py-20 text-white sm:py-24 lg:h-screen lg:py-0"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#030405_0%,#07090d_44%,#050608_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25" />
-      <div className="absolute left-[18%] top-[18%] h-48 w-48 rounded-full bg-cyan-100/8 blur-3xl" />
-      <div className="absolute right-[14%] bottom-[14%] h-56 w-56 rounded-full bg-white/5 blur-3xl" />
+      <CustomizationScene option={activeOption} />
       <Container className="relative z-10 lg:flex lg:h-full lg:flex-col lg:justify-center">
-        <ScrollReveal className="w-full overflow-hidden">
-          <div className="relative">
-            <CustomizationScene accent={activeOption.accent} visual={activeOption.visual} />
-
-            <div className="absolute inset-x-6 top-8 z-10 text-center sm:inset-x-10 sm:top-10">
-              <p className="text-[11px] uppercase tracking-[0.3em] text-white/42">Customization Options</p>
-              <h2 className="mx-auto mt-4 max-w-[22ch] text-[clamp(2.5rem,4.6vw,4.6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-white">
-                EVERY ELEMENT CAN BE CUSTOMIZED.
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <CarouselButton dark direction="previous" onClick={goPrevious} />
-                <CarouselButton dark direction="next" onClick={goNext} />
-              </div>
+        <ScrollReveal className="relative min-h-[34rem] w-full overflow-hidden lg:h-full">
+          <div className="absolute inset-x-6 top-8 z-10 text-center sm:inset-x-10 sm:top-10">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-white/42">Customization Options</p>
+            <h2 className="mx-auto mt-4 max-w-[22ch] text-[clamp(2.5rem,4.6vw,4.6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-white">
+              EVERY ELEMENT CAN BE CUSTOMIZED.
+            </h2>
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <CarouselButton dark direction="previous" onClick={goPrevious} />
+              <CarouselButton dark direction="next" onClick={goNext} />
             </div>
+          </div>
 
-            <div className="absolute inset-x-6 bottom-20 z-10 text-center sm:inset-x-10 sm:bottom-24">
-              <p className="text-[10px] uppercase tracking-[0.28em] text-white/40">{activeOption.indexLabel}</p>
-              <h3
-                className={cn(
-                  "mx-auto mt-4 font-medium leading-[0.98] tracking-[-0.05em] text-white",
-                  isProductShape ? "max-w-[14ch] text-[clamp(1.6rem,2.7vw,2.5rem)]" : "max-w-[15ch] text-[clamp(2.1rem,3.5vw,3.35rem)]",
-                )}
-              >
-                {activeOption.title}
-              </h3>
-              <p
-                className={cn(
-                  "mx-auto mt-3 max-w-[24rem] text-white/62",
-                  isProductShape ? "text-[12px] leading-5" : "max-w-[26rem] text-[13px] leading-6 sm:text-[14px]",
-                )}
-              >
-                {activeOption.description}
-              </p>
-            </div>
+          <div className="absolute inset-x-6 bottom-20 z-10 text-center sm:inset-x-10 sm:bottom-24">
+            <p className="text-[10px] uppercase tracking-[0.28em] text-white/40">{activeOption.indexLabel}</p>
+            <h3
+              className={cn(
+                "mx-auto mt-4 font-medium leading-[0.98] tracking-[-0.05em] text-white",
+                isProductShape ? "max-w-[14ch] text-[clamp(1.6rem,2.7vw,2.5rem)]" : "max-w-[15ch] text-[clamp(2.1rem,3.5vw,3.35rem)]",
+              )}
+            >
+              {activeOption.title}
+            </h3>
+            <p
+              className={cn(
+                "mx-auto mt-3 max-w-[24rem] text-white/62",
+                isProductShape ? "text-[12px] leading-5" : "max-w-[26rem] text-[13px] leading-6 sm:text-[14px]",
+              )}
+            >
+              {activeOption.description}
+            </p>
+          </div>
 
-            <div className="absolute inset-x-6 bottom-7 z-10 flex justify-center sm:inset-x-10">
-              <CarouselDots dark activeIndex={activeIndex} count={customizationOptions.length} onSelect={goTo} />
-            </div>
+          <div className="absolute inset-x-6 bottom-7 z-10 flex justify-center sm:inset-x-10">
+            <CarouselDots dark activeIndex={activeIndex} count={customizationOptions.length} onSelect={goTo} />
           </div>
         </ScrollReveal>
       </Container>
@@ -924,7 +822,7 @@ function IndustriesApplicationsSection() {
 
   return (
     <section id="industries" data-header-theme="dark" className="relative min-h-[42rem] overflow-hidden bg-black text-white lg:h-screen">
-      <IndustryScene accent={activeScenario.accent} index={activeIndex} />
+      <IndustryScene scenario={activeScenario} />
       <Container className="relative z-10 min-h-[42rem] py-8 sm:py-10 lg:h-full lg:py-12">
         <ScrollReveal className="absolute left-4 top-8 max-w-sm sm:left-6 lg:left-8 lg:top-12">
           <p className="text-[11px] uppercase tracking-[0.3em] text-white/42">Industries & Applications</p>
@@ -1027,29 +925,11 @@ export function OemOdmPageExperience({ faqs }: { faqs: FaqItem[] }) {
         className="relative flex min-h-screen items-center overflow-hidden bg-black text-white"
         aria-labelledby="oem-hero-title"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_20%),linear-gradient(180deg,#020304_0%,#06090f_42%,#020304_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px] opacity-25" />
-        <div className="absolute left-[12%] top-[18%] h-56 w-56 rounded-full bg-cyan-100/10 blur-3xl" />
-        <div className="absolute right-[8%] bottom-[10%] h-64 w-64 rounded-full bg-white/6 blur-3xl" />
-        <svg viewBox="0 0 1440 960" className="absolute inset-0 h-full w-full opacity-70" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="hero-field-line" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-              <stop offset="50%" stopColor="rgba(136,232,255,0.3)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-            </linearGradient>
-          </defs>
-          {Array.from({ length: 9 }).map((_, index) => (
-            <path
-              key={index}
-              d={`M90 ${170 + index * 62} C 310 ${102 + index * 10}, 1060 ${312 - index * 18}, 1350 ${170 + index * 62}`}
-              fill="none"
-              stroke="url(#hero-field-line)"
-              strokeWidth="1.2"
-              opacity={0.18 + index * 0.035}
-            />
-          ))}
-        </svg>
+        <div className="absolute inset-0 overflow-hidden">
+          <CinematicBackgroundImage alt="Dark levitation hero product" objectPosition="center right" priority src={heroImage} />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.86)_0%,rgba(0,0,0,0.62)_34%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.36)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.1)_42%,rgba(0,0,0,0.52)_100%)]" />
+        </div>
 
         <Container className="relative z-10 flex min-h-screen items-center py-28 sm:py-32">
           <div className="w-full">

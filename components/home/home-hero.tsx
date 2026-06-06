@@ -1,14 +1,26 @@
-import { HeroVideoPlaceholder } from "@/components/home/home-visuals";
+import Image from "next/image";
+
 import { Container } from "@/components/ui/container";
 
 export function HomeHero() {
   return (
     <section
       data-header-theme="dark"
-      className="relative flex min-h-screen items-center overflow-hidden bg-black text-white"
+      className="relative min-h-screen w-full overflow-hidden bg-black text-white"
       aria-labelledby="home-hero-title"
     >
-      <HeroVideoPlaceholder />
+      <Image
+        src="/images/home/hero/hero-bg.jpg"
+        alt="AMO magnetic levitation future space"
+        fill
+        priority
+        quality={100}
+        sizes="100vw"
+        unoptimized
+        className="h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70" />
 
       <Container className="relative z-10 flex min-h-screen items-center py-28 sm:py-32">
         <div className="mx-auto max-w-[58rem] text-center">

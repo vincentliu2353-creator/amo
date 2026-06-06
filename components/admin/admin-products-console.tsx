@@ -160,12 +160,12 @@ function formatDateLabel(value: string | null) {
 
 function statusBadgeClass(status: ContentStatus) {
   return status === "published"
-    ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-100"
-    : "border-amber-300/30 bg-amber-300/10 text-amber-100";
+    ? "border-white/16 bg-white/[0.08] text-white"
+    : "border-white/12 bg-transparent text-white/58";
 }
 
 const adminTextareaClassName =
-  "w-full rounded-[1.5rem] border border-black/12 bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/34 focus:border-black/24";
+  "w-full rounded-[1.5rem] border border-white/12 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/34 focus:border-white/24 focus:bg-white/[0.06]";
 
 function AdminSectionBlock({
   eyebrow,
@@ -179,11 +179,11 @@ function AdminSectionBlock({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-[24px] border border-black/10 bg-white p-5 sm:p-6">
+    <section className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
       <div>
-        <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-black/42">{eyebrow}</p>
-        <h3 className="mt-3 font-display text-[1.85rem] font-semibold leading-[1.08] text-black">{title}</h3>
-        {description ? <p className="mt-3 max-w-2xl text-sm leading-7 text-black/62">{description}</p> : null}
+        <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white/42">{eyebrow}</p>
+        <h3 className="mt-3 font-display text-[1.85rem] font-semibold leading-[1.08] text-white">{title}</h3>
+        {description ? <p className="mt-3 max-w-2xl text-sm leading-7 text-white/62">{description}</p> : null}
       </div>
       <div className="mt-6">{children}</div>
     </section>
@@ -192,9 +192,9 @@ function AdminSectionBlock({
 
 function AdminStatTile({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-[20px] border border-black/10 bg-white p-4">
-      <p className="text-[10px] uppercase tracking-[0.24em] text-black/42">{label}</p>
-      <p className="mt-3 font-display text-2xl font-semibold text-black">{value}</p>
+    <div className="rounded-[20px] border border-white/10 bg-white/[0.03] p-4">
+      <p className="text-[10px] uppercase tracking-[0.24em] text-white/42">{label}</p>
+      <p className="mt-3 font-display text-2xl font-semibold text-white">{value}</p>
     </div>
   );
 }
@@ -432,27 +432,16 @@ export function AdminProductsConsole({
   }
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[22rem_minmax(0,1fr)] [&_input]:!border-black/12 [&_input]:!bg-white [&_input]:!text-black [&_input]:placeholder:!text-black/34 [&_input]:focus:!border-black/24 [&_select]:!border-black/12 [&_select]:!bg-white [&_select]:!text-black [&_select]:focus:!border-black/24 [&_textarea]:!border-black/12 [&_textarea]:!bg-white [&_textarea]:!text-black [&_textarea]:placeholder:!text-black/34 [&_textarea]:focus:!border-black/24 [&_label]:!text-black/42 [&_p.text-sm]:text-black/62">
-      <aside className="space-y-4 xl:sticky xl:top-8 xl:self-start">
-        <div className="rounded-[24px] border border-black/10 bg-white p-5 shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-black/42">Catalog Control</p>
-                <h2 className="mt-2 font-display text-[1.9rem] font-semibold leading-[1.08] text-black">Products</h2>
-              </div>
-
-              <Button type="button" size="sm" onClick={resetForNewProduct}>
-                New Product
-              </Button>
+    <div className="space-y-8 [&_input]:placeholder:!text-white/34">
+      <section className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 border-b border-white/10 pb-5 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white/42">Catalog Control</p>
+              <h2 className="mt-2 font-display text-[1.9rem] font-semibold leading-[1.08] text-white">Products</h2>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
-              <AdminStatTile label="Products" value={products.length} />
-              <AdminStatTile label="Published" value={publishedCount} />
-              <AdminStatTile label="Drafts" value={draftCount} />
-            </div>
-
-            <div className="mt-6 grid gap-3">
+            <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_12rem_auto]">
               <Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
@@ -467,98 +456,99 @@ export function AdminProductsConsole({
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
               </Select>
-            </div>
-        </div>
 
-        <div className="max-h-[72vh] space-y-3 overflow-y-auto pr-1">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => {
-              const selected = product.id === selectedProductId;
-
-              return (
-                <button
-                  key={product.id}
-                  type="button"
-                  onClick={() => selectProduct(product)}
-                  className={cn(
-                    "w-full rounded-[24px] border bg-white p-4 text-left transition",
-                    selected
-                      ? "border-black bg-black text-white shadow-[0_18px_48px_rgba(0,0,0,0.14)]"
-                      : "border-black/10 hover:border-black/18",
-                  )}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className={cn("text-[11px] uppercase tracking-[0.24em]", selected ? "text-white/54" : "text-black/42")}>{product.categoryName}</p>
-                      <h3 className={cn("mt-3 font-display text-[1.55rem] font-semibold leading-[1.08]", selected ? "text-white" : "text-black")}>{product.name}</h3>
-                      <p className={cn("mt-2 text-[11px] uppercase tracking-[0.24em]", selected ? "text-white/54" : "text-black/42")}>{product.slug}</p>
-                    </div>
-                    <span
-                      className={cn(
-                        "rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.22em]",
-                        selected ? "border-white/18 bg-white/10 text-white" : statusBadgeClass(product.status),
-                      )}
-                    >
-                      {product.status}
-                    </span>
-                  </div>
-
-                  <div className={cn("mt-4 flex flex-wrap gap-3 text-[11px] uppercase tracking-[0.22em]", selected ? "text-white/58" : "text-black/48")}>
-                    <span>{product.sku || "No SKU"}</span>
-                    <span>{product.images.length} image{product.images.length === 1 ? "" : "s"}</span>
-                    <span>Updated {formatDateLabel(product.updatedAt)}</span>
-                    {product.featured ? <span>Featured</span> : null}
-                  </div>
-                </button>
-              );
-            })
-          ) : (
-            <div className="rounded-[24px] border border-dashed border-black/12 bg-white p-5 text-[14px] leading-[22.75px] text-black/48">
-              No products match the current admin filters.
-            </div>
-          )}
-        </div>
-      </aside>
-
-      <section className="rounded-[24px] border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.06)] sm:p-8">
-          <div className="flex flex-col gap-4 border-b border-black/8 pb-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-black/42">
-                {editor.id ? "Edit Product" : "Create Product"}
-              </p>
-              <h2 className="mt-3 font-display text-[2.2rem] font-semibold leading-[1.06] text-black">
-                {editor.id ? editor.name || "Product configuration" : "New product record"}
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-black/62">
-                Save core catalog fields, switch between draft and published states, and upload image assets directly into Supabase Storage.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              {editor.id ? (
-                <Link
-                  href={`/products/${editor.slug}`}
-                  className={buttonStyles({ variant: "secondary", size: "sm" })}
-                >
-                  View Public Page
-                </Link>
-              ) : null}
-              {editor.id ? (
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  disabled={isDeleting || isSubmitting}
-                  onClick={handleDelete}
-                >
-                  {isDeleting ? "Deleting..." : "Delete Product"}
-                </Button>
-              ) : null}
+              <Button type="button" size="sm" onClick={resetForNewProduct}>
+                New Product
+              </Button>
             </div>
           </div>
 
+          <div className="grid gap-3 sm:grid-cols-3">
+            <AdminStatTile label="Products" value={products.length} />
+            <AdminStatTile label="Published" value={publishedCount} />
+            <AdminStatTile label="Drafts" value={draftCount} />
+          </div>
+
+          <div className="divide-y divide-white/10 rounded-[20px] border border-white/10">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => {
+                const selected = product.id === selectedProductId;
+
+                return (
+                  <button
+                    key={product.id}
+                    type="button"
+                    onClick={() => selectProduct(product)}
+                    className={cn(
+                      "grid w-full gap-4 px-5 py-4 text-left transition md:grid-cols-[minmax(0,1.2fr)_10rem_9rem_8rem] md:items-center",
+                      selected ? "bg-white/[0.06]" : "hover:bg-white/[0.03]",
+                    )}
+                  >
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-white/42">{product.categoryName}</p>
+                      <h3 className="mt-3 font-display text-[1.35rem] font-semibold leading-[1.08] text-white">{product.name}</h3>
+                      <p className="mt-2 text-[11px] uppercase tracking-[0.24em] text-white/42">{product.slug}</p>
+                    </div>
+                    <div className="text-[11px] uppercase tracking-[0.22em] text-white/52">{product.sku || "No SKU"}</div>
+                    <div className="text-[11px] uppercase tracking-[0.22em] text-white/52">
+                      Updated {formatDateLabel(product.updatedAt)}
+                    </div>
+                    <div className="flex items-center justify-start md:justify-end">
+                      <span className={cn("rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.22em]", statusBadgeClass(product.status))}>
+                        {product.status}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })
+            ) : (
+              <div className="p-5 text-[14px] leading-[22.75px] text-white/48">
+                No products match the current admin filters.
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white/42">
+              {editor.id ? "Edit Product" : "Create Product"}
+            </p>
+            <h2 className="mt-3 font-display text-[2.2rem] font-semibold leading-[1.06] text-white">
+              {editor.id ? editor.name || "Product configuration" : "New product record"}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-white/62">
+              Save core catalog fields, switch between draft and published states, and upload image assets directly into Supabase Storage.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {editor.id ? (
+              <Link
+                href={`/products/${editor.slug}`}
+                className={buttonStyles({ variant: "secondary", size: "sm" })}
+              >
+                View Public Page
+              </Link>
+            ) : null}
+            {editor.id ? (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                disabled={isDeleting || isSubmitting}
+                onClick={handleDelete}
+              >
+                {isDeleting ? "Deleting..." : "Delete Product"}
+              </Button>
+            ) : null}
+          </div>
+        </div>
+
         {categories.length === 0 ? (
-          <div className="mt-6 rounded-[24px] border border-amber-200 bg-amber-50 p-5 text-[14px] leading-[22.75px] text-amber-800">
+          <div className="mt-6 rounded-[24px] border border-white/14 bg-white/[0.06] p-5 text-[14px] leading-[22.75px] text-white/72">
             No categories are available. Seed or create categories in Supabase before managing products here.
           </div>
         ) : null}
@@ -568,10 +558,10 @@ export function AdminProductsConsole({
             className={cn(
               "mt-6 rounded-[24px] border p-4 text-[14px] leading-[22.75px]",
               messageTone === "success"
-                ? "border-black bg-black text-white"
+                ? "border-white/16 bg-white/[0.08] text-white"
                 : messageTone === "error"
-                  ? "border-red-200 bg-red-50 text-red-700"
-                  : "border-black/10 bg-[#f5f5f2] text-black/62",
+                  ? "border-red-400/24 bg-red-500/10 text-red-200"
+                  : "border-white/10 bg-white/[0.03] text-white/62",
             )}
           >
             {message}
@@ -579,44 +569,6 @@ export function AdminProductsConsole({
         ) : null}
 
         <form onSubmit={handleSave} className="mt-6 space-y-6">
-          <div className="rounded-[24px] border border-black/10 bg-[#f5f5f2] p-5">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-black/42">Live Preview</p>
-            <div className="mt-5 grid gap-5 lg:grid-cols-[14rem_1fr]">
-              <div className="overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
-                {previewImage ? (
-                  <img
-                    src={previewImage.imageUrl}
-                    alt={previewImage.altText || editor.name || "Product preview"}
-                    className="h-56 w-full object-cover"
-                  />
-                ) : (
-                  <div className="flex h-56 items-end bg-[#ecebe6] p-4">
-                    <span className="rounded-full border border-black/10 bg-white/80 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-black/48">
-                      Preview
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-black/42">{editor.categoryId ? "Product Preview" : "Draft Preview"}</p>
-                <h3 className="mt-4 text-3xl font-semibold tracking-tight text-black">{editor.name || "Product Name"}</h3>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/62">
-                  {editor.summary || "Short Description"}
-                </p>
-                <div className="mt-6">
-                  {editor.slug ? (
-                    <Link href={`/products/${editor.slug}`} className={buttonStyles({ variant: "secondary", size: "sm" })}>
-                      View Product
-                    </Link>
-                  ) : (
-                    <span className="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-black/40">
-                      View Product
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
           <AdminSectionBlock
             eyebrow="Identity"
             title="Core catalog identity"
@@ -712,13 +664,13 @@ export function AdminProductsConsole({
             </div>
               </div>
 
-              <div className="rounded-[24px] border border-black/10 bg-[#f5f5f2] p-4">
-                <label className="flex items-center gap-3 text-sm text-black/72">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
+                <label className="flex items-center gap-3 text-sm text-white/72">
                   <input
                     type="checkbox"
                     checked={editor.featured}
                     onChange={(event) => updateEditor("featured", event.target.checked)}
-                    className="h-4 w-4 rounded border-black/20 bg-white text-black focus:ring-black/10"
+                    className="h-4 w-4 rounded border-white/20 bg-black text-white focus:ring-white/10"
                   />
                   Mark as featured in the public catalog
                 </label>
@@ -959,17 +911,17 @@ export function AdminProductsConsole({
             title="Supabase Storage assets"
             description="Upload, remove, and stage product imagery without leaving the catalog workflow."
           >
-            <div className="rounded-[1.75rem] border border-black/10 bg-[#f5f5f2] p-5">
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-black/42">Images</p>
-                <h3 className="mt-2 font-display text-2xl text-black">Supabase Storage assets</h3>
-                <p className="mt-3 text-sm leading-7 text-black/62">
+                <p className="text-xs uppercase tracking-[0.24em] text-white/42">Images</p>
+                <h3 className="mt-2 font-display text-2xl text-white">Supabase Storage assets</h3>
+                <p className="mt-3 text-sm leading-7 text-white/62">
                   Upload images to the configured storage bucket. The first remaining image is used as the primary product image.
                 </p>
               </div>
 
-              <label className="inline-flex cursor-pointer items-center rounded-full border border-black/10 bg-white px-4 py-2 text-xs uppercase tracking-[0.18em] text-black/72 transition hover:border-black/18">
+              <label className="inline-flex cursor-pointer items-center rounded-full border border-white/12 bg-transparent px-4 py-2 text-xs uppercase tracking-[0.18em] text-white/72 transition hover:border-white/24">
                 Add Images
                 <input
                   type="file"
@@ -989,7 +941,7 @@ export function AdminProductsConsole({
             {visibleImages.length > 0 ? (
               <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {visibleImages.map((image) => (
-                  <article key={image.id} className="overflow-hidden rounded-[1.5rem] border border-black/10 bg-white">
+                  <article key={image.id} className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/30">
                     <img src={image.imageUrl} alt={image.altText || editor.name || "Product image"} className="h-40 w-full object-cover" />
                     <div className="space-y-3 p-4">
                       <div className="flex items-center justify-between gap-3">
@@ -997,8 +949,8 @@ export function AdminProductsConsole({
                           className={cn(
                             "rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.22em]",
                             image.isPrimary
-                              ? "border-black bg-black text-white"
-                              : "border-black/10 bg-[#f5f5f2] text-black/54",
+                              ? "border-white/16 bg-white/[0.08] text-white"
+                              : "border-white/10 bg-transparent text-white/54",
                           )}
                         >
                           {image.isPrimary ? "Primary" : `Sort ${image.sortOrder}`}
@@ -1011,25 +963,25 @@ export function AdminProductsConsole({
                               removedImageIds: [...current.removedImageIds, image.id],
                             }))
                           }
-                          className="text-xs uppercase tracking-[0.18em] text-black/54 transition hover:text-black"
+                          className="text-xs uppercase tracking-[0.18em] text-white/54 transition hover:text-white"
                         >
                           Remove
                         </button>
                       </div>
-                      <p className="text-xs leading-6 text-black/48">{image.altText || image.storagePath}</p>
+                      <p className="text-xs leading-6 text-white/48">{image.altText || image.storagePath}</p>
                     </div>
                   </article>
                 ))}
               </div>
             ) : (
-              <div className="mt-5 rounded-[1.5rem] border border-dashed border-black/12 bg-white p-5 text-sm leading-7 text-black/48">
+              <div className="mt-5 rounded-[1.5rem] border border-dashed border-white/12 bg-transparent p-5 text-sm leading-7 text-white/48">
                 No retained images yet. Upload new files to populate the gallery.
               </div>
             )}
 
             {editor.newFiles.length > 0 ? (
               <div className="mt-5">
-                <p className="text-xs uppercase tracking-[0.24em] text-black/42">Pending uploads</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-white/42">Pending uploads</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {editor.newFiles.map((file, index) => (
                     <button
@@ -1041,7 +993,7 @@ export function AdminProductsConsole({
                           newFiles: current.newFiles.filter((_, entryIndex) => entryIndex !== index),
                         }))
                       }
-                      className="rounded-full border border-black/10 bg-white px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/54 transition hover:border-black/18 hover:text-black"
+                      className="rounded-full border border-white/10 bg-transparent px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/54 transition hover:border-white/22 hover:text-white"
                     >
                       Remove {file.name}
                     </button>
@@ -1126,8 +1078,47 @@ export function AdminProductsConsole({
             </div>
           </AdminSectionBlock>
 
-          <div className="flex flex-col gap-3 border-t border-black/8 pt-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-black/48">
+          <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white/42">Live Preview</p>
+            <div className="mt-5 grid gap-5 lg:grid-cols-[14rem_1fr]">
+              <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/30">
+                {previewImage ? (
+                  <img
+                    src={previewImage.imageUrl}
+                    alt={previewImage.altText || editor.name || "Product preview"}
+                    className="h-56 w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-56 items-end bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(9,9,9,0.92))] p-4">
+                    <span className="rounded-full border border-white/10 bg-black/30 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-white/48">
+                      Preview
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.24em] text-white/42">{editor.categoryId ? "Product Preview" : "Draft Preview"}</p>
+                <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white">{editor.name || "Product Name"}</h3>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/62">
+                  {editor.summary || "Short Description"}
+                </p>
+                <div className="mt-6">
+                  {editor.slug ? (
+                    <Link href={`/products/${editor.slug}`} className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                      View Product
+                    </Link>
+                  ) : (
+                    <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/40">
+                      View Product
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-white/48">
               Draft products stay hidden from the public catalog. Published products receive a timestamp automatically.
             </p>
 

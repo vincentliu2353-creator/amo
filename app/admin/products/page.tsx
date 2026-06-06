@@ -21,7 +21,7 @@ export default async function AdminProductsPage() {
 
     return (
       <InnerPageShell showHeader>
-        <section className="bg-white">
+        <section className="bg-black">
           <SectionContainer className="py-20 md:py-28">
             <AdminShell
               current="products"
@@ -38,7 +38,7 @@ export default async function AdminProductsPage() {
   } catch (error) {
     return (
       <InnerPageShell showHeader>
-        <section className="bg-white">
+        <section className="bg-black">
           <SectionContainer className="py-20 md:py-28">
             <ProductsErrorState
               title="The admin product manager could not be loaded."

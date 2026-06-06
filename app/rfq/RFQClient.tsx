@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { ApprovedHomeFooter } from "@/components/layout/approved-home-footer";
 import { InnerPageShell } from "@/components/layout/inner-page-shell";
 import { RfqForm, type RfqFormPrefills } from "@/components/rfq/rfq-form";
-import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
 function buildPrefills(searchParams: { get: (key: string) => string | null }): RfqFormPrefills {
@@ -27,17 +26,9 @@ export default function RFQClient() {
 
   return (
     <InnerPageShell showHeader>
-      <section className="bg-white text-black">
-        <SectionContainer className="py-20 md:py-28">
-          <PageHeader
-            eyebrow="Request For Quotation"
-            title="Request For Quotation"
-            description="Review selected products and send your project details."
-          />
-
-          <div className="mt-14">
-            <RfqForm formKey={searchParams.toString()} prefills={buildPrefills(searchParams)} />
-          </div>
+      <section className="bg-black text-white">
+        <SectionContainer className="py-28 md:py-32">
+          <RfqForm formKey={searchParams.toString()} prefills={buildPrefills(searchParams)} />
         </SectionContainer>
       </section>
       <ApprovedHomeFooter />

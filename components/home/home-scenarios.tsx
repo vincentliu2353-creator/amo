@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import Image from "next/image";
+import { useState } from "react";
 
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
@@ -9,11 +10,8 @@ interface ScenarioItem {
   accent: string;
   blurb: string;
   caption: string;
+  imageSrc: string;
   title: string;
-}
-
-function accentColor(accent: string, alpha: number) {
-  return `rgb(${accent} / ${alpha})`;
 }
 
 function ScenarioIcon({ title }: { title: string }) {
@@ -75,34 +73,18 @@ function ScenarioIcon({ title }: { title: string }) {
   );
 }
 
-function ScenarioImagePlaceholder({ scenario }: { scenario: ScenarioItem }) {
-  const style: CSSProperties = {
-    backgroundImage: `radial-gradient(circle at 20% 24%, ${accentColor(scenario.accent, 0.24)}, transparent 24%), radial-gradient(circle at 72% 42%, ${accentColor(
-      scenario.accent,
-      0.12,
-    )}, transparent 26%), linear-gradient(125deg, #030304 0%, #101114 52%, #050506 100%)`,
-  };
-
+function ScenarioBackground({ scenario }: { scenario: ScenarioItem }) {
   return (
-    <div className="absolute inset-0 overflow-hidden" style={style}>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px] opacity-30" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.5)_38%,rgba(0,0,0,0.18)_70%,rgba(0,0,0,0.64)_100%)]" />
-      <div className="absolute bottom-0 left-[8%] h-[58vh] w-[26vw] min-w-[180px] rounded-t-[2.5rem] border border-white/10 bg-white/[0.045]" />
-      <div className="absolute bottom-0 left-[32%] h-[72vh] w-[22vw] min-w-[160px] rounded-t-[2rem] border border-white/8 bg-white/[0.035]" />
-      <div className="absolute bottom-0 right-[13%] h-[64vh] w-[30vw] min-w-[220px] rounded-t-[3rem] border border-white/10 bg-white/[0.04]" />
-      <div className="absolute left-1/2 top-[47%] h-36 w-36 -translate-x-1/2 rounded-[30%] border border-white/16 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.24),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.03)_60%,rgba(255,255,255,0)_100%)] shadow-[0_0_110px_rgba(255,255,255,0.1)]" />
-      <div
-        className="absolute left-1/2 top-[65%] h-7 w-48 -translate-x-1/2 rounded-full blur-xl"
-        style={{ backgroundColor: accentColor(scenario.accent, 0.28) }}
+    <div className="absolute inset-0 overflow-hidden">
+      <Image
+        src={scenario.imageSrc}
+        alt=""
+        fill
+        quality={100}
+        sizes="100vw"
+        unoptimized
+        className="h-full w-full object-cover object-center"
       />
-      <div className="absolute inset-x-[14%] top-[38%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      <div className="absolute inset-x-[20%] top-[58%] h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
-      <div className="absolute right-10 top-28 hidden font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/20 lg:block">
-        Spatial Placeholder // Future Image Layer
-      </div>
-      <div className="absolute bottom-10 right-10 hidden font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/18 lg:block">
-        {scenario.caption}
-      </div>
     </div>
   );
 }
@@ -126,11 +108,12 @@ export function HomeScenarios({ scenarios }: { scenarios: ScenarioItem[] }) {
               index === activeIndex ? "opacity-100" : "opacity-0",
             )}
           >
-            <ScenarioImagePlaceholder scenario={scenario} />
+            <ScenarioBackground scenario={scenario} />
           </div>
         ))}
       </div>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.24),rgba(0,0,0,0.42)_48%,rgba(0,0,0,0.74)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.52)_38%,rgba(0,0,0,0.12)_72%,rgba(0,0,0,0.3)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.24)_0%,rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.68)_100%)]" />
 
       <Container className="relative z-10 flex min-h-screen flex-col justify-end pb-10 pt-28 sm:pb-14 sm:pt-32 lg:justify-center lg:py-24">
         <div className="max-w-3xl">

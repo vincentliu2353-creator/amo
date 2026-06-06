@@ -36,6 +36,9 @@ function formatMeta(publishedAt: string, readTime: string) {
 
 export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterState, setNewsletterState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("Receive new journal entries, product launches, and industrial updates.");
 
   const visibleArticles = useMemo(() => {
     if (activeFilter === "All") {
@@ -48,19 +51,62 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
   const featuredArticle = visibleArticles[0];
   const gridArticles = featuredArticle ? visibleArticles.slice(1) : visibleArticles;
 
+  async function handleNewsletterSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const normalizedEmail = newsletterEmail.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(normalizedEmail)) {
+      setNewsletterState("error");
+      setNewsletterMessage("Enter a valid email address.");
+      return;
+    }
+
+    setNewsletterState("loading");
+    setNewsletterMessage("Submitting...");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          source: "blog",
+        }),
+      });
+
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message ?? "Unable to subscribe right now.");
+      }
+
+      setNewsletterState("success");
+      setNewsletterMessage(result.message ?? "Subscribed. We'll send the next AMO journal update to your inbox.");
+      setNewsletterEmail("");
+    } catch (error) {
+      setNewsletterState("error");
+      setNewsletterMessage(error instanceof Error ? error.message : "Unable to subscribe right now.");
+    }
+  }
+
   return (
-    <section className="bg-white text-black">
+    <section className="bg-black text-white">
       <SectionContainer className="py-20 md:py-28">
-        <div className="min-h-[420px] md:min-h-[480px]">
+        <div className="min-h-[420px] border-b border-white/12 pb-14 md:min-h-[480px] md:pb-20">
           <PageHeader
             eyebrow="AMO Journal"
             title={"Insights on magnetic levitation,\nindustrial design,\nengineering,\nand future spaces."}
             description="A clean editorial index for product thinking, technical decisions, OEM collaboration, and commercial applications."
+            tone="dark"
             className="whitespace-pre-line"
           />
         </div>
 
-        <div className="mt-12 flex flex-wrap gap-3 border-y border-black/10 py-5">
+        <div className="mt-12 flex flex-wrap gap-3 border-y border-white/12 py-5">
           {filters.map((filter) => (
             <button
               key={filter}
@@ -68,8 +114,8 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
               onClick={() => setActiveFilter(filter)}
               className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.24em] transition ${
                 activeFilter === filter
-                  ? "border-black bg-black text-white"
-                  : "border-black/10 text-black/54 hover:border-black/18 hover:text-black"
+                  ? "border-white bg-white text-black"
+                  : "border-white/12 text-white/54 hover:border-white/24 hover:text-white"
               }`}
             >
               {filter}
@@ -88,6 +134,7 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
                 meta={formatMeta(featuredArticle.publishedAt, featuredArticle.readTime)}
                 imageLabel="Featured"
                 featured
+                tone="dark"
               />
 
               {gridArticles.length > 0 ? (
@@ -100,6 +147,7 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
                       title={article.title}
                       excerpt={article.excerpt}
                       meta={formatMeta(article.publishedAt, article.readTime)}
+                      tone="dark"
                     />
                   ))}
                 </div>
@@ -110,11 +158,12 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
               eyebrow="Journal"
               title="No articles published yet."
               description="The AMO Journal is being prepared. Check back for product launches, engineering notes, and application insights."
+              tone="dark"
             />
           )}
 
           {featuredArticle && gridArticles.length === 0 && activeFilter !== "All" ? (
-            <p className="mt-6 text-sm text-black/48">Only one article is currently available in this category.</p>
+            <p className="mt-6 text-sm text-white/48">Only one article is currently available in this category.</p>
           ) : null}
 
           {!featuredArticle && articles.length > 0 ? (
@@ -122,6 +171,7 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
               <EmptyState
                 title={`No ${activeFilter} articles yet`}
                 description="Switch filters or return to All to browse the current AMO Journal archive."
+                tone="dark"
                 action={
                   <button type="button" onClick={() => setActiveFilter("All")} className={buttonStyles({ variant: "secondary", size: "sm" })}>
                     View All Articles
@@ -132,26 +182,42 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
           ) : null}
         </div>
 
-        <div className="mt-20 rounded-[2.25rem] border border-black/10 bg-[#f4f3ee] px-6 py-10 md:px-10 md:py-14">
-          <div className="grid gap-8 lg:grid-cols-[1fr_24rem] lg:items-end">
+        <div className="mt-20 rounded-[2.25rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 md:px-10 md:py-14">
+          <div className="grid gap-8 lg:grid-cols-[1fr_26rem] lg:items-end">
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-black/42">Stay Updated</p>
-              <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+              <p className="text-xs uppercase tracking-[0.24em] text-white/42">Stay Updated</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">
                 New articles, product launches,
                 <br />
                 and industry insights from AMO.
               </h2>
             </div>
 
-            <form className="flex flex-col gap-3 sm:flex-row">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
               <input
                 type="email"
+                value={newsletterEmail}
+                onChange={(event) => setNewsletterEmail(event.target.value)}
                 placeholder="Email address"
-                className="min-h-14 flex-1 rounded-full border border-black/12 bg-white px-5 text-base text-black outline-none transition placeholder:text-black/38 focus:border-black/28"
+                className="min-h-14 flex-1 rounded-full border border-white/12 bg-white/[0.04] px-5 text-base text-white outline-none transition placeholder:text-white/34 focus:border-white/28"
               />
-              <button type="button" className={buttonStyles({ size: "lg" })}>
-                Subscribe
-              </button>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button type="submit" className={buttonStyles({ size: "lg" })} disabled={newsletterState === "loading"}>
+                  {newsletterState === "loading" ? "Subscribing..." : "Subscribe"}
+                </button>
+                <p
+                  className={`flex min-h-14 items-center rounded-full border px-5 text-sm ${
+                    newsletterState === "success"
+                      ? "border-white/16 bg-white/[0.08] text-white"
+                      : newsletterState === "error"
+                        ? "border-red-400/24 bg-red-500/10 text-red-200"
+                        : "border-white/12 bg-transparent text-white/54"
+                  }`}
+                  aria-live="polite"
+                >
+                  {newsletterMessage}
+                </p>
+              </div>
             </form>
           </div>
         </div>
