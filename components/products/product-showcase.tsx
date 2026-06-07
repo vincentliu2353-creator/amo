@@ -227,12 +227,12 @@ export function ProductShowcase({ products, activeIndex, onSelect }: ProductShow
 
             <div
               className={cn(
-                "relative z-0 flex min-h-[14rem] items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:min-h-[18rem] lg:min-h-[78svh] lg:justify-end xl:min-h-[86svh]",
+                "relative z-0 flex min-h-[14rem] items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:min-h-[18rem] lg:min-h-[82svh] lg:justify-center xl:min-h-[90svh]",
                 imageVisible ? "translate-x-0 opacity-100" : imageHiddenClass,
               )}
             >
-              <div className="relative z-0 flex h-full w-full items-center justify-center lg:justify-end">
-                <div className="relative z-0 flex h-[38svh] w-full items-center justify-center sm:h-[46svh] md:h-[52svh] lg:h-[84svh] xl:h-[90svh] lg:translate-x-[4%] xl:translate-x-[8%]">
+              <div className="relative z-0 flex h-full w-full items-center justify-center">
+                <div className="relative z-0 flex h-[40svh] w-full items-center justify-center sm:h-[48svh] md:h-[56svh] lg:h-[88svh] xl:h-[94svh]">
                   <div className="pointer-events-none absolute inset-x-2 top-1/2 z-20 flex -translate-y-1/2 justify-between lg:hidden">
                     <div className="pointer-events-auto">
                       <ArrowButton
@@ -246,11 +246,11 @@ export function ProductShowcase({ products, activeIndex, onSelect }: ProductShow
                   </div>
 
                   {activeImage ? (
-                    <div className="relative z-0 flex h-full w-full items-center justify-center lg:justify-end">
+                    <div className="relative z-0 flex h-full w-full items-center justify-center">
                       <img
                         src={activeImage}
                         alt={activeAlt}
-                        className="relative z-0 h-full w-auto max-w-[112%] object-contain sm:max-w-[116%] lg:max-w-[126%] xl:max-w-[132%]"
+                        className="relative z-0 h-full w-auto max-w-[118%] object-contain sm:max-w-[124%] lg:max-w-[136%] xl:max-w-[142%]"
                         loading="eager"
                         onError={(event) => {
                           event.currentTarget.style.display = "none";
@@ -261,12 +261,12 @@ export function ProductShowcase({ products, activeIndex, onSelect }: ProductShow
                           }
                         }}
                       />
-                      <div className="hidden h-[14rem] w-[14rem] items-center justify-center rounded-[2rem] bg-white text-[34px] font-medium uppercase tracking-[0.18em] text-black/48">
+                      <div className="hidden h-full w-full items-center justify-center text-[clamp(2rem,6vw,4.5rem)] font-medium uppercase tracking-[0.18em] text-black/48">
                         {buildMonogram(product.name)}
                       </div>
                     </div>
                   ) : (
-                    <div className="flex h-[14rem] w-[14rem] items-center justify-center rounded-[2rem] bg-white text-[34px] font-medium uppercase tracking-[0.18em] text-black/48 sm:h-[18rem] sm:w-[18rem]">
+                    <div className="flex h-full w-full items-center justify-center text-[clamp(2rem,6vw,4.5rem)] font-medium uppercase tracking-[0.18em] text-black/48">
                       {buildMonogram(product.name)}
                     </div>
                   )}

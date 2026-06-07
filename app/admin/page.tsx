@@ -44,9 +44,14 @@ export default async function AdminPage() {
             title="Dashboard"
             description="Manage AMO products, content, and quote requests."
             actions={
-              <Link href="/admin/products" className={buttonStyles({ size: "sm" })}>
-                Open Products
-              </Link>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                  Open Products
+                </Link>
+                <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
+                  New Product
+                </Link>
+              </div>
             }
           >
             <div className="divide-y divide-white/10 rounded-[1.75rem] border border-white/10">
@@ -67,9 +72,14 @@ export default async function AdminPage() {
                   Create, edit, publish, and review live product records without changing the public navigation or backend workflows.
                 </p>
                 <div className="mt-6">
-                  <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
-                    Manage Products
-                  </Link>
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                      Manage Products
+                    </Link>
+                    <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
+                      New Product
+                    </Link>
+                  </div>
                 </div>
               </div>
 

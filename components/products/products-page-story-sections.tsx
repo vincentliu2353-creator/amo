@@ -103,18 +103,15 @@ function RelatedProductCard({ product }: { product: ProductShowcaseProduct }) {
 }
 
 interface ProductsPageStorySectionsProps {
-  activeIndex: number;
+  activeProduct?: ProductShowcaseProduct;
   products: ProductShowcaseProduct[];
 }
 
-export function ProductsPageStorySections({ activeIndex, products }: ProductsPageStorySectionsProps) {
-  const activeProduct = products[activeIndex] ?? products[0];
-  const relatedProducts =
-    products.length > 1
-      ? [...products.slice(activeIndex + 1), ...products.slice(0, activeIndex)].slice(0, Math.min(4, products.length - 1))
-      : [];
+export function ProductsPageStorySections({ activeProduct, products }: ProductsPageStorySectionsProps) {
+  const finalInquiryProduct = activeProduct ?? products[0];
+  const relatedProducts = products;
 
-  if (!activeProduct) {
+  if (!finalInquiryProduct) {
     return null;
   }
 
@@ -221,7 +218,7 @@ export function ProductsPageStorySections({ activeIndex, products }: ProductsPag
             <p className="mt-6 text-[15px] leading-7 text-white/66 sm:text-[16px]">
               We support custom magnetic levitation products for global brands, distributors, and design studios.
             </p>
-            <ProductDetailQuoteActions product={activeProduct} className="mt-8 justify-center" theme="dark" />
+            <ProductDetailQuoteActions product={finalInquiryProduct} className="mt-8 justify-center" theme="dark" />
           </ScrollReveal>
         </Container>
       </section>

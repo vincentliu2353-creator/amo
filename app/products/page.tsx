@@ -15,12 +15,18 @@ export const dynamic = "force-dynamic";
 
 export default async function ProductsPage() {
   try {
-    const { products } = await getPublishedProductShowcaseCatalog();
+    const [{ products: showcaseProducts }, { products: catalogProducts }] = await Promise.all([
+      getPublishedProductShowcaseCatalog({
+        orderBy: "created_at_desc",
+        limit: 10,
+      }),
+      getPublishedProductShowcaseCatalog(),
+    ]);
 
     return (
       <ProductsPageLayout>
-        {products.length > 0 ? (
-          <ProductsPageExperience products={products} />
+        {showcaseProducts.length > 0 ? (
+          <ProductsPageExperience showcaseProducts={showcaseProducts} catalogProducts={catalogProducts} />
         ) : (
           <ProductsCatalogState
             title="The product showcase is being prepared."

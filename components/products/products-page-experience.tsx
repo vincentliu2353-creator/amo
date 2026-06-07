@@ -8,10 +8,11 @@ import { ProductsIntro } from "@/components/products/products-intro";
 import type { ProductShowcaseProduct } from "@/types";
 
 interface ProductsPageExperienceProps {
-  products: ProductShowcaseProduct[];
+  catalogProducts: ProductShowcaseProduct[];
+  showcaseProducts: ProductShowcaseProduct[];
 }
 
-export function ProductsPageExperience({ products }: ProductsPageExperienceProps) {
+export function ProductsPageExperience({ showcaseProducts, catalogProducts }: ProductsPageExperienceProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [introProgress, setIntroProgress] = useState(0);
   const introRef = useRef<HTMLElement | null>(null);
@@ -65,7 +66,7 @@ export function ProductsPageExperience({ products }: ProductsPageExperienceProps
       </section>
 
       <ProductShowcase
-        products={products}
+        products={showcaseProducts}
         activeIndex={activeIndex}
         onSelect={(index) =>
           startTransition(() => {
@@ -74,7 +75,7 @@ export function ProductsPageExperience({ products }: ProductsPageExperienceProps
         }
       />
 
-      <ProductsPageStorySections products={products} activeIndex={activeIndex} />
+      <ProductsPageStorySections products={catalogProducts} activeProduct={showcaseProducts[activeIndex] ?? showcaseProducts[0]} />
     </div>
   );
 }

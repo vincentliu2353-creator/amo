@@ -1,9 +1,11 @@
 import "server-only";
 
+import { revalidatePath } from "next/cache";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
+import { slugifyValue } from "@/lib/admin/product-form";
+import { PRODUCT_SHOWCASE_SPEC_FIELDS } from "@/lib/products/spec-fields";
 import { createAdminSupabaseClient } from "@/lib/supabase/server";
-import { parseFaqText, parseKeyValueText, slugifyValue, splitTextList } from "@/lib/admin/product-form";
 import type {
   AdminCategoryOption,
   AdminProductImage,
@@ -12,6 +14,16 @@ import type {
 } from "@/types";
 
 const PRODUCT_STORAGE_BUCKET = process.env.NEXT_PUBLIC_SUPABASE_PRODUCT_BUCKET ?? "product-media";
+const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+const CUSTOMIZATION_SPEC_ALIASES = [
+  "customization",
+  "customisation",
+  "customization options",
+  "customisation options",
+  "custom options",
+  "custom options available",
+  "oem options",
+] as const;
 
 const ADMIN_PRODUCT_SELECT = `
   id,
@@ -56,30 +68,22 @@ interface AdminMutationResult {
 interface ParsedAdminProductPayload {
   categoryId: string;
   slug: string;
-  sku: string | null;
   name: string;
-  series: string | null;
+  series: string;
   status: ContentStatus;
-  featured: boolean;
   summary: string;
   description: string;
-  highlight: string | null;
-  leadTimeText: string | null;
-  minOrderQty: number | null;
-  minOrderUnit: string | null;
-  heroMetric: string | null;
-  tags: string[];
-  applications: string[];
-  features: string[];
-  specs: Record<string, string>;
-  filterAttributes: Record<string, string | number | boolean>;
-  faqItems: Array<{ question: string; answer: string }>;
-  sortOrder: number;
-  seoTitle: string | null;
-  seoDescription: string | null;
-  seoKeywords: string[];
-  canonicalUrl: string | null;
-  ogImageUrl: string | null;
+  levitationHeight: string;
+  rotation: string;
+  diameter: string;
+  loadCapacity: string;
+  power: string;
+  finish: string;
+  minOrderQty: number;
+  leadTimeText: string;
+  customizationOptions: string;
+  seoTitle: string;
+  seoDescription: string;
   removedImageIds: string[];
   imageFiles: File[];
 }
@@ -223,6 +227,57 @@ function normalizeImages(value: unknown) {
     .sort((left, right) => left.sortOrder - right.sortOrder);
 }
 
+async function resolveAdminImageUrls(
+  supabase: SupabaseClient,
+  images: AdminProductImage[],
+) {
+  const storagePaths = Array.from(
+    new Set(images.map((image) => image.storagePath).filter((path): path is string => path.length > 0)),
+  );
+
+  if (storagePaths.length === 0) {
+    return images;
+  }
+
+  const { data, error } = await supabase.storage
+    .from(PRODUCT_STORAGE_BUCKET)
+    .createSignedUrls(storagePaths, 60 * 60 * 24 * 7);
+
+  if (error || !data) {
+    return images;
+  }
+
+  const signedUrlsByPath = new Map(
+    data
+      .filter((entry) => entry.path && entry.signedUrl)
+      .map((entry) => [entry.path, entry.signedUrl] as const),
+  );
+
+  return images.map((image) => ({
+    ...image,
+    imageUrl: signedUrlsByPath.get(image.storagePath) ?? image.imageUrl,
+  }));
+}
+
+async function hydrateAdminProductRecord(
+  supabase: SupabaseClient,
+  product: AdminProductRecord,
+) {
+  const images = await resolveAdminImageUrls(supabase, product.images);
+
+  return {
+    ...product,
+    images,
+  };
+}
+
+async function hydrateAdminProductRecords(
+  supabase: SupabaseClient,
+  products: AdminProductRecord[],
+) {
+  return Promise.all(products.map((product) => hydrateAdminProductRecord(supabase, product)));
+}
+
 function mapAdminProductRow(row: Record<string, unknown>): AdminProductRecord {
   const category = normalizeCategory(row.categories);
 
@@ -263,15 +318,6 @@ function mapAdminProductRow(row: Record<string, unknown>): AdminProductRecord {
   };
 }
 
-function isValidUrl(value: string) {
-  try {
-    new URL(value);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function sanitizeFileName(value: string) {
   const cleaned = value
     .toLowerCase()
@@ -280,6 +326,55 @@ function sanitizeFileName(value: string) {
     .replace(/-{2,}/g, "-");
 
   return cleaned || "image";
+}
+
+function normalizeSpecLabel(label: string) {
+  return label.toLowerCase().replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function isManagedSpecLabel(label: string) {
+  const normalizedLabel = normalizeSpecLabel(label);
+
+  for (const field of PRODUCT_SHOWCASE_SPEC_FIELDS) {
+    if (field.aliases.some((alias) => normalizedLabel === alias || normalizedLabel.includes(alias))) {
+      return true;
+    }
+  }
+
+  return CUSTOMIZATION_SPEC_ALIASES.some(
+    (alias) => normalizedLabel === alias || normalizedLabel.includes(alias),
+  );
+}
+
+function buildManagedSpecs(
+  parsed: ParsedAdminProductPayload,
+  existingSpecs?: Record<string, string>,
+) {
+  const nextSpecs: Record<string, string> = {};
+
+  for (const [label, value] of Object.entries(existingSpecs ?? {})) {
+    if (!isManagedSpecLabel(label) && value.trim().length > 0) {
+      nextSpecs[label] = value.trim();
+    }
+  }
+
+  nextSpecs["Levitation Height"] = parsed.levitationHeight;
+  nextSpecs.Rotation = parsed.rotation;
+  nextSpecs.Diameter = parsed.diameter;
+  nextSpecs["Load Capacity"] = parsed.loadCapacity;
+  nextSpecs.Power = parsed.power;
+  nextSpecs.Finish = parsed.finish;
+  nextSpecs["Customization Options"] = parsed.customizationOptions;
+
+  return nextSpecs;
+}
+
+function buildDefaultMinOrderUnit(quantity: number, existingUnit?: string) {
+  if (!existingUnit || existingUnit === "unit" || existingUnit === "units") {
+    return quantity === 1 ? "unit" : "units";
+  }
+
+  return existingUnit;
 }
 
 function mapConstraintError(error: unknown) {
@@ -306,38 +401,29 @@ function mapConstraintError(error: unknown) {
   return new AdminProductMutationError("This product conflicts with an existing record.", 409);
 }
 
-async function buildUniqueSlug(
+async function ensureUniqueSlug(
   supabase: SupabaseClient,
   requestedSlug: string,
   currentProductId?: string,
 ) {
-  const baseSlug = slugifyValue(requestedSlug);
+  const slug = slugifyValue(requestedSlug);
   const { data, error } = await supabase
     .from("products")
     .select("id, slug")
-    .ilike("slug", `${baseSlug}%`);
+    .eq("slug", slug)
+    .maybeSingle();
 
   if (error) {
     throw new AdminProductMutationError(`Unable to validate slug uniqueness: ${error.message}`, 503);
   }
 
-  const existingSlugs = new Set(
-    (data ?? [])
-      .filter((entry) => entry.id !== currentProductId)
-      .map((entry) => entry.slug),
-  );
-
-  if (!existingSlugs.has(baseSlug)) {
-    return baseSlug;
+  if (data && data.id !== currentProductId) {
+    throw new AdminProductMutationError("This slug already exists.", 409, {
+      slug: "This slug already exists.",
+    });
   }
 
-  let suffix = 2;
-
-  while (existingSlugs.has(`${baseSlug}-${suffix}`)) {
-    suffix += 1;
-  }
-
-  return `${baseSlug}-${suffix}`;
+  return slug;
 }
 
 async function getAdminProductById(supabase: SupabaseClient, productId: string) {
@@ -355,7 +441,7 @@ async function getAdminProductById(supabase: SupabaseClient, productId: string) 
     return null;
   }
 
-  return mapAdminProductRow(data as Record<string, unknown>);
+  return hydrateAdminProductRecord(supabase, mapAdminProductRow(data as Record<string, unknown>));
 }
 
 async function ensureCategoryExists(supabase: SupabaseClient, categoryId: string) {
@@ -376,22 +462,25 @@ async function ensureCategoryExists(supabase: SupabaseClient, categoryId: string
   }
 }
 
-function parsePositiveInteger(
+function parseRequiredText(
   value: string,
   fieldName: string,
+  label: string,
   fieldErrors: FieldErrors,
-  options?: { allowEmpty?: boolean; defaultValue?: number; minimum?: number },
 ) {
   if (!value) {
-    return options?.allowEmpty ? null : options?.defaultValue ?? 0;
+    fieldErrors[fieldName] = `${label} is required.`;
   }
 
-  const numericValue = Number(value);
-  const minimum = options?.minimum ?? 0;
+  return value;
+}
 
-  if (!Number.isInteger(numericValue) || numericValue < minimum) {
-    fieldErrors[fieldName] = "Enter a valid whole number.";
-    return null;
+function parsePositiveInteger(value: string, fieldName: string, label: string, fieldErrors: FieldErrors) {
+  const numericValue = Number(value);
+
+  if (!Number.isInteger(numericValue) || numericValue <= 0) {
+    fieldErrors[fieldName] = `${label} must be a whole number greater than 0.`;
+    return 0;
   }
 
   return numericValue;
@@ -417,85 +506,94 @@ function parseRemovedImageIds(rawValue: string, fieldErrors: FieldErrors) {
   }
 }
 
+function validateImageFiles(imageFiles: File[], fieldErrors: FieldErrors) {
+  const invalidFile = imageFiles.find((file) => !ALLOWED_IMAGE_TYPES.has(file.type));
+
+  if (invalidFile) {
+    fieldErrors.images = "Upload JPEG, PNG, or WebP images only.";
+  }
+}
+
+async function ensureProductStorageBucket(supabase: SupabaseClient) {
+  const { data, error } = await supabase.storage.getBucket(PRODUCT_STORAGE_BUCKET);
+
+  if (error) {
+    const isMissingBucket =
+      error.message.toLowerCase().includes("not found") ||
+      error.message.toLowerCase().includes("does not exist");
+
+    if (!isMissingBucket) {
+      throw new AdminProductMutationError(`Unable to access product media bucket: ${error.message}`, 503);
+    }
+
+    const { error: createError } = await supabase.storage.createBucket(PRODUCT_STORAGE_BUCKET, {
+      public: true,
+      allowedMimeTypes: Array.from(ALLOWED_IMAGE_TYPES),
+    });
+
+    if (createError) {
+      throw new AdminProductMutationError(`Unable to create product media bucket: ${createError.message}`, 503);
+    }
+
+    return;
+  }
+
+  const bucket = data as { public?: boolean } | null;
+
+  if (bucket?.public) {
+    return;
+  }
+
+  const { error: updateError } = await supabase.storage.updateBucket(PRODUCT_STORAGE_BUCKET, {
+    public: true,
+    allowedMimeTypes: Array.from(ALLOWED_IMAGE_TYPES),
+  });
+
+  if (updateError) {
+    throw new AdminProductMutationError(`Unable to update product media bucket: ${updateError.message}`, 503);
+  }
+}
+
 function parseAdminProductFormData(formData: FormData): ParsedAdminProductPayload {
   const fieldErrors: FieldErrors = {};
-  const status = normalizeStatus(normalizeString(formData.get("status")));
-  const name = normalizeString(formData.get("name"));
-  const summary = normalizeString(formData.get("summary"));
-  const description = normalizeString(formData.get("description"));
-  const categoryId = normalizeString(formData.get("categoryId"));
-  const slugInput = normalizeString(formData.get("slug"));
-  const canonicalUrl = normalizeString(formData.get("canonicalUrl"));
-  const ogImageUrl = normalizeString(formData.get("ogImageUrl"));
-  const specsResult = parseKeyValueText(normalizeString(formData.get("specsText")), {
-    label: "Specs",
-  });
-  const filterAttributesResult = parseKeyValueText(
-    normalizeString(formData.get("filterAttributesText")),
-    {
-      inferScalar: true,
-      label: "Filter attributes",
-    },
+  const status = normalizeStatus(normalizeString(formData.get("status"))) ?? "published";
+  const name = parseRequiredText(normalizeString(formData.get("name")), "name", "Product name", fieldErrors);
+  const series = parseRequiredText(normalizeString(formData.get("series")), "series", "Series", fieldErrors);
+  const categoryId = parseRequiredText(normalizeString(formData.get("categoryId")), "categoryId", "Category", fieldErrors);
+  const summary = parseRequiredText(normalizeString(formData.get("summary")), "summary", "Short description", fieldErrors);
+  const description = parseRequiredText(normalizeString(formData.get("description")), "description", "Long description", fieldErrors);
+  const levitationHeight = parseRequiredText(normalizeString(formData.get("levitationHeight")), "levitationHeight", "Levitation height", fieldErrors);
+  const rotation = parseRequiredText(normalizeString(formData.get("rotation")), "rotation", "Rotation", fieldErrors);
+  const diameter = parseRequiredText(normalizeString(formData.get("diameter")), "diameter", "Diameter", fieldErrors);
+  const loadCapacity = parseRequiredText(normalizeString(formData.get("loadCapacity")), "loadCapacity", "Load capacity", fieldErrors);
+  const power = parseRequiredText(normalizeString(formData.get("power")), "power", "Power", fieldErrors);
+  const finish = parseRequiredText(normalizeString(formData.get("finish")), "finish", "Finish", fieldErrors);
+  const leadTimeText = parseRequiredText(normalizeString(formData.get("leadTimeText")), "leadTimeText", "Lead time", fieldErrors);
+  const customizationOptions = parseRequiredText(
+    normalizeString(formData.get("customizationOptions")),
+    "customizationOptions",
+    "Customization options",
+    fieldErrors,
   );
-  const faqResult = parseFaqText(normalizeString(formData.get("faqText")));
-  const minOrderQtyRaw = normalizeString(formData.get("minOrderQty"));
-  const sortOrderRaw = normalizeString(formData.get("sortOrder"));
+  const seoTitle = parseRequiredText(normalizeString(formData.get("seoTitle")), "seoTitle", "SEO title", fieldErrors);
+  const seoDescription = parseRequiredText(
+    normalizeString(formData.get("seoDescription")),
+    "seoDescription",
+    "SEO description",
+    fieldErrors,
+  );
+  const minOrderQty = parsePositiveInteger(
+    normalizeString(formData.get("minOrderQty")),
+    "minOrderQty",
+    "MOQ",
+    fieldErrors,
+  );
   const removedImageIds = parseRemovedImageIds(normalizeString(formData.get("removedImageIds")), fieldErrors);
   const imageFiles = formData
     .getAll("images")
     .filter((entry): entry is File => entry instanceof File && entry.size > 0);
 
-  if (!categoryId) {
-    fieldErrors.categoryId = "Category is required.";
-  }
-
-  if (!name) {
-    fieldErrors.name = "Product name is required.";
-  }
-
-  if (!summary) {
-    fieldErrors.summary = "Summary is required.";
-  }
-
-  if (!description) {
-    fieldErrors.description = "Description is required.";
-  }
-
-  if (!status) {
-    fieldErrors.status = "Status must be draft or published.";
-  }
-
-  if (canonicalUrl && !isValidUrl(canonicalUrl)) {
-    fieldErrors.canonicalUrl = "Enter a valid canonical URL.";
-  }
-
-  if (ogImageUrl && !isValidUrl(ogImageUrl)) {
-    fieldErrors.ogImageUrl = "Enter a valid image URL.";
-  }
-
-  if (specsResult.error) {
-    fieldErrors.specsText = specsResult.error;
-  }
-
-  if (filterAttributesResult.error) {
-    fieldErrors.filterAttributesText = filterAttributesResult.error;
-  }
-
-  if (faqResult.error) {
-    fieldErrors.faqText = faqResult.error;
-  }
-
-  const minOrderQty =
-    minOrderQtyRaw.length > 0
-      ? parsePositiveInteger(minOrderQtyRaw, "minOrderQty", fieldErrors, {
-          allowEmpty: true,
-          minimum: 1,
-        })
-      : null;
-  const sortOrder = parsePositiveInteger(sortOrderRaw, "sortOrder", fieldErrors, {
-    defaultValue: 0,
-    minimum: 0,
-  });
+  validateImageFiles(imageFiles, fieldErrors);
 
   if (Object.keys(fieldErrors).length > 0) {
     throw new AdminProductMutationError("Fix the highlighted fields before saving.", 400, fieldErrors);
@@ -503,31 +601,23 @@ function parseAdminProductFormData(formData: FormData): ParsedAdminProductPayloa
 
   return {
     categoryId,
-    slug: slugInput || slugifyValue(name),
-    sku: normalizeString(formData.get("sku")) || null,
+    slug: slugifyValue(normalizeString(formData.get("slug")) || name),
     name,
-    series: normalizeString(formData.get("series")) || null,
-    status: status ?? "draft",
-    featured: normalizeString(formData.get("featured")) === "true",
+    series,
+    status,
     summary,
     description,
-    highlight: normalizeString(formData.get("highlight")) || null,
-    leadTimeText: normalizeString(formData.get("leadTimeText")) || null,
+    levitationHeight,
+    rotation,
+    diameter,
+    loadCapacity,
+    power,
+    finish,
     minOrderQty,
-    minOrderUnit: normalizeString(formData.get("minOrderUnit")) || null,
-    heroMetric: normalizeString(formData.get("heroMetric")) || null,
-    tags: splitTextList(normalizeString(formData.get("tagsText"))),
-    applications: splitTextList(normalizeString(formData.get("applicationsText"))),
-    features: splitTextList(normalizeString(formData.get("featuresText"))),
-    specs: specsResult.value as Record<string, string>,
-    filterAttributes: filterAttributesResult.value,
-    faqItems: faqResult.value,
-    sortOrder: sortOrder ?? 0,
-    seoTitle: normalizeString(formData.get("seoTitle")) || null,
-    seoDescription: normalizeString(formData.get("seoDescription")) || null,
-    seoKeywords: splitTextList(normalizeString(formData.get("seoKeywordsText"))),
-    canonicalUrl: canonicalUrl || null,
-    ogImageUrl: ogImageUrl || null,
+    leadTimeText,
+    customizationOptions,
+    seoTitle,
+    seoDescription,
     removedImageIds,
     imageFiles,
   };
@@ -544,6 +634,8 @@ async function syncProductImages(
     imageFiles: File[];
   },
 ) {
+  await ensureProductStorageBucket(supabase);
+
   const removableImages = options.existingImages.filter((image) => options.removedImageIds.includes(image.id));
   const removablePaths = removableImages
     .map((image) => image.storagePath)
@@ -589,7 +681,7 @@ async function syncProductImages(
     nextSortOrder += 10;
 
     const storagePath = `products/${options.slug}/${Date.now()}-${index}-${sanitizeFileName(file.name)}`;
-    const fileBytes = await file.arrayBuffer();
+    const fileBytes = new Uint8Array(await file.arrayBuffer());
     const { error: uploadError } = await supabase.storage
       .from(PRODUCT_STORAGE_BUCKET)
       .upload(storagePath, fileBytes, {
@@ -686,6 +778,57 @@ async function cleanupProductStorageAssets(supabase: SupabaseClient, productId: 
   }
 }
 
+function revalidateAdminProductPaths(options: {
+  productId?: string;
+  slug?: string;
+  previousSlug?: string;
+}) {
+  const paths = new Set<string>([
+    "/admin",
+    "/admin/products",
+    "/admin/products/new",
+    "/products",
+  ]);
+
+  if (options.productId) {
+    paths.add(`/admin/products/${options.productId}/edit`);
+  }
+
+  if (options.slug) {
+    paths.add(`/products/${options.slug}`);
+  }
+
+  if (options.previousSlug) {
+    paths.add(`/products/${options.previousSlug}`);
+  }
+
+  for (const path of paths) {
+    revalidatePath(path);
+  }
+}
+
+function resolveNextOgImageUrl(
+  existingProduct: AdminProductRecord,
+  primaryImageUrl: string | null,
+  hasImageChanges: boolean,
+) {
+  if (primaryImageUrl) {
+    return primaryImageUrl;
+  }
+
+  if (!hasImageChanges) {
+    return existingProduct.ogImageUrl || null;
+  }
+
+  const previousImageUrls = new Set(existingProduct.images.map((image) => image.imageUrl));
+
+  if (existingProduct.ogImageUrl && !previousImageUrls.has(existingProduct.ogImageUrl)) {
+    return existingProduct.ogImageUrl;
+  }
+
+  return null;
+}
+
 export async function getAdminProductDashboardData(): Promise<{
   categories: AdminCategoryOption[];
   products: AdminProductRecord[];
@@ -718,7 +861,39 @@ export async function getAdminProductDashboardData(): Promise<{
       name: entry.name,
       status: entry.status === "published" ? "published" : "draft",
     })),
-    products: (productsResult.data ?? []).map((entry) => mapAdminProductRow(entry as Record<string, unknown>)),
+    products: await hydrateAdminProductRecords(
+      supabase,
+      (productsResult.data ?? []).map((entry) => mapAdminProductRow(entry as Record<string, unknown>)),
+    ),
+  };
+}
+
+export async function getAdminProductEditorData(productId?: string): Promise<{
+  categories: AdminCategoryOption[];
+  product: AdminProductRecord | null;
+}> {
+  const supabase = createAdminSupabaseClient();
+  const [categoriesResult, product] = await Promise.all([
+    supabase
+      .from("categories")
+      .select("id, slug, name, status")
+      .order("sort_order", { ascending: true })
+      .order("name", { ascending: true }),
+    productId ? getAdminProductById(supabase, productId) : Promise.resolve(null),
+  ]);
+
+  if (categoriesResult.error) {
+    throw new Error(`Unable to load product categories: ${categoriesResult.error.message}`);
+  }
+
+  return {
+    categories: (categoriesResult.data ?? []).map((entry) => ({
+      id: entry.id,
+      slug: entry.slug,
+      name: entry.name,
+      status: entry.status === "published" ? "published" : "draft",
+    })),
+    product,
   };
 }
 
@@ -728,8 +903,9 @@ export async function createAdminProduct(formData: FormData): Promise<AdminMutat
 
   await ensureCategoryExists(supabase, parsed.categoryId);
 
-  const slug = await buildUniqueSlug(supabase, parsed.slug);
+  const slug = await ensureUniqueSlug(supabase, parsed.slug);
   const publishedAt = parsed.status === "published" ? new Date().toISOString() : null;
+  const specs = buildManagedSpecs(parsed);
   let createdProductId = "";
 
   try {
@@ -738,30 +914,30 @@ export async function createAdminProduct(formData: FormData): Promise<AdminMutat
       .insert({
         category_id: parsed.categoryId,
         slug,
-        sku: parsed.sku,
+        sku: null,
         name: parsed.name,
         series: parsed.series,
         status: parsed.status,
-        featured: parsed.featured,
+        featured: false,
         summary: parsed.summary,
         description: parsed.description,
-        highlight: parsed.highlight,
+        highlight: parsed.summary,
         lead_time_text: parsed.leadTimeText,
         min_order_qty: parsed.minOrderQty,
-        min_order_unit: parsed.minOrderUnit ?? "unit",
-        hero_metric: parsed.heroMetric,
-        tags: parsed.tags,
-        applications: parsed.applications,
-        features: parsed.features,
-        specs: parsed.specs,
-        filter_attributes: parsed.filterAttributes,
-        faq_items: parsed.faqItems,
-        sort_order: parsed.sortOrder,
+        min_order_unit: buildDefaultMinOrderUnit(parsed.minOrderQty),
+        hero_metric: null,
+        tags: [],
+        applications: [],
+        features: [],
+        specs,
+        filter_attributes: {},
+        faq_items: [],
+        sort_order: 0,
         seo_title: parsed.seoTitle,
         seo_description: parsed.seoDescription,
-        seo_keywords: parsed.seoKeywords,
-        canonical_url: parsed.canonicalUrl,
-        og_image_url: parsed.ogImageUrl,
+        seo_keywords: [],
+        canonical_url: null,
+        og_image_url: null,
         published_at: publishedAt,
       })
       .select("id")
@@ -782,12 +958,10 @@ export async function createAdminProduct(formData: FormData): Promise<AdminMutat
       imageFiles: parsed.imageFiles,
     });
 
-    const nextOgImageUrl = parsed.ogImageUrl || imageSync.primaryImageUrl;
-
-    if (nextOgImageUrl) {
+    if (imageSync.primaryImageUrl) {
       const { error: ogUpdateError } = await supabase
         .from("products")
-        .update({ og_image_url: nextOgImageUrl })
+        .update({ og_image_url: imageSync.primaryImageUrl })
         .eq("id", createdProductId);
 
       if (ogUpdateError) {
@@ -800,6 +974,8 @@ export async function createAdminProduct(formData: FormData): Promise<AdminMutat
     if (!product) {
       throw new AdminProductMutationError("The created product could not be reloaded.", 503);
     }
+
+    revalidateAdminProductPaths({ productId: createdProductId, slug: product.slug });
 
     return {
       message: "Product created successfully.",
@@ -843,11 +1019,16 @@ export async function updateAdminProduct(
 
   await ensureCategoryExists(supabase, parsed.categoryId);
 
-  const slug = await buildUniqueSlug(supabase, parsed.slug || existingProduct.slug, productId);
+  const slug = await ensureUniqueSlug(supabase, parsed.slug || existingProduct.slug, productId);
   const publishedAt =
     parsed.status === "published"
       ? existingProduct.publishedAt ?? new Date().toISOString()
       : null;
+  const specs = buildManagedSpecs(parsed, existingProduct.specs);
+  const nextHighlight =
+    existingProduct.highlight.trim().length > 0 && existingProduct.highlight !== existingProduct.summary
+      ? existingProduct.highlight
+      : parsed.summary;
 
   try {
     const { error: updateError } = await supabase
@@ -855,30 +1036,18 @@ export async function updateAdminProduct(
       .update({
         category_id: parsed.categoryId,
         slug,
-        sku: parsed.sku,
         name: parsed.name,
         series: parsed.series,
         status: parsed.status,
-        featured: parsed.featured,
         summary: parsed.summary,
         description: parsed.description,
-        highlight: parsed.highlight,
+        highlight: nextHighlight,
         lead_time_text: parsed.leadTimeText,
         min_order_qty: parsed.minOrderQty,
-        min_order_unit: parsed.minOrderUnit ?? "unit",
-        hero_metric: parsed.heroMetric,
-        tags: parsed.tags,
-        applications: parsed.applications,
-        features: parsed.features,
-        specs: parsed.specs,
-        filter_attributes: parsed.filterAttributes,
-        faq_items: parsed.faqItems,
-        sort_order: parsed.sortOrder,
+        min_order_unit: buildDefaultMinOrderUnit(parsed.minOrderQty, existingProduct.minOrderUnit),
+        specs,
         seo_title: parsed.seoTitle,
         seo_description: parsed.seoDescription,
-        seo_keywords: parsed.seoKeywords,
-        canonical_url: parsed.canonicalUrl,
-        og_image_url: parsed.ogImageUrl,
         published_at: publishedAt,
       })
       .eq("id", productId);
@@ -896,7 +1065,8 @@ export async function updateAdminProduct(
       imageFiles: parsed.imageFiles,
     });
 
-    const nextOgImageUrl = parsed.ogImageUrl || imageSync.primaryImageUrl;
+    const hasImageChanges = parsed.removedImageIds.length > 0 || parsed.imageFiles.length > 0;
+    const nextOgImageUrl = resolveNextOgImageUrl(existingProduct, imageSync.primaryImageUrl, hasImageChanges);
     const { error: finalUpdateError } = await supabase
       .from("products")
       .update({
@@ -913,6 +1083,12 @@ export async function updateAdminProduct(
     if (!product) {
       throw new AdminProductMutationError("The updated product could not be reloaded.", 503);
     }
+
+    revalidateAdminProductPaths({
+      productId,
+      slug: product.slug,
+      previousSlug: existingProduct.slug !== product.slug ? existingProduct.slug : undefined,
+    });
 
     return {
       message: "Product updated successfully.",
@@ -944,6 +1120,8 @@ export async function deleteAdminProduct(productId: string) {
     throw new AdminProductMutationError("This product does not exist.", 404);
   }
 
+  await ensureProductStorageBucket(supabase);
+
   const storagePaths = product.images
     .map((image) => image.storagePath)
     .filter((path): path is string => Boolean(path));
@@ -963,6 +1141,8 @@ export async function deleteAdminProduct(productId: string) {
   if (deleteError) {
     throw new AdminProductMutationError(`Unable to delete the product: ${deleteError.message}`, 503);
   }
+
+  revalidateAdminProductPaths({ productId, slug: product.slug });
 
   return {
     message: "Product deleted successfully.",

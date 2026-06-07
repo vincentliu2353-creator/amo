@@ -3,9 +3,11 @@ import { ApprovedHomeFooter } from "@/components/layout/approved-home-footer";
 import { InnerPageShell } from "@/components/layout/inner-page-shell";
 import { ProductsErrorState } from "@/components/products/products-error-state";
 import { AdminShell } from "@/components/ui/AdminShell";
+import { buttonStyles } from "@/components/ui/button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { buildMetadata } from "@/lib/seo";
 import { getAdminProductDashboardData } from "@/lib/admin/products";
+import Link from "next/link";
 
 export const metadata = buildMetadata({
   title: "Admin Products",
@@ -15,9 +17,36 @@ export const metadata = buildMetadata({
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminProductsPage() {
+interface AdminProductsPageProps {
+  searchParams: Promise<{
+    created?: string;
+    deleted?: string;
+    updated?: string;
+  }>;
+}
+
+function getAdminProductsNotice(params: Awaited<AdminProductsPageProps["searchParams"]>) {
+  if (params.created === "1") {
+    return { message: "Product created successfully.", tone: "success" as const };
+  }
+
+  if (params.updated === "1") {
+    return { message: "Product updated successfully.", tone: "success" as const };
+  }
+
+  if (params.deleted === "1") {
+    return { message: "Product deleted successfully.", tone: "success" as const };
+  }
+
+  return null;
+}
+
+export default async function AdminProductsPage({ searchParams }: AdminProductsPageProps) {
   try {
-    const { categories, products } = await getAdminProductDashboardData();
+    const [{ products }, params] = await Promise.all([
+      getAdminProductDashboardData(),
+      searchParams,
+    ]);
 
     return (
       <InnerPageShell showHeader>
@@ -26,9 +55,14 @@ export default async function AdminProductsPage() {
             <AdminShell
               current="products"
               title="Products"
-              description="Manage catalog records, product imagery, and public product details inside the existing admin workflow."
+              description="Manage catalog records, open the dedicated upload flow, and review which products are published to the public catalog."
+              actions={
+                <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
+                  New Product
+                </Link>
+              }
             >
-              <AdminProductsConsole categories={categories} products={products} />
+              <AdminProductsConsole products={products} notice={getAdminProductsNotice(params)} />
             </AdminShell>
           </SectionContainer>
         </section>
