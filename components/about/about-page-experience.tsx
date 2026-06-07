@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { startTransition, useRef, useState } from "react";
 
@@ -44,60 +45,46 @@ const timelineItems = [
 const macroPanels = [
   {
     title: "Metal Surface",
-    frame:
-      "bg-[radial-gradient(circle_at_18%_16%,rgba(255,255,255,0.32),transparent_18%),linear-gradient(145deg,#111216_0%,#323642_40%,#07080c_100%)]",
-    overlay:
-      "bg-[repeating-linear-gradient(100deg,rgba(255,255,255,0.18)_0px,rgba(255,255,255,0.18)_1px,transparent_1px,transparent_15px)]",
+    src: "/images/about/about-ch04-metal-surface.webp",
+    alt: "Macro view of a refined metal surface with a dark industrial finish",
   },
   {
     title: "Precision Edge",
-    frame:
-      "bg-[radial-gradient(circle_at_74%_18%,rgba(255,255,255,0.22),transparent_16%),linear-gradient(135deg,#0d0f13_0%,#1d2128_44%,#050608_100%)]",
-    overlay:
-      "bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.1)_14%,transparent_14%,transparent_28%,rgba(255,255,255,0.08)_28%,transparent_29%,transparent_100%)]",
+    src: "/images/about/about-ch04-precision-edge.webp",
+    alt: "Close-up of a precise industrial edge with crisp machining detail",
   },
   {
     title: "Magnetic Pattern",
-    frame:
-      "bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.09),transparent_26%),linear-gradient(145deg,#08090c_0%,#161a21_44%,#050608_100%)]",
-    overlay: "bg-[repeating-radial-gradient(circle_at_center,transparent_0_18px,rgba(255,255,255,0.12)_18px_19px)]",
+    src: "/images/about/about-ch04-magnetic-pattern.webp",
+    alt: "Detailed magnetic pattern texture captured in a dark macro composition",
   },
   {
     title: "Light Reflection",
-    frame:
-      "bg-[radial-gradient(circle_at_28%_24%,rgba(255,255,255,0.28),transparent_18%),radial-gradient(circle_at_74%_56%,rgba(255,255,255,0.14),transparent_20%),linear-gradient(135deg,#0d1013_0%,#20252d_45%,#050608_100%)]",
-    overlay:
-      "bg-[radial-gradient(circle_at_28%_24%,rgba(255,255,255,0.34),transparent_12%),radial-gradient(circle_at_74%_56%,rgba(255,255,255,0.12),transparent_18%)]",
+    src: "/images/about/about-ch04-light-reflection.webp",
+    alt: "Light reflecting across a dark engineered surface",
   },
 ] as const;
 
 const technicalVisuals = [
   {
     title: "Magnetic Field",
-    frame:
-      "bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.07),transparent_28%),linear-gradient(180deg,#fbfbf8_0%,#f2f3f1_100%)]",
-    overlay: "bg-[repeating-radial-gradient(circle_at_center,transparent_0_16px,rgba(0,0,0,0.11)_16px_17px)]",
+    src: "/images/about/about-ch05-magnetic-field.webp",
+    alt: "Diagrammatic magnetic field study used in levitation development",
   },
   {
     title: "Levitation Ring",
-    frame:
-      "bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05),transparent_22%),linear-gradient(145deg,#ffffff_0%,#f0f1ef_100%)]",
-    overlay:
-      "bg-[radial-gradient(circle_at_center,transparent_0_32%,rgba(0,0,0,0.12)_32%_33%,transparent_33%_48%,rgba(0,0,0,0.08)_48%_49%,transparent_49%)]",
+    src: "/images/about/about-ch05-levitation-ring.webp",
+    alt: "Levitation ring component photographed against a clean technical backdrop",
   },
   {
     title: "Motion Path",
-    frame:
-      "bg-[linear-gradient(145deg,#ffffff_0%,#f0f2f3_100%)]",
-    overlay:
-      "bg-[radial-gradient(circle_at_32%_68%,rgba(0,0,0,0.12),transparent_8%),radial-gradient(circle_at_68%_32%,rgba(0,0,0,0.12),transparent_8%),linear-gradient(135deg,transparent_0_35%,rgba(0,0,0,0.1)_35%_36%,transparent_36%_64%,rgba(0,0,0,0.1)_64%_65%,transparent_65%)]",
+    src: "/images/about/about-ch05-motion-path.webp",
+    alt: "Motion path study showing the controlled trajectory of a floating object",
   },
   {
     title: "Balance System",
-    frame:
-      "bg-[linear-gradient(145deg,#fcfcfb_0%,#eef1f2_100%)]",
-    overlay:
-      "bg-[linear-gradient(90deg,transparent_0_22%,rgba(0,0,0,0.08)_22%_23%,transparent_23%_49%,rgba(0,0,0,0.1)_49%_50%,transparent_50%_77%,rgba(0,0,0,0.08)_77%_78%,transparent_78%)]",
+    src: "/images/about/about-ch05-balance-system.webp",
+    alt: "Balance system reference image for stabilizing magnetic levitation",
   },
 ] as const;
 
@@ -107,32 +94,32 @@ const worldScenes = [
   {
     title: "Museum",
     copy: "Objects presented with silence, distance, and intention.",
-    backdrop: "bg-[linear-gradient(135deg,#f7f5ef_0%,#ece6db_44%,#ffffff_100%)]",
-    accent: "bg-black/9",
+    src: "/images/about/about-ch07-museum.webp",
+    alt: "Floating display installation inside a museum-like environment",
   },
   {
     title: "Architecture",
     copy: "Floating forms embedded into spatial language.",
-    backdrop: "bg-[linear-gradient(135deg,#f2f3f4_0%,#e7e8eb_42%,#fbfbfc_100%)]",
-    accent: "bg-black/7",
+    src: "/images/about/about-ch07-architecture.webp",
+    alt: "Architectural interior featuring a floating object presentation",
   },
   {
     title: "Retail",
     copy: "Hero presentation without shouting for attention.",
-    backdrop: "bg-[linear-gradient(135deg,#f8f8f8_0%,#efefef_42%,#fdfdfd_100%)]",
-    accent: "bg-black/10",
+    src: "/images/about/about-ch07-retail.webp",
+    alt: "Retail display scene using magnetic levitation as a focal point",
   },
   {
     title: "Hospitality",
     copy: "Atmosphere that feels expensive before it feels obvious.",
-    backdrop: "bg-[linear-gradient(135deg,#f5f0e7_0%,#ebe2d4_44%,#faf6ef_100%)]",
-    accent: "bg-black/8",
+    src: "/images/about/about-ch07-hospitality.webp",
+    alt: "Hospitality setting with a calm floating display experience",
   },
   {
     title: "Future Workspace",
     copy: "Calm rooms with a technological pulse.",
-    backdrop: "bg-[linear-gradient(135deg,#edf2f5_0%,#e0e7ec_44%,#f8fbfd_100%)]",
-    accent: "bg-black/7",
+    src: "/images/about/about-ch07-future-workspace.webp",
+    alt: "Future workspace interior with a suspended object display",
   },
 ] as const;
 
@@ -226,8 +213,20 @@ function QuestionEverythingSection() {
 function QuestionRealitySection() {
   return (
     <section data-header-theme="dark" className="relative min-h-screen bg-black py-28 text-white sm:py-32" aria-labelledby="about-reality-title">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/about/original/about-ch02-question-reality.jpg"
+          alt="Abstract floating form in a dark cinematic space"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 bg-black/58" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_22%,rgba(255,255,255,0.08),transparent_20%),radial-gradient(circle_at_76%_74%,rgba(255,255,255,0.08),transparent_18%)]" />
-      <Container className="relative flex min-h-[calc(100vh-14rem)] flex-col justify-center gap-16 lg:flex-row lg:items-center lg:justify-between">
+      <Container className="relative z-10 flex min-h-[calc(100vh-14rem)] flex-col justify-center gap-16 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-[34rem]">
           <ChapterMark chapter="02" dark />
           <h2 id="about-reality-title" className="sr-only">
@@ -244,18 +243,7 @@ function QuestionRealitySection() {
           </div>
         </div>
 
-        <AboutReveal className="mx-auto lg:mx-0" delayMs={200}>
-          <div aria-hidden className="relative h-[22rem] w-[22rem] sm:h-[30rem] sm:w-[30rem] lg:h-[36rem] lg:w-[36rem]">
-            <div className="absolute inset-[8%] rounded-full border border-white/10" />
-            <div className="absolute inset-[18%] rounded-full border border-white/8 animate-about-rotate-slow" />
-            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12),transparent_48%)] blur-3xl" />
-            <div className="absolute left-1/2 top-1/2 h-[58%] w-[58%] -translate-x-1/2 -translate-y-1/2 rounded-[32%] border border-white/18 bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.22),transparent_18%),linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_44%,rgba(255,255,255,0.14)_100%)]">
-              <div className="absolute inset-[16%] rounded-[32%] border border-white/12" />
-              <div className="absolute inset-[30%] rounded-full border border-white/10" />
-            </div>
-            <div className="absolute left-1/2 top-[80%] h-12 w-44 -translate-x-1/2 rounded-[999px] bg-white/10 blur-3xl" />
-          </div>
-        </AboutReveal>
+        <div aria-hidden className="hidden lg:block lg:h-[36rem] lg:w-[36rem]" />
       </Container>
     </section>
   );
@@ -344,8 +332,15 @@ function ObsessionSection() {
           {macroPanels.map((panel, index) => (
             <AboutReveal key={panel.title} delayMs={index * 90} className="flex-1">
               <article className="overflow-hidden border border-white/10 bg-white/[0.03]">
-                <div className={cn("relative aspect-[4/5] min-h-[22rem]", panel.frame)}>
-                  <div className={cn("absolute inset-0 opacity-50", panel.overlay)} />
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src={panel.src}
+                    alt={panel.alt}
+                    fill
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="border-t border-white/10 px-5 py-5">
                   <p className={cn(eyebrowClass, "text-white/44")}>{panel.title}</p>
@@ -381,8 +376,15 @@ function InvisibleEngineeringSection() {
           {technicalVisuals.map((visual, index) => (
             <AboutReveal key={visual.title} delayMs={index * 90} className="flex-1">
               <article className="overflow-hidden border border-black/8 bg-[#f7f7f4]">
-                <div className={cn("relative aspect-[4/5] min-h-[20rem]", visual.frame)}>
-                  <div className={cn("absolute inset-0 opacity-55", visual.overlay)} />
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src={visual.src}
+                    alt={visual.alt}
+                    fill
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="border-t border-black/8 px-5 py-5">
                   <p className={cn(eyebrowClass, "text-black/38")}>{visual.title}</p>
@@ -490,17 +492,19 @@ function WorldSection() {
           </AboutReveal>
 
           <AboutReveal key={activeScene.title} className="mt-6" once={false}>
-            <div className={cn("relative overflow-hidden border border-black/8", activeScene.backdrop)}>
-              <div className={cn("absolute left-[7%] top-[16%] h-[48%] w-[18%]", activeScene.accent)} />
-              <div className="absolute right-[8%] top-[18%] h-[52%] w-[34%] bg-white/52" />
-              <div className="absolute bottom-[16%] left-[18%] h-[26%] w-[42%] bg-white/46" />
-              <div className="absolute left-1/2 top-[44%] h-20 w-20 -translate-x-1/2 rounded-full bg-white/75 shadow-[0_18px_50px_rgba(15,23,42,0.12)] animate-home-float" />
-              <div className="absolute left-1/2 top-[67%] h-8 w-28 -translate-x-1/2 rounded-[999px] bg-black/8 blur-2xl" />
-              <div className="relative aspect-[5/4] min-h-[24rem] px-8 py-8 sm:px-10 sm:py-10">
-                <div className="absolute bottom-8 left-8 max-w-[19rem] sm:bottom-10 sm:left-10">
-                  <p className={cn(eyebrowClass, "text-black/34")}>{activeScene.title}</p>
-                  <p className={cn(bodyClass, "mt-3 text-black/58")}>{activeScene.copy}</p>
-                </div>
+            <div className="relative aspect-video overflow-hidden border border-black/8">
+              <Image
+                src={activeScene.src}
+                alt={activeScene.alt}
+                fill
+                quality={80}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/18 to-transparent" />
+              <div className="absolute bottom-8 left-8 max-w-[19rem] sm:bottom-10 sm:left-10">
+                <p className={cn(eyebrowClass, "text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]")}>{activeScene.title}</p>
+                <p className={cn(bodyClass, "mt-3 text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]")}>{activeScene.copy}</p>
               </div>
             </div>
           </AboutReveal>

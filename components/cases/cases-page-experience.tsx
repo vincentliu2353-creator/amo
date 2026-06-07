@@ -1,9 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { startTransition, useEffect, useState } from "react";
 
-import { CaseStageVisual, type CaseSceneVariant } from "@/components/cases/case-stage-visual";
+import {
+  applicationCaseImages,
+  comparisonCaseImages,
+  featuredCaseImage,
+  spaceCaseImages,
+  type CaseImageAsset,
+} from "@/components/cases/case-image-assets";
+import { CaseStageVisual } from "@/components/cases/case-stage-visual";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 
@@ -15,15 +23,15 @@ interface FeaturedCaseDetail {
 interface ApplicationCase {
   blurb: string;
   details: string;
+  image: CaseImageAsset;
   label: string;
   title: string;
-  variant: CaseSceneVariant;
 }
 
 interface SpaceScenario {
   copy: string;
+  image: CaseImageAsset;
   title: string;
-  variant: Exclude<CaseSceneVariant, "before" | "after">;
 }
 
 const featuredCase = {
@@ -35,6 +43,7 @@ const featuredCase = {
     { label: "Product Type", value: "Custom Maglev Display Base" },
     { label: "Effect", value: "Increased dwell time and product focus" },
   ] satisfies FeaturedCaseDetail[],
+  image: featuredCaseImage,
   title: "LUXURY RETAIL DISPLAY",
 };
 
@@ -44,42 +53,42 @@ const selectedApplications = [
     title: "RETAIL FLAGSHIP",
     blurb: "Floating product display for premium shelves, launch areas, and window installations.",
     details: "Best for: luxury retail, electronics, jewelry, fragrance, design objects",
-    variant: "retail",
+    image: applicationCaseImages.retail,
   },
   {
     label: "Case 02",
     title: "MUSEUM INSTALLATION",
     blurb: "Suspended artifacts and symbolic objects presented as quiet, weightless focal points.",
     details: "Best for: museums, galleries, cultural exhibitions, science centers",
-    variant: "museum",
+    image: applicationCaseImages.museum,
   },
   {
     label: "Case 03",
     title: "HOTEL LOBBY",
     blurb: "Floating sculptural objects used as ambient centerpieces for high-end hospitality spaces.",
     details: "Best for: hotels, resorts, clubs, reception areas",
-    variant: "hotel",
+    image: applicationCaseImages.hotel,
   },
   {
     label: "Case 04",
     title: "EXHIBITION BOOTH",
     blurb: "Magnetic levitation creates strong visual attraction in crowded trade show environments.",
     details: "Best for: exhibitions, product launches, brand events, showrooms",
-    variant: "exhibition",
+    image: applicationCaseImages.exhibition,
   },
   {
     label: "Case 05",
     title: "OFFICE & MEETING SPACE",
     blurb: "Floating clocks, lamps, or art objects bring a futuristic atmosphere into executive interiors.",
     details: "Best for: headquarters, meeting rooms, VIP lounges, design studios",
-    variant: "office",
+    image: applicationCaseImages.office,
   },
   {
     label: "Case 06",
     title: "PREMIUM GIFTS",
     blurb: "Customized floating products for corporate gifts, limited editions, and brand campaigns.",
     details: "Best for: corporate gifting, distributor programs, brand collaborations",
-    variant: "gifting",
+    image: applicationCaseImages.gifting,
   },
 ] satisfies ApplicationCase[];
 
@@ -87,32 +96,32 @@ const spaceScenarios = [
   {
     title: "Retail Stores",
     copy: "Create a premium focus point for hero products and limited-edition displays.",
-    variant: "retail",
+    image: spaceCaseImages.retail,
   },
   {
     title: "Museums",
     copy: "Present objects with a sense of silence, distance, and importance.",
-    variant: "museum",
+    image: spaceCaseImages.museum,
   },
   {
     title: "Hotels",
     copy: "Introduce futuristic atmosphere into lobbies, lounges, and premium suites.",
-    variant: "hotel",
+    image: spaceCaseImages.hotel,
   },
   {
     title: "Offices",
     copy: "Add a calm technological identity to executive and creative environments.",
-    variant: "office",
+    image: spaceCaseImages.office,
   },
   {
     title: "Exhibitions",
     copy: "Help visitors stop, look, and remember your product in a crowded environment.",
-    variant: "exhibition",
+    image: spaceCaseImages.exhibition,
   },
   {
     title: "Premium Gifts",
     copy: "Turn branded gifts into collectible objects with visual impact.",
-    variant: "gifting",
+    image: spaceCaseImages.gifting,
   },
 ] satisfies SpaceScenario[];
 
@@ -273,6 +282,7 @@ export function CasesPageExperience() {
   const [heroProgress, setHeroProgress] = useState(0);
   const [caseIndex, setCaseIndex] = useState(0);
   const [scenarioIndex, setScenarioIndex] = useState(0);
+  const [scenarioDirection, setScenarioDirection] = useState<-1 | 0 | 1>(0);
   const [timelineIndex, setTimelineIndex] = useState(0);
 
   useEffect(() => {
@@ -320,7 +330,16 @@ export function CasesPageExperience() {
   }
 
   function goToScenario(index: number) {
+    if (index === scenarioIndex) {
+      return;
+    }
+
+    const previousIndex = (scenarioIndex - 1 + spaceScenarios.length) % spaceScenarios.length;
+    const nextIndex = (scenarioIndex + 1) % spaceScenarios.length;
+    const direction = index === previousIndex ? -1 : index === nextIndex ? 1 : index > scenarioIndex ? 1 : -1;
+
     startTransition(() => {
+      setScenarioDirection(direction);
       setScenarioIndex(index);
     });
   }
@@ -392,10 +411,16 @@ export function CasesPageExperience() {
 
           <CaseStageVisual
             className="min-h-[24rem] sm:min-h-[30rem] lg:min-h-[42rem]"
+            captionMode="plain"
             detail="Placeholder media for a silent floating hero product inside a luxury retail setting."
+            image={featuredCase.image}
+            imageFit="cover"
             label="Application Placeholder"
+            priority
+            quality={92}
+            sizes="(max-width: 1024px) 100vw, 54vw"
+            theme="dark"
             title="Premium retail centerpiece"
-            variant="retail"
           />
         </Container>
       </section>
@@ -418,42 +443,40 @@ export function CasesPageExperience() {
             </div>
 
             <div className="mt-8 overflow-hidden rounded-[34px] border border-black/8 bg-[#f8f8f4] shadow-[0_24px_70px_rgba(15,23,42,0.06)]">
-              <div
-                className="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                style={{
-                  width: `${selectedApplications.length * 100}%`,
-                  transform: `translate3d(-${caseIndex * (100 / selectedApplications.length)}%, 0, 0)`,
-                }}
+              <article
+                key={activeCase.title}
+                className="grid min-h-[34rem] items-center gap-8 p-6 sm:p-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:p-10"
               >
-                {selectedApplications.map((entry) => (
-                  <article
-                    key={entry.title}
-                    className="grid min-h-[34rem] items-center gap-8 p-6 sm:p-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:p-10"
-                    style={{ width: `${100 / selectedApplications.length}%` }}
-                  >
-                    <div className="max-w-2xl">
-                      <p className="text-[10px] font-medium uppercase tracking-[0.26em] text-black/38">{entry.label}</p>
-                      <h3 className="mt-5 font-sans text-[clamp(2.4rem,5vw,4.6rem)] font-medium leading-[0.95] tracking-[-0.06em] text-black">
-                        {entry.title}
-                      </h3>
-                      <p className="mt-5 text-[15px] leading-7 text-black/60">{entry.blurb}</p>
+                <div className="max-w-2xl">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.26em] text-black/38">{activeCase.label}</p>
+                  <h3 className="mt-5 font-sans text-[clamp(2.4rem,5vw,4.6rem)] font-medium leading-[0.95] tracking-[-0.06em] text-black">
+                    {activeCase.title}
+                  </h3>
+                  <p className="mt-5 text-[15px] leading-7 text-black/60">{activeCase.blurb}</p>
 
-                      <div className="mt-7 rounded-[26px] border border-black/8 bg-white/84 px-5 py-4">
-                        <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">Details</p>
-                        <p className="mt-3 text-[14px] leading-6 text-black/60">{entry.details}</p>
-                      </div>
-                    </div>
+                  <div className="mt-7 rounded-[26px] border border-black/8 bg-white/84 px-5 py-4">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">Details</p>
+                    <p className="mt-3 text-[14px] leading-6 text-black/60">{activeCase.details}</p>
+                  </div>
+                </div>
 
-                    <CaseStageVisual
-                      className="min-h-[20rem] sm:min-h-[24rem] lg:min-h-[31rem]"
-                      detail="Placeholder media for the current application environment."
-                      label="Case Environment"
-                      title={entry.title}
-                      variant={entry.variant}
-                    />
-                  </article>
-                ))}
-              </div>
+                <CaseStageVisual
+                  key={activeCase.image.src}
+                  className="min-h-[20rem] sm:min-h-[24rem] lg:min-h-[31rem]"
+                  captionMode="plain"
+                  detail="Placeholder media for the current application environment."
+                  image={activeCase.image}
+                  imageFit="cover"
+                  label="Case Environment"
+                  loading="eager"
+                  priority
+                  quality={88}
+                  sizes="(max-width: 1024px) 100vw, 56vw"
+                  theme="dark"
+                  title={activeCase.title}
+                  unoptimized
+                />
+              </article>
             </div>
 
             <div className="mt-6 flex items-center justify-between gap-4">
@@ -487,78 +510,117 @@ export function CasesPageExperience() {
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-2">
-              <article className="rounded-[34px] border border-black/8 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.05)] sm:p-8">
-                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-black/38">BEFORE</p>
-                <h3 className="mt-4 font-sans text-[32px] font-medium leading-[0.98] tracking-[-0.05em] text-black">
-                  A product placed on a normal surface.
-                </h3>
-                <p className="mt-4 text-[15px] leading-7 text-black/56">Static. Familiar. Easy to ignore.</p>
-                <CaseStageVisual className="mt-8 min-h-[18rem] sm:min-h-[22rem]" variant="before" />
-              </article>
+              <CaseStageVisual
+                captionMode="plain"
+                className="min-h-[24rem] sm:min-h-[30rem] lg:min-h-[38rem]"
+                detail="Static. Familiar. Easy to ignore."
+                image={comparisonCaseImages.before}
+                imageFit="cover"
+                label="BEFORE"
+                loading="lazy"
+                quality={92}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                theme="dark"
+                title="A product placed on a normal surface."
+              />
 
-              <article className="rounded-[34px] border border-black/8 bg-black p-6 shadow-[0_28px_70px_rgba(15,23,42,0.14)] sm:p-8">
-                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/42">AFTER</p>
-                <h3 className="mt-4 font-sans text-[32px] font-medium leading-[0.98] tracking-[-0.05em] text-white">
-                  A product floating silently above its base.
-                </h3>
-                <p className="mt-4 text-[15px] leading-7 text-white/64">Unexpected. Memorable. Spatial.</p>
-                <CaseStageVisual className="mt-8 min-h-[18rem] sm:min-h-[22rem]" theme="dark" variant="after" />
-              </article>
+              <CaseStageVisual
+                captionMode="plain"
+                className="min-h-[24rem] sm:min-h-[30rem] lg:min-h-[38rem]"
+                detail="Unexpected. Memorable. Spatial."
+                image={comparisonCaseImages.after}
+                imageFit="cover"
+                label="AFTER"
+                loading="lazy"
+                quality={92}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                theme="dark"
+                title="A product floating silently above its base."
+              />
             </div>
           </div>
         </Container>
       </section>
 
-      <section data-header-theme="dark" className="relative flex min-h-screen items-center overflow-hidden bg-black py-16 text-white sm:py-20">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#040404_0%,#0a0a0c_100%)]" />
-        <Container className="relative z-10 w-full">
-          <div className="flex min-h-[calc(100svh-9rem)] flex-col justify-center">
-            <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.03] shadow-[0_24px_90px_rgba(0,0,0,0.34)]">
-              <div className="absolute inset-0">
-                {spaceScenarios.map((scenario, index) => (
-                  <div
-                    key={scenario.title}
-                    className={cn(
-                      "absolute inset-0 transition-opacity duration-500",
-                      index === scenarioIndex ? "opacity-100" : "pointer-events-none opacity-0",
-                    )}
-                  >
-                    <CaseStageVisual className="h-full rounded-none border-0 shadow-none" theme="dark" variant={scenario.variant} />
-                  </div>
-                ))}
-              </div>
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.74)_0%,rgba(0,0,0,0.44)_38%,rgba(0,0,0,0.2)_100%)]" />
+      <section data-header-theme="dark" className="relative min-h-screen overflow-hidden bg-black text-white">
+        <div className="absolute inset-0 overflow-hidden">
+          <div
+            key={`${activeScenario.image.src}-${scenarioIndex}-${scenarioDirection}`}
+            className="absolute inset-[-8%] will-change-transform"
+            style={{
+              animation:
+                scenarioDirection === 0
+                  ? undefined
+                  : `${scenarioDirection > 0 ? "cases-scenario-slide-next" : "cases-scenario-slide-previous"} 650ms cubic-bezier(0.22,1,0.36,1) both`,
+            }}
+          >
+            <Image
+              src={activeScenario.image.src}
+              alt={activeScenario.image.alt}
+              fill
+              quality={90}
+              sizes="100vw"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL={activeScenario.image.blurDataURL}
+              className="object-cover"
+            />
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.74)_0%,rgba(0,0,0,0.44)_38%,rgba(0,0,0,0.2)_100%)]" />
 
-              <div className="relative z-10 flex min-h-[34rem] flex-col justify-between p-6 sm:p-8 lg:min-h-[42rem] lg:p-10">
-                <div className="max-w-3xl">
-                  <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/42">
-                    DESIGNED FOR SPACES THAT NEED ATTENTION.
+        <Container className="relative z-10">
+          <div className="flex min-h-screen items-center">
+            <div className="w-full">
+              <div className="max-w-[38rem]">
+                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white">
+                  DESIGNED FOR SPACES THAT NEED ATTENTION.
+                </p>
+                <h2 className="mt-6 max-w-[12ch] font-sans text-[clamp(2.8rem,5.4vw,5.6rem)] font-medium leading-[0.92] tracking-[-0.06em] text-white">
+                  {`0${scenarioIndex + 1} ${activeScenario.title}`}
+                </h2>
+                <p className="mt-6 max-w-[28rem] text-[16px] leading-7 text-white sm:text-[18px] sm:leading-8">{activeScenario.copy}</p>
+
+                <div className="mt-10 max-w-[28rem] border-t border-white/12 pt-5">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-white">Space Note</p>
+                  <p className="mt-3 text-[14px] leading-6 text-white">
+                    Magnetic levitation creates a visual pause point that makes the object feel more deliberate than a
+                    normal display surface can.
                   </p>
-                  <h2 className="mt-5 max-w-[14ch] font-sans text-[clamp(2.6rem,5vw,5.2rem)] font-medium leading-[0.94] tracking-[-0.06em] text-white">
-                    {`0${scenarioIndex + 1} ${activeScenario.title}`}
-                  </h2>
-                  <p className="mt-5 max-w-xl text-[15px] leading-7 text-white/66 sm:text-[16px]">{activeScenario.copy}</p>
                 </div>
 
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-                  <div className="max-w-[38rem] rounded-[26px] border border-white/10 bg-white/[0.05] px-5 py-4 backdrop-blur">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-white/40">Space Note</p>
-                    <p className="mt-3 text-[14px] leading-6 text-white/68">
-                      Magnetic levitation creates a visual pause point that makes the object feel more deliberate than a
-                      normal display surface can.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <ArrowButton dark direction="previous" onClick={() => goToScenario((scenarioIndex - 1 + spaceScenarios.length) % spaceScenarios.length)} />
-                    <ArrowButton dark direction="next" onClick={() => goToScenario((scenarioIndex + 1) % spaceScenarios.length)} />
-                    <ProgressDots activeIndex={scenarioIndex} count={spaceScenarios.length} dark onSelect={goToScenario} />
-                  </div>
+                <div className="mt-8 flex items-center gap-3">
+                  <ArrowButton dark direction="previous" onClick={() => goToScenario((scenarioIndex - 1 + spaceScenarios.length) % spaceScenarios.length)} />
+                  <ArrowButton dark direction="next" onClick={() => goToScenario((scenarioIndex + 1) % spaceScenarios.length)} />
                 </div>
               </div>
             </div>
           </div>
         </Container>
+
+        <style jsx>{`
+          @keyframes cases-scenario-slide-next {
+            0% {
+              opacity: 0.55;
+              transform: translate3d(5%, 0, 0);
+            }
+            100% {
+              opacity: 1;
+              transform: translate3d(0, 0, 0);
+            }
+          }
+
+          @keyframes cases-scenario-slide-previous {
+            0% {
+              opacity: 0.55;
+              transform: translate3d(-5%, 0, 0);
+            }
+            100% {
+              opacity: 1;
+              transform: translate3d(0, 0, 0);
+            }
+          }
+        `}</style>
       </section>
 
       <section data-header-theme="dark" className="flex min-h-screen items-center bg-black py-16 text-white sm:py-20">

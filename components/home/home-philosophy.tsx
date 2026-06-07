@@ -11,21 +11,37 @@ export function HomePhilosophy() {
       aria-labelledby="home-philosophy-title"
     >
       <Container className="relative z-10 py-24 sm:py-28 lg:py-32">
-        <div className="mx-auto flex max-w-[900px] flex-col items-center text-center">
+        <div className="mx-auto flex max-w-[1100px] flex-col items-center text-center">
+          <h2 id="home-philosophy-title" className="sr-only">
+            Gravity Exists. Design Is Free.
+          </h2>
+
           <ScrollReveal
-            hiddenClassName="translate-y-8 opacity-0 blur-[18px]"
+            hiddenClassName="translate-y-10 opacity-0 blur-[22px]"
             visibleClassName="translate-y-0 opacity-100 blur-0"
             threshold={0.32}
           >
-            <h2
-              id="home-philosophy-title"
-              className="font-sans font-medium uppercase tracking-normal text-black"
+            <p
+              aria-hidden
+              className="whitespace-nowrap font-sans text-[clamp(44px,10vw,136px)] font-medium uppercase leading-none tracking-normal text-black"
             >
-              <span className="block whitespace-nowrap text-[clamp(28px,7.4vw,104px)] leading-none">Gravity Is A Law.</span>
-              <span className="mt-4 block whitespace-nowrap text-[clamp(14px,3.3vw,36px)] leading-tight sm:mt-6">
-                It Is Not A Design Limitation.
-              </span>
-            </h2>
+              Gravity Exists.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal
+            className="mt-5 sm:mt-7"
+            delayMs={180}
+            hiddenClassName="translate-y-8 opacity-0 blur-[18px]"
+            visibleClassName="translate-y-0 opacity-100 blur-0"
+            threshold={0.28}
+          >
+            <p
+              aria-hidden
+              className="whitespace-nowrap font-sans text-[clamp(34px,7vw,88px)] font-medium uppercase leading-none tracking-normal text-black"
+            >
+              Design Is Free.
+            </p>
           </ScrollReveal>
         </div>
       </Container>

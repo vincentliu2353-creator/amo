@@ -78,7 +78,7 @@ export function HomeCategories({ categories }: { categories: ProductCategorySlid
         <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.34)_32%,rgba(0,0,0,0.08)_58%,rgba(0,0,0,0.5)_100%)]" />
         <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_48%,transparent_32%,rgba(0,0,0,0.28)_100%)]" />
 
-        <div className="absolute inset-x-6 top-[9vh] z-20 mx-auto max-w-5xl text-center sm:top-[8vh]">
+        <div className="pointer-events-none absolute inset-0 z-20">
           {categories.map((category, index) => {
             const distance = index - slideProgress;
             const visibility = clamp(1 - Math.abs(distance) * 1.1);
@@ -86,10 +86,10 @@ export function HomeCategories({ categories }: { categories: ProductCategorySlid
             return (
               <article
                 key={category.idLabel}
-                className="absolute inset-x-0 top-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className="absolute inset-x-6 top-1/2 mx-auto max-w-5xl text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                 style={{
                   opacity: visibility,
-                  transform: `translate3d(${distance * 42}vw, 0, 0)`,
+                  transform: `translate3d(${distance * 42}vw, -50%, 0)`,
                   pointerEvents: activeIndex === index ? "auto" : "none",
                 }}
                 aria-hidden={activeIndex !== index}
