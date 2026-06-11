@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
 
 import { Container } from "@/components/ui/container";
@@ -10,7 +10,7 @@ interface ScenarioItem {
   accent: string;
   blurb: string;
   caption: string;
-  imageSrc: string;
+  imageSrc: StaticImageData;
   title: string;
 }
 
@@ -80,9 +80,10 @@ function ScenarioBackground({ scenario }: { scenario: ScenarioItem }) {
         src={scenario.imageSrc}
         alt=""
         fill
-        quality={100}
+        loading="lazy"
+        placeholder="blur"
+        quality={90}
         sizes="100vw"
-        unoptimized
         className="h-full w-full object-cover object-center"
       />
     </div>

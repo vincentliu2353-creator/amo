@@ -90,44 +90,64 @@ export async function POST(request: Request) {
   }
 
   const normalizedPayload = normalizePayload(payload);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!normalizedPayload.company_name || !normalizedPayload.contact_name || !normalizedPayload.email) {
+  if (
+    !normalizedPayload.company_name ||
+    !normalizedPayload.contact_name ||
+    !normalizedPayload.email ||
+    !normalizedPayload.country ||
+    !normalizedPayload.message
+  ) {
     return NextResponse.json(
-      { message: "Company, contact, and email are required." },
+      { message: "Company, contact, email, country, and message are required." },
       { status: 400 },
     );
   }
 
-  if (normalizedPayload.items.length === 0) {
-    return NextResponse.json({ message: "Select at least one product before submitting an RFQ." }, { status: 400 });
+  if (!emailPattern.test(normalizedPayload.email)) {
+    return NextResponse.json({ message: "Enter a valid email address." }, { status: 400 });
   }
 
   try {
     const supabase = createServerSupabaseClient();
     const requestedSlugs = [...new Set(normalizedPayload.items.map((item) => item.product_slug))];
+    const productBySlug = new Map<
+      string,
+      {
+        id: string;
+        slug: string;
+        name: string;
+        series: string | null;
+        og_image_url: string | null;
+        status: string;
+      }
+    >();
 
-    const { data: matchedProducts, error: productsError } = await supabase
-      .from("products")
-      .select("id, slug, name, series, og_image_url, status")
-      .in("slug", requestedSlugs);
+    if (requestedSlugs.length > 0) {
+      const { data: matchedProducts, error: productsError } = await supabase
+        .from("products")
+        .select("id, slug, name, series, og_image_url, status")
+        .in("slug", requestedSlugs);
 
-    if (productsError) {
-      throw productsError;
-    }
+      if (productsError) {
+        throw productsError;
+      }
 
-    const productBySlug = new Map(
-      (matchedProducts ?? [])
-        .filter((product) => product.status === "published")
-        .map((product) => [product.slug, product]),
-    );
+      for (const product of matchedProducts ?? []) {
+        if (product.status === "published") {
+          productBySlug.set(product.slug, product);
+        }
+      }
 
-    const missingSlugs = requestedSlugs.filter((slug) => !productBySlug.has(slug));
+      const missingSlugs = requestedSlugs.filter((slug) => !productBySlug.has(slug));
 
-    if (missingSlugs.length > 0) {
-      return NextResponse.json(
-        { message: `Unknown or unpublished products: ${missingSlugs.join(", ")}.` },
-        { status: 400 },
-      );
+      if (missingSlugs.length > 0) {
+        return NextResponse.json(
+          { message: `Unknown or unpublished products: ${missingSlugs.join(", ")}.` },
+          { status: 400 },
+        );
+      }
     }
 
     const { data: rfq, error: rfqError } = await supabase
@@ -161,33 +181,35 @@ export async function POST(request: Request) {
       throw rfqError ?? new Error("RFQ record was not created.");
     }
 
-    const { error: itemsError } = await supabase.from("rfq_items").insert(
-      normalizedPayload.items.map((item) => {
-        const product = productBySlug.get(item.product_slug);
+    if (normalizedPayload.items.length > 0) {
+      const { error: itemsError } = await supabase.from("rfq_items").insert(
+        normalizedPayload.items.map((item) => {
+          const product = productBySlug.get(item.product_slug);
 
-        if (!product) {
-          throw new Error(`Product ${item.product_slug} is not available for RFQ.`);
-        }
+          if (!product) {
+            throw new Error(`Product ${item.product_slug} is not available for RFQ.`);
+          }
 
-        return {
-          rfq_request_id: rfq.id,
-          product_id: product.id,
-          requested_qty: item.quantity,
-          notes: item.notes || null,
-          product_snapshot: {
+          return {
+            rfq_request_id: rfq.id,
             product_id: product.id,
-            product_name: item.product_name || product.name,
-            product_slug: product.slug,
-            product_image: item.product_image || product.og_image_url || "",
-            series: product.series,
-          },
-        };
-      }),
-    );
+            requested_qty: item.quantity,
+            notes: item.notes || null,
+            product_snapshot: {
+              product_id: product.id,
+              product_name: item.product_name || product.name,
+              product_slug: product.slug,
+              product_image: item.product_image || product.og_image_url || "",
+              series: product.series,
+            },
+          };
+        }),
+      );
 
-    if (itemsError) {
-      await supabase.from("rfq_requests").delete().eq("id", rfq.id);
-      throw itemsError;
+      if (itemsError) {
+        await supabase.from("rfq_requests").delete().eq("id", rfq.id);
+        throw itemsError;
+      }
     }
 
     return NextResponse.json(

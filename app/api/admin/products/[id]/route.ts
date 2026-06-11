@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { AdminAuthError, assertAdminApiSession } from "@/lib/admin/auth";
 import {
   AdminProductMutationError,
   deleteAdminProduct,
@@ -9,6 +10,10 @@ import {
 export const runtime = "nodejs";
 
 function errorResponse(error: unknown) {
+  if (error instanceof AdminAuthError) {
+    return NextResponse.json({ message: error.message }, { status: error.status });
+  }
+
   if (error instanceof AdminProductMutationError) {
     return NextResponse.json(
       {
@@ -33,6 +38,7 @@ interface AdminProductRouteContext {
 
 export async function PATCH(request: Request, context: AdminProductRouteContext) {
   try {
+    await assertAdminApiSession();
     const { id } = await context.params;
     const formData = await request.formData();
     const result = await updateAdminProduct(id, formData);
@@ -45,6 +51,7 @@ export async function PATCH(request: Request, context: AdminProductRouteContext)
 
 export async function DELETE(_request: Request, context: AdminProductRouteContext) {
   try {
+    await assertAdminApiSession();
     const { id } = await context.params;
     const result = await deleteAdminProduct(id);
 

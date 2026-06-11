@@ -2,6 +2,7 @@
 
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/home/home-scroll";
@@ -258,15 +259,21 @@ export function ProductDetailExperience({
             <div className="relative z-0 min-h-[42svh] sm:min-h-[52svh] lg:min-h-[82vh]">
               <ScrollReveal
                 delayMs={180}
-                className="absolute inset-0 flex items-end justify-center lg:justify-end"
+                className="absolute inset-0 flex items-end justify-center lg:justify-center"
                 hiddenClassName="translate-y-10 opacity-0"
                 visibleClassName="translate-y-0 opacity-100"
               >
-                <img
-                  src={gallery[0]?.url || product.productImage}
-                  alt={gallery[0]?.alt || product.name}
-                  className="relative z-0 h-[54svh] w-auto max-w-none object-contain sm:h-[62svh] lg:h-[84vh] xl:h-[88vh]"
-                />
+                <div className="relative z-0 h-[54svh] w-full sm:h-[62svh] lg:h-[84vh] lg:-translate-x-[10%] xl:h-[88vh]">
+                  <Image
+                    src={gallery[0]?.url || product.productImage}
+                    alt={gallery[0]?.alt || product.name}
+                    fill
+                    priority
+                    quality={88}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 56vw, 48vw"
+                    className="object-contain object-center"
+                  />
+                </div>
               </ScrollReveal>
             </div>
           </div>

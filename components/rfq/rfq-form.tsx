@@ -93,12 +93,6 @@ export function RfqForm({
   const [selectedProjectType, setSelectedProjectType] = useState(normalizeProjectType(prefills.businessType));
 
   async function handleSubmit(formData: FormData) {
-    if (quoteItems.length === 0) {
-      setStatus("error");
-      setMessage("No products selected yet. Add products to your quote list before submitting a request.");
-      return;
-    }
-
     setStatus("submitting");
     setMessage("");
     setRequestNumber("");

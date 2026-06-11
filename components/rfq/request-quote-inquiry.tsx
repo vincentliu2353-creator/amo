@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { useSiteStore } from "@/components/providers/site-store-provider";
 import { buttonStyles } from "@/components/ui/button";
 import { FormInput } from "@/components/ui/FormInput";
 import { Input } from "@/components/ui/input";
@@ -66,11 +67,13 @@ const initialValues: QuoteFormValues = {
 };
 
 export function RequestQuoteInquiry() {
+  const { clearQuote, quoteItems } = useSiteStore();
   const [selectedProjectType, setSelectedProjectType] = useState(defaultProjectType);
   const [values, setValues] = useState<QuoteFormValues>(initialValues);
   const [errors, setErrors] = useState<QuoteFormErrors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("We review serious quote inquiries within 24-48 hours.");
+  const [requestNumber, setRequestNumber] = useState("");
 
   function updateField<K extends keyof QuoteFormValues>(field: K, value: QuoteFormValues[K]) {
     setValues((current) => ({
@@ -141,20 +144,46 @@ export function RequestQuoteInquiry() {
 
     setStatus("loading");
     setMessage("Submitting...");
+    setRequestNumber("");
 
     try {
-      await new Promise((resolve) => window.setTimeout(resolve, 900));
+      const response = await fetch("/api/rfq", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          company_name: values.company,
+          contact_name: values.contactName,
+          email: values.email,
+          whatsapp: values.whatsapp,
+          country: values.country,
+          business_type: values.projectType,
+          estimated_quantity: values.estimatedQuantity,
+          customization_requirements: "",
+          message: values.message,
+          items: quoteItems,
+        }),
+      });
+      const result = (await response.json()) as { message?: string; requestNumber?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message ?? "Unable to submit RFQ.");
+      }
 
       setStatus("success");
       setMessage("Your quote request has been submitted. Our team will contact you shortly.");
+      setRequestNumber(result.requestNumber ?? "");
       setErrors({});
-      setValues((current) => ({
+      clearQuote();
+      setSelectedProjectType(defaultProjectType);
+      setValues({
         ...initialValues,
-        projectType: current.projectType,
-      }));
-    } catch {
+        projectType: defaultProjectType,
+      });
+    } catch (error) {
       setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+      setMessage(error instanceof Error ? error.message : "Unable to submit RFQ. Please check the form and try again.");
     }
   }
 
@@ -316,6 +345,7 @@ export function RequestQuoteInquiry() {
               aria-live="polite"
             >
               {statusText}
+              {requestNumber ? <span className="block pt-3 text-xs uppercase tracking-[0.24em] text-white/56">Reference {requestNumber}</span> : null}
             </div>
           </div>
         </form>

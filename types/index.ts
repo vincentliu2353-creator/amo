@@ -79,6 +79,21 @@ export interface BlogPost {
   sections: BlogSection[];
 }
 
+export interface PublicBlogRecord {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  publishedAt: string;
+  author: string;
+  readTime: string;
+  sections: BlogSection[];
+  coverImage: string;
+  seoTitle: string;
+  seoDescription: string;
+}
+
 export interface NavItem {
   href: string;
   label: string;
@@ -143,4 +158,52 @@ export interface AdminProductRecord {
   createdAt: string;
   updatedAt: string;
   images: AdminProductImage[];
+}
+
+export interface AdminBlogRecord {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+  status: ContentStatus;
+  seoTitle: string;
+  seoDescription: string;
+  publishedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type AdminRfqStatus = "new" | "reviewing" | "quoted" | "won" | "lost";
+
+export interface AdminRfqItemRecord {
+  id: string;
+  productId: string;
+  productName: string;
+  productSlug: string;
+  productImage: string;
+  requestedQty: number;
+  notes: string;
+}
+
+export interface AdminRfqRecord {
+  id: string;
+  requestNumber: string;
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  country: string;
+  projectStage: string;
+  annualVolume: string;
+  message: string;
+  source: string;
+  status: AdminRfqStatus;
+  createdAt: string;
+  updatedAt: string;
+  requirements: Record<string, unknown>;
+  items: AdminRfqItemRecord[];
+  adminNotes: string;
 }

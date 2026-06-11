@@ -5,6 +5,7 @@ import { ProductsErrorState } from "@/components/products/products-error-state";
 import { AdminShell } from "@/components/ui/AdminShell";
 import { buttonStyles } from "@/components/ui/button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import { requireAdminPageSession } from "@/lib/admin/auth";
 import { buildMetadata } from "@/lib/seo";
 import { getAdminProductDashboardData } from "@/lib/admin/products";
 import Link from "next/link";
@@ -42,6 +43,8 @@ function getAdminProductsNotice(params: Awaited<AdminProductsPageProps["searchPa
 }
 
 export default async function AdminProductsPage({ searchParams }: AdminProductsPageProps) {
+  await requireAdminPageSession("/admin/products");
+
   try {
     const [{ products }, params] = await Promise.all([
       getAdminProductDashboardData(),

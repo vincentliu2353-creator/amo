@@ -10,6 +10,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { blogPosts, getBlogPostBySlug } from "@/data/blog";
 import { buildMetadata, generateBreadcrumbJsonLd } from "@/lib/seo";
+import { getPublishedBlogBySlug, getPublishedBlogs } from "@/lib/supabase/blogs";
+import type { PublicBlogRecord } from "@/types";
 
 function mapEditorialCategory(category: string) {
   if (["Design", "Technology", "OEM", "Retail", "Applications"].includes(category)) {
@@ -44,9 +46,22 @@ const fallbackBody = [
   "For retail, hospitality, gifting, and brand installations, this shift creates attention without visual noise.",
 ];
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({
+export const dynamic = "force-dynamic";
+
+function fallbackBlogs(): PublicBlogRecord[] {
+  return blogPosts.map((post, index) => ({
+    id: `fallback-${index}`,
     slug: post.slug,
+    title: post.title,
+    category: post.category,
+    excerpt: post.excerpt,
+    publishedAt: post.publishedAt,
+    author: post.author,
+    readTime: post.readTime,
+    sections: post.sections,
+    coverImage: "",
+    seoTitle: post.title,
+    seoDescription: post.excerpt,
   }));
 }
 
@@ -56,7 +71,29 @@ interface BlogDetailPageProps {
 
 export async function generateMetadata({ params }: BlogDetailPageProps) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  let post = null as PublicBlogRecord | null;
+
+  try {
+    post = await getPublishedBlogBySlug(slug);
+  } catch {
+    const fallback = getBlogPostBySlug(slug);
+    post = fallback
+      ? {
+          id: `fallback-${fallback.slug}`,
+          slug: fallback.slug,
+          title: fallback.title,
+          category: fallback.category,
+          excerpt: fallback.excerpt,
+          publishedAt: fallback.publishedAt,
+          author: fallback.author,
+          readTime: fallback.readTime,
+          sections: fallback.sections,
+          coverImage: "",
+          seoTitle: fallback.title,
+          seoDescription: fallback.excerpt,
+        }
+      : null;
+  }
 
   if (!post) {
     return buildMetadata({
@@ -76,13 +113,45 @@ export async function generateMetadata({ params }: BlogDetailPageProps) {
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  let post: PublicBlogRecord | null = null;
+  let relatedArticles: PublicBlogRecord[] = [];
+
+  try {
+    post = await getPublishedBlogBySlug(slug);
+  } catch {
+    const fallbackPost = getBlogPostBySlug(slug);
+
+    post = fallbackPost
+      ? {
+          id: `fallback-${fallbackPost.slug}`,
+          slug: fallbackPost.slug,
+          title: fallbackPost.title,
+          category: fallbackPost.category,
+          excerpt: fallbackPost.excerpt,
+          publishedAt: fallbackPost.publishedAt,
+          author: fallbackPost.author,
+          readTime: fallbackPost.readTime,
+          sections: fallbackPost.sections,
+          coverImage: "",
+          seoTitle: fallbackPost.title,
+          seoDescription: fallbackPost.excerpt,
+        }
+      : null;
+  }
+
+  if (post) {
+    try {
+      const publishedBlogs = await getPublishedBlogs();
+      relatedArticles = publishedBlogs.filter((entry) => entry.slug !== slug).slice(0, 3);
+    } catch {
+      relatedArticles = fallbackBlogs().filter((entry) => entry.slug !== slug).slice(0, 3);
+    }
+  }
 
   if (!post) {
     notFound();
   }
 
-  const relatedArticles = blogPosts.filter((entry) => entry.slug !== post.slug).slice(0, 3);
   const articleSections = post.sections.length > 0 ? post.sections : [{ heading: "Article", body: fallbackBody.join(" ") }];
 
   return (
@@ -140,7 +209,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <div className="space-y-8 text-lg leading-relaxed text-white/74">
                   {articleSections.map((section, index) => (
                     <section key={`${section.heading}-${index}`} className="space-y-5 border-b border-white/10 pb-8 last:border-b-0 last:pb-0">
-                      <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{section.heading}</h2>
+                      {section.heading ? (
+                        <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{section.heading}</h2>
+                      ) : null}
                       <p>{section.body}</p>
                       {index === 0 && post.sections.length === 0
                         ? fallbackBody.slice(1).map((paragraph) => <p key={paragraph}>{paragraph}</p>)

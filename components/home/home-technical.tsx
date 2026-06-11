@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/home/home-scroll";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
+import technologyBackground from "@/public/images/home/technology/technology-bg.webp";
 
 interface TechnicalFeature {
   description: string;
@@ -112,12 +113,13 @@ function TechnologyBackground() {
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       <Image
-        src="/images/home/technology/technology-bg.jpg"
+        src={technologyBackground}
         alt=""
         fill
-        quality={100}
+        loading="lazy"
+        placeholder="blur"
+        quality={90}
         sizes="100vw"
-        unoptimized
         className="h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/30" />

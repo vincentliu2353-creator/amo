@@ -3,12 +3,16 @@ import { InnerPageShell } from "@/components/layout/inner-page-shell";
 import { BlogIndex } from "@/components/blog/blog-index";
 import { buildMetadata } from "@/lib/seo";
 import { blogPosts } from "@/data/blog";
+import { getPublishedBlogs } from "@/lib/supabase/blogs";
+import type { PublicBlogRecord } from "@/types";
 
 export const metadata = buildMetadata({
   title: "Blog",
   description: "Insights on magnetic levitation, industrial design, engineering, and future spaces.",
   path: "/blog",
 });
+
+export const dynamic = "force-dynamic";
 
 const placeholderArticles = [
   {
@@ -61,10 +65,35 @@ function mapEditorialCategory(category: string) {
   return "Technology";
 }
 
-export default function BlogPage() {
+function fallbackBlogs(): PublicBlogRecord[] {
+  return blogPosts.map((post, index) => ({
+    id: `fallback-${index}`,
+    slug: post.slug,
+    title: post.title,
+    category: post.category,
+    excerpt: post.excerpt,
+    publishedAt: post.publishedAt,
+    author: post.author,
+    readTime: post.readTime,
+    sections: post.sections,
+    coverImage: "",
+    seoTitle: post.title,
+    seoDescription: post.excerpt,
+  }));
+}
+
+export default async function BlogPage() {
+  let blogs: PublicBlogRecord[] = [];
+
+  try {
+    blogs = await getPublishedBlogs();
+  } catch {
+    blogs = fallbackBlogs();
+  }
+
   const articles =
-    blogPosts.length > 0
-      ? blogPosts.map((post) => ({
+    blogs.length > 0
+      ? blogs.map((post) => ({
           slug: post.slug,
           title: post.title,
           category: mapEditorialCategory(post.category),

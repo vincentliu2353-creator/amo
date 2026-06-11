@@ -101,7 +101,7 @@ const customizationOptions = [
     description: "Adapt the floating object and base geometry to your category, proportions, and visual tension.",
     details: ["Silhouette direction", "Balance tuning", "Object-to-base relationship"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-product-shape.jpg",
+    imageSrc: "/images/oem/optimized/custom-product-shape.webp",
     visual: "shape",
   },
   {
@@ -111,7 +111,7 @@ const customizationOptions = [
     description: "Balance premium touch, production feasibility, and magnetic performance across shell and structural parts.",
     details: ["Plastic or metal shells", "Mixed-material construction", "Retail-safe durability"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-material.jpg",
+    imageSrc: "/images/oem/optimized/custom-material.webp",
     visual: "material",
   },
   {
@@ -121,7 +121,7 @@ const customizationOptions = [
     description: "Define the final visual language through texture, gloss, matte treatment, and coating precision.",
     details: ["Matte and soft-touch", "Metallic detailing", "Color depth control"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-surface-finish.jpg",
+    imageSrc: "/images/oem/optimized/custom-surface-finish.webp",
     visual: "finish",
   },
   {
@@ -131,7 +131,7 @@ const customizationOptions = [
     description: "Integrate logos, marks, and signature cues without making the product feel over-designed.",
     details: ["Logo placement", "Subtle marks", "Premium identity integration"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-branding.jpg",
+    imageSrc: "/images/oem/optimized/custom-branding.webp",
     visual: "branding",
   },
   {
@@ -141,7 +141,7 @@ const customizationOptions = [
     description: "Extend the product story into the unboxing system, protection strategy, and presentation layer.",
     details: ["Protective insert design", "Gift-ready packaging", "Export-aware presentation"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-packaging.jpg",
+    imageSrc: "/images/oem/optimized/custom-packaging.webp",
     visual: "packaging",
   },
   {
@@ -151,7 +151,7 @@ const customizationOptions = [
     description: "Tune lift architecture, power behavior, and load handling around the real object and installation context.",
     details: ["Different weight classes", "Stable lift behavior", "Power and safety planning"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-magnetic-module.jpg",
+    imageSrc: "/images/oem/optimized/custom-magnetic-module.webp",
     visual: "module",
   },
   {
@@ -161,7 +161,7 @@ const customizationOptions = [
     description: "Use glow, edge light, or quiet illumination to support the floating effect without distracting from it.",
     details: ["Halo lighting", "Object emphasis", "Ambient presentation"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-lighting.jpg",
+    imageSrc: "/images/oem/optimized/custom-lighting.webp",
     visual: "lighting",
   },
   {
@@ -171,7 +171,7 @@ const customizationOptions = [
     description: "Define how the object rotates, pauses, and presents itself to match the intended brand mood.",
     details: ["360° or 720° rotation", "Speed calibration", "Calm presentation rhythm"],
     imagePosition: "center center",
-    imageSrc: "/images/oem/custom-motion-effect.jpg",
+    imageSrc: "/images/oem/optimized/custom-motion-effect.webp",
     visual: "motion",
   },
 ] as const;
@@ -209,7 +209,7 @@ const industryScenarios = [
     accent: "145 214 255",
     caption: "Retail",
     imagePosition: "center right",
-    imageSrc: "/images/oem/industry-retail.jpg",
+    imageSrc: "/images/oem/optimized/industry-retail.webp",
     title: "Merchandising Focus",
     description: "Create a premium pause point for hero products, limited releases, and elevated counter displays.",
   },
@@ -217,7 +217,7 @@ const industryScenarios = [
     accent: "209 231 255",
     caption: "Hospitality",
     imagePosition: "center center",
-    imageSrc: "/images/oem/industry-hospitality.jpg",
+    imageSrc: "/images/oem/optimized/industry-hospitality.webp",
     title: "Spatial Atmosphere",
     description: "Use floating light objects and sculptural display systems to give lounges, suites, and lobbies a calmer technological signature.",
   },
@@ -225,7 +225,7 @@ const industryScenarios = [
     accent: "255 206 173",
     caption: "Museums",
     imagePosition: "center center",
-    imageSrc: "/images/oem/industry-museums.jpg",
+    imageSrc: "/images/oem/optimized/industry-museums.webp",
     title: "Curated Distance",
     description: "Present artifacts, replicas, or symbolic objects with a sense of silence, precision, and protected separation.",
   },
@@ -233,7 +233,7 @@ const industryScenarios = [
     accent: "196 255 232",
     caption: "Corporate Gifts",
     imagePosition: "center center",
-    imageSrc: "/images/oem/industry-corporate-gifts.jpg",
+    imageSrc: "/images/oem/optimized/industry-corporate-gifts.webp",
     title: "Collector Presence",
     description: "Turn limited editions, executive gifts, and commemorative launches into products that feel engineered rather than promotional.",
   },
@@ -241,7 +241,7 @@ const industryScenarios = [
     accent: "201 204 255",
     caption: "Brand Activations",
     imagePosition: "center center",
-    imageSrc: "/images/oem/industry-brand-activations.jpg",
+    imageSrc: "/images/oem/optimized/industry-brand-activations.webp",
     title: "Launch Drama",
     description: "Give campaigns and showroom moments a controlled kinetic focal point that supports product storytelling.",
   },
@@ -249,14 +249,14 @@ const industryScenarios = [
     accent: "255 196 228",
     caption: "Exhibitions",
     imagePosition: "center center",
-    imageSrc: "/images/oem/industry-exhibitions.jpg",
+    imageSrc: "/images/oem/optimized/industry-exhibitions.webp",
     title: "Booth Signature",
     description: "Draw attention in crowded halls with floating presentation that feels precise, spatial, and intentionally quiet.",
   },
 ] as const;
 
-const developmentCapabilityImage = "/images/oem/development-capability.jpg" as const;
-const heroImage = "/images/oem/oem-hero.jpg" as const;
+const developmentCapabilityImage = "/images/oem/optimized/development-capability.webp" as const;
+const heroImage = "/images/oem/optimized/oem-hero.webp" as const;
 
 function useLoopingIndex(length: number) {
   const [activeIndex, setActiveIndex] = useState(0);

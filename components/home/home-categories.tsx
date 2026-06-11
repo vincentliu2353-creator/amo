@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState } from "react";
 
 interface ProductCategorySlide {
@@ -8,7 +8,7 @@ interface ProductCategorySlide {
   description: string;
   details: string[];
   idLabel: string;
-  imageSrc: string;
+  imageSrc: StaticImageData;
   title: string;
 }
 
@@ -24,16 +24,18 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-function CategoryProductVisual({ imageSrc }: { imageSrc: string }) {
+function CategoryProductVisual({ imageSrc }: { imageSrc: StaticImageData }) {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden>
       <Image
         src={imageSrc}
         alt=""
         fill
+        loading="lazy"
+        placeholder="blur"
+        quality={90}
         className="object-cover"
         sizes="100vw"
-        unoptimized
       />
     </div>
   );

@@ -7,6 +7,7 @@ import { ProductsErrorState } from "@/components/products/products-error-state";
 import { AdminShell } from "@/components/ui/AdminShell";
 import { buttonStyles } from "@/components/ui/button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
+import { requireAdminPageSession } from "@/lib/admin/auth";
 import { getAdminProductEditorData } from "@/lib/admin/products";
 import { buildMetadata } from "@/lib/seo";
 
@@ -19,6 +20,8 @@ export const metadata = buildMetadata({
 export const dynamic = "force-dynamic";
 
 export default async function AdminNewProductPage() {
+  await requireAdminPageSession("/admin/products/new");
+
   try {
     const { categories } = await getAdminProductEditorData();
 

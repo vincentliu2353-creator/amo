@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Container } from "@/components/ui/container";
+import heroBackground from "@/public/images/home/hero/hero-bg.webp";
 
 export function HomeHero() {
   return (
@@ -10,13 +11,13 @@ export function HomeHero() {
       aria-labelledby="home-hero-title"
     >
       <Image
-        src="/images/home/hero/hero-bg.jpg"
+        src={heroBackground}
         alt="AMO magnetic levitation future space"
         fill
         priority
-        quality={100}
+        quality={92}
         sizes="100vw"
-        unoptimized
+        placeholder="blur"
         className="h-full w-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/40" />

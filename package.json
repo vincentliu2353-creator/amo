@@ -8,8 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "optimize:home-images": "node scripts/optimize-home-images.mjs",
     "optimize:about-images": "node scripts/optimize-about-images.mjs",
-    "optimize:case-images": "node scripts/optimize-case-images.mjs"
+    "optimize:case-images": "node scripts/optimize-case-images.mjs",
+    "optimize:oem-images": "node scripts/optimize-oem-images.mjs"
   },
   "dependencies": {
     "@sanity/client": "^7.0.0",

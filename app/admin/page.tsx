@@ -6,8 +6,10 @@ import { AdminShell } from "@/components/ui/AdminShell";
 import { buttonStyles } from "@/components/ui/button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { caseStudies } from "@/data/cases";
-import { blogPosts } from "@/data/blog";
+import { requireAdminPageSession } from "@/lib/admin/auth";
+import { getAdminBlogDashboardData } from "@/lib/admin/blogs";
 import { getAdminProductDashboardData } from "@/lib/admin/products";
+import { getAdminRfqs } from "@/lib/admin/rfqs";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -19,20 +21,35 @@ export const metadata = buildMetadata({
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
+  await requireAdminPageSession("/admin");
+
   let productCount = 0;
+  let blogCount = 0;
+  let rfqCount = 0;
+  let newRfqCount = 0;
 
   try {
-    const { products } = await getAdminProductDashboardData();
+    const [{ products }, blogs, rfqs] = await Promise.all([
+      getAdminProductDashboardData(),
+      getAdminBlogDashboardData(),
+      getAdminRfqs(),
+    ]);
     productCount = products.length;
+    blogCount = blogs.length;
+    rfqCount = rfqs.length;
+    newRfqCount = rfqs.filter((rfq) => rfq.status === "new").length;
   } catch {
     productCount = 0;
+    blogCount = 0;
+    rfqCount = 0;
+    newRfqCount = 0;
   }
 
   const stats = [
-    { label: "Products", value: productCount, caption: "Published products" },
+    { label: "Products", value: productCount, caption: "Catalog records" },
     { label: "Cases", value: caseStudies.length, caption: "Published cases" },
-    { label: "Blog", value: blogPosts.length, caption: "Published articles" },
-    { label: "RFQs", value: 0, caption: "Pending requests" },
+    { label: "Blog", value: blogCount, caption: "Managed blog posts" },
+    { label: "RFQs", value: rfqCount, caption: `${newRfqCount} new submissions` },
   ];
 
   return (
@@ -47,6 +64,12 @@ export default async function AdminPage() {
               <div className="flex flex-wrap gap-3">
                 <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
                   Open Products
+                </Link>
+                <Link href="/admin/blog" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                  Open Blog
+                </Link>
+                <Link href="/admin/rfqs" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                  Open RFQs
                 </Link>
                 <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
                   New Product
@@ -84,11 +107,19 @@ export default async function AdminPage() {
               </div>
 
               <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6">
-                <p className="text-xs uppercase tracking-[0.24em] text-white/42">Notes</p>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">Safe fallback behavior</h2>
+                <p className="text-xs uppercase tracking-[0.24em] text-white/42">Operations</p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">Content and RFQs</h2>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/62">
-                  If live admin data is unavailable, the dashboard still renders with safe fallback counts and preserves the existing route structure.
+                  Manage published blog content and inspect new RFQs from the same protected admin workspace.
                 </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link href="/admin/blog" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                    Manage Blog
+                  </Link>
+                  <Link href="/admin/rfqs" className={buttonStyles({ size: "sm" })}>
+                    Review RFQs
+                  </Link>
+                </div>
               </div>
             </div>
           </AdminShell>
