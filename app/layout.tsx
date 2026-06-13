@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 
 import "@/app/globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { HomeSiteFooter } from "@/components/layout/home-site-footer";
 import { HomeSiteHeader } from "@/components/layout/home-site-header";
 import { SiteStoreProvider } from "@/components/providers/site-store-provider";
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             <QuoteDock />
           </div>
         </SiteStoreProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
