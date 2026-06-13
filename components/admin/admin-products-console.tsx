@@ -1,12 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 import { buttonStyles } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { pickAdminThumbImage } from "@/lib/products/product-image-selection";
 import { Select } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import type { AdminProductRecord, ContentStatus } from "@/types";
@@ -93,11 +93,11 @@ export function AdminProductsConsole({ products, notice }: AdminProductsConsoleP
               <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white/42">Catalog Control</p>
               <h2 className="mt-2 font-display text-[1.9rem] font-semibold leading-[1.08] text-white">Products</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-white/62">
-                Keep the admin list focused on search, review, and navigation. Create and edit products from dedicated upload screens.
+                Keep the admin list focused on search, review, and navigation. Create products from the dedicated upload screen, including one-click batch generation and publish.
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_12rem_auto]">
+            <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_12rem_auto_auto]">
               <Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
@@ -112,6 +112,10 @@ export function AdminProductsConsole({ products, notice }: AdminProductsConsoleP
                 <option value="draft">Draft</option>
                 <option value="published">Published</option>
               </Select>
+
+              <Link href="/admin/products/featured" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                Featured Showcase
+              </Link>
 
               <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
                 New Product
@@ -128,10 +132,7 @@ export function AdminProductsConsole({ products, notice }: AdminProductsConsoleP
           <div className="divide-y divide-white/10 rounded-[20px] border border-white/10">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => {
-                const previewImage =
-                  product.images.find((image) => image.isPrimary)?.imageUrl ??
-                  product.images[0]?.imageUrl ??
-                  product.ogImageUrl;
+                const previewImage = pickAdminThumbImage(product.images, product.ogImageUrl);
 
                 return (
                   <article
@@ -139,12 +140,14 @@ export function AdminProductsConsole({ products, notice }: AdminProductsConsoleP
                     className="grid gap-5 px-5 py-4 md:grid-cols-[7.5rem_minmax(0,1.35fr)_10rem_9rem_auto] md:items-center"
                   >
                     <div className="overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.05]">
-                      <div className="flex h-24 items-center justify-center bg-white/[0.04] p-3">
+                      <div className="relative flex h-24 items-center justify-center bg-white/[0.04] p-3">
                         {previewImage ? (
-                          <img
+                          <Image
                             src={previewImage}
                             alt={product.name}
-                            className="h-full w-full object-contain"
+                            fill
+                            sizes="120px"
+                            className="object-contain p-3"
                           />
                         ) : (
                           <span className="text-[10px] uppercase tracking-[0.22em] text-white/36">No image</span>

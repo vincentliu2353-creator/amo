@@ -6,7 +6,7 @@ import { ProductsErrorState } from "@/components/products/products-error-state";
 import { ProductsSiteHeader } from "@/components/products/products-site-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
-import { buildMetadata, generateBreadcrumbJsonLd, generateFaqJsonLd, generateProductJsonLd } from "@/lib/seo";
+import { buildMetadata, buildNoIndexMetadata, generateBreadcrumbJsonLd, generateFaqJsonLd, generateProductJsonLd } from "@/lib/seo";
 import { getPublishedProductBySlug, getPublishedProductShowcaseCatalog } from "@/lib/supabase/products";
 import type { Product, ProductShowcaseProduct } from "@/types";
 
@@ -46,6 +46,10 @@ function buildProductMetaDescription(product: Product) {
   return product.summary || product.highlight || product.description || "AMO magnetic levitation product detail.";
 }
 
+function buildProductMetaTitle(product: Product) {
+  return `${product.name} | ${product.category} | AMO`;
+}
+
 export async function generateMetadata({ params }: ProductDetailPageProps) {
   const { slug } = await params;
 
@@ -54,24 +58,25 @@ export async function generateMetadata({ params }: ProductDetailPageProps) {
     const product = detail?.product;
 
     if (!product) {
-      return buildMetadata({
-        title: "Product",
-        description: "AMO magnetic levitation product detail.",
-        path: "/products",
+      return buildNoIndexMetadata({
+        title: "Product Not Found | AMO",
+        description: "The requested AMO product page is unavailable.",
+        path: `/products/${slug}`,
       });
     }
 
     return buildMetadata({
-      title: product.name,
+      title: buildProductMetaTitle(product),
       description: buildProductMetaDescription(product),
       path: `/products/${product.slug}`,
       keywords: [product.category, ...product.tags, ...product.applications],
+      image: product.productImage,
     });
   } catch {
-    return buildMetadata({
-      title: "Product",
-      description: "AMO magnetic levitation product detail.",
-      path: "/products",
+    return buildNoIndexMetadata({
+      title: "Product Unavailable | AMO",
+      description: "The requested AMO product page could not be loaded.",
+      path: `/products/${slug}`,
     });
   }
 }

@@ -4,11 +4,18 @@ export const siteConfig = {
   name: "AMO",
   shortName: "AMO",
   description:
-    "AMO builds magnetic levitation platforms for OEM and ODM manufacturing systems across semiconductor, photonics, medical, and advanced automation sectors.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://amo.example.com",
-  email: "sales@amo-motion.com",
-  phone: "+86 400-000-0000",
-  address: "Suzhou Industrial Park, Jiangsu, China",
+    "Premium magnetic levitation products for retail displays, gifts, lighting, and custom OEM projects. Manufacturer-direct solutions from AMO.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://amolevitation.com",
+  logoPath: "/amo-logo-white.png",
+  email: "hello@amolevitation.com",
+  phone: "+852 6942 9864",
+  address: "Unit No. 1201, 12th Floor, Metropolis Tower, 10 Metropolis Drive, Hunghom, Kowloon, Hong Kong",
+  addressLines: [
+    "Unit No. 1201, 12th Floor, Metropolis Tower,",
+    "10 Metropolis Drive,",
+    "Hunghom, Kowloon,",
+    "Hong Kong",
+  ],
 };
 
 export const mainNav: NavItem[] = [

@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type ReactNode } from "react";
@@ -59,6 +61,20 @@ function NoticeBanner({
       {children}
     </div>
   );
+}
+
+function resolveProductHref(productSlug: string, productId: string) {
+  const candidate = productSlug || productId;
+
+  if (!candidate) {
+    return "/products";
+  }
+
+  return `/products/${encodeURIComponent(candidate)}`;
+}
+
+function resolveProductLabel(productName: string, productSlug: string, productId: string) {
+  return productName || productSlug || productId || "Requested product";
 }
 
 interface AdminRfqDetailProps {
@@ -224,20 +240,46 @@ export function AdminRfqDetail({ rfq }: AdminRfqDetailProps) {
             rfq.items.map((item) => (
               <article
                 key={item.id}
-                className="grid gap-5 px-5 py-4 md:grid-cols-[minmax(0,1.3fr)_8rem_minmax(0,1fr)] md:items-center"
+                className="grid gap-5 px-5 py-4 md:grid-cols-[7.5rem_minmax(0,1.25fr)_8rem_minmax(0,1fr)_auto] md:items-center"
               >
-                <div>
+                <div className="overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.05]">
+                  <div className="flex h-24 items-center justify-center bg-white/[0.04] p-3">
+                    {item.productImage ? (
+                      <img
+                        src={item.productImage}
+                        alt={resolveProductLabel(item.productName, item.productSlug, item.productId)}
+                        className="h-full w-full object-contain"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-black/40">
+                        <span className="text-[10px] uppercase tracking-[0.22em] text-white/36">
+                          No image
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="min-w-0">
                   <h3 className="font-display text-xl font-semibold text-white">
-                    {item.productName || item.productSlug || "Requested product"}
+                    {resolveProductLabel(item.productName, item.productSlug, item.productId)}
                   </h3>
-                  {item.productSlug ? (
+                  {item.productSlug || item.productId ? (
                     <p className="mt-2 text-[11px] uppercase tracking-[0.24em] text-white/42">
-                      {item.productSlug}
+                      {item.productSlug || item.productId}
                     </p>
                   ) : null}
                 </div>
                 <div className="text-sm text-white/68">Qty {item.requestedQty}</div>
                 <div className="text-sm leading-7 text-white/62">{item.notes || "No item notes."}</div>
+                <div className="md:justify-self-end">
+                  <Link
+                    href={resolveProductHref(item.productSlug, item.productId)}
+                    className={buttonStyles({ variant: "ghost", size: "sm" })}
+                  >
+                    View Product →
+                  </Link>
+                </div>
               </article>
             ))
           ) : (

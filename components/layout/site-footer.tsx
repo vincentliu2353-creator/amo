@@ -23,9 +23,13 @@ export function SiteFooter() {
               Magnetic levitation platforms positioned for OEM integration, industrial transfer precision, and premium motion presentation.
             </p>
             <div className="mt-6 space-y-2 text-sm text-slate-400">
-              <p>{siteConfig.address}</p>
-              <p>{siteConfig.phone}</p>
-              <p>{siteConfig.email}</p>
+              <div>
+                {siteConfig.addressLines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+              <p>Phone: {siteConfig.phone}</p>
+              <p>Email: {siteConfig.email}</p>
             </div>
           </div>
 

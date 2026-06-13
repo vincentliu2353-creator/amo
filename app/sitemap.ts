@@ -4,37 +4,89 @@ import { blogPosts } from "@/data/blog";
 import { caseStudies } from "@/data/cases";
 import { products } from "@/data/products";
 import { absoluteUrl } from "@/lib/seo";
+import { getPublishedBlogs } from "@/lib/supabase/blogs";
+import { getPublishedProductCatalog } from "@/lib/supabase/products";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const now = new Date();
   const staticRoutes = [
-    "/",
-    "/products",
-    "/cases",
-    "/oem-odm",
-    "/about",
-    "/blog",
-    "/contact",
-    "/rfq",
-    "/favorites",
-    "/admin/products",
+    { path: "/", changeFrequency: "weekly" as const, priority: 1 },
+    { path: "/products", changeFrequency: "weekly" as const, priority: 0.95 },
+    { path: "/cases", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/oem-odm", changeFrequency: "monthly" as const, priority: 0.9 },
+    { path: "/about", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/blog", changeFrequency: "weekly" as const, priority: 0.8 },
+    { path: "/contact", changeFrequency: "monthly" as const, priority: 0.7 },
+    { path: "/rfq", changeFrequency: "weekly" as const, priority: 0.85 },
   ];
+  const blogEntries = new Map(
+    blogPosts.map((post) => [
+      post.slug,
+      {
+        url: absoluteUrl(`/blog/${post.slug}`),
+        lastModified: new Date(post.publishedAt),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      },
+    ]),
+  );
+
+  const productEntries = new Map(
+    products.map((product) => [
+      product.slug,
+      {
+        url: absoluteUrl(`/products/${product.slug}`),
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.9,
+      },
+    ]),
+  );
+
+  try {
+    const publishedProducts = await getPublishedProductCatalog();
+
+    for (const product of publishedProducts.products) {
+      productEntries.set(product.slug, {
+        url: absoluteUrl(`/products/${product.slug}`),
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.9,
+      });
+    }
+  } catch {
+    // Keep fallback product URLs when the database is unavailable.
+  }
+
+  try {
+    const publishedBlogs = await getPublishedBlogs();
+
+    for (const post of publishedBlogs) {
+      blogEntries.set(post.slug, {
+        url: absoluteUrl(`/blog/${post.slug}`),
+        lastModified: new Date(post.publishedAt),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+  } catch {
+    // Keep fallback article URLs when the database is unavailable.
+  }
 
   return [
-    ...staticRoutes.map((path) => ({
-      url: absoluteUrl(path),
-      lastModified: new Date(),
+    ...staticRoutes.map((route) => ({
+      url: absoluteUrl(route.path),
+      lastModified: now,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
     })),
-    ...products.map((product) => ({
-      url: absoluteUrl(`/products/${product.slug}`),
-      lastModified: new Date(),
-    })),
+    ...Array.from(productEntries.values()),
     ...caseStudies.map((entry) => ({
       url: absoluteUrl(`/cases/${entry.slug}`),
-      lastModified: new Date(),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
-    ...blogPosts.map((post) => ({
-      url: absoluteUrl(`/blog/${post.slug}`),
-      lastModified: new Date(post.publishedAt),
-    })),
+    ...Array.from(blogEntries.values()),
   ];
 }

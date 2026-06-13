@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
 import Image from "next/image";
@@ -8,6 +6,10 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/home/home-scroll";
 import { ProductDetailQuoteActions } from "@/components/products/product-detail-quote-actions";
 import { Container } from "@/components/ui/container";
+import {
+  pickShowcaseLargeImage,
+  pickShowcaseThumbImage,
+} from "@/lib/products/product-image-selection";
 import { buildProductShowcaseSpecRows } from "@/lib/products/spec-fields";
 import { cn } from "@/lib/utils";
 import type { Product, ProductShowcaseImage, ProductShowcaseProduct, SpecItem } from "@/types";
@@ -151,16 +153,18 @@ function IconFrame({ label }: { label: string }) {
 }
 
 function RelatedProductCard({ product }: { product: ProductShowcaseProduct }) {
-  const image = product.galleryImages[0]?.url || product.productImage;
+  const image = pickShowcaseThumbImage(product.galleryImages[0], product.productImage);
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-black/8 bg-[#fafaf8] transition duration-500 hover:-translate-y-1 hover:border-black/12 hover:shadow-[0_28px_60px_rgba(15,23,42,0.08)]">
       <Link href={`/products/${product.slug}`} className="flex h-full flex-col">
         <div className="relative flex min-h-[18rem] items-center justify-center overflow-hidden bg-white p-6">
-          <img
+          <Image
             src={image}
             alt={product.galleryImages[0]?.alt || product.name}
-            className="h-[14rem] w-auto max-w-full object-contain transition duration-700 group-hover:scale-[1.03]"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+            className="object-contain p-6 transition duration-700 group-hover:scale-[1.03]"
           />
         </div>
 
@@ -208,6 +212,7 @@ export function ProductDetailExperience({
   const philosophyCopy = buildPhilosophyCopy(product);
   const featureSections = buildFeatureSections(product, gallery);
   const specificationRows = buildSpecificationRows(product);
+  const heroImage = pickShowcaseLargeImage(gallery[0], product.productImage);
 
   return (
     <>
@@ -265,7 +270,7 @@ export function ProductDetailExperience({
               >
                 <div className="relative z-0 h-[54svh] w-full sm:h-[62svh] lg:h-[84vh] lg:-translate-x-[10%] xl:h-[88vh]">
                   <Image
-                    src={gallery[0]?.url || product.productImage}
+                    src={heroImage}
                     alt={gallery[0]?.alt || product.name}
                     fill
                     priority
@@ -331,11 +336,16 @@ export function ProductDetailExperience({
                   visibleClassName="translate-y-0 opacity-100"
                 >
                   <div className="flex min-h-[36svh] items-center justify-center sm:min-h-[48svh] lg:min-h-[74vh]">
-                    <img
-                      src={section.image.url}
-                      alt={section.image.alt}
-                      className="h-[42svh] w-auto max-w-full object-contain sm:h-[56svh] lg:h-[78vh]"
-                    />
+                    <div className="relative h-[42svh] w-full sm:h-[56svh] lg:h-[78vh]">
+                      <Image
+                        src={pickShowcaseLargeImage(section.image, product.productImage)}
+                        alt={section.image.alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 58vw"
+                        quality={85}
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
                 </ScrollReveal>
               </div>

@@ -4,7 +4,13 @@ import { revalidatePath } from "next/cache";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { slugifyValue } from "@/lib/admin/product-form";
+import { resolveProductImageVariantUrls, inferProductImageExtension } from "@/lib/products/product-image-variants";
 import { PRODUCT_SHOWCASE_SPEC_FIELDS } from "@/lib/products/spec-fields";
+import {
+  buildProductImageAssetStem,
+  removeProductImageVariantFiles,
+  uploadProductImageVariantSet,
+} from "@/lib/server/product-image-pipeline";
 import { createAdminSupabaseClient } from "@/lib/supabase/server";
 import type {
   AdminCategoryOption,
@@ -34,6 +40,8 @@ const ADMIN_PRODUCT_SELECT = `
   series,
   status,
   featured,
+  is_featured,
+  featured_order,
   summary,
   description,
   highlight,
@@ -63,6 +71,11 @@ const ADMIN_PRODUCT_SELECT = `
 interface AdminMutationResult {
   message: string;
   product: AdminProductRecord;
+}
+
+export interface AdminFeaturedProductSelectionItem {
+  id: string;
+  featuredOrder: number | null;
 }
 
 interface ParsedAdminProductPayload {
@@ -214,10 +227,19 @@ function normalizeImages(value: unknown) {
         return null;
       }
 
+      const storagePath = typeof image.storage_path === "string" ? image.storage_path : "";
+      const variants = resolveProductImageVariantUrls({
+        imageUrl: image.image_url,
+        storagePath,
+      });
+
       return {
         id: image.id,
-        imageUrl: image.image_url,
-        storagePath: typeof image.storage_path === "string" ? image.storage_path : "",
+        imageUrl: variants.largeUrl || image.image_url,
+        originalUrl: variants.originalUrl || image.image_url,
+        largeUrl: variants.largeUrl || image.image_url,
+        thumbUrl: variants.thumbUrl || variants.largeUrl || image.image_url,
+        storagePath,
         altText: typeof image.alt_text === "string" ? image.alt_text : "",
         sortOrder: typeof image.sort_order === "number" ? image.sort_order : 0,
         isPrimary: Boolean(image.is_primary),
@@ -228,35 +250,10 @@ function normalizeImages(value: unknown) {
 }
 
 async function resolveAdminImageUrls(
-  supabase: SupabaseClient,
+  _supabase: SupabaseClient,
   images: AdminProductImage[],
 ) {
-  const storagePaths = Array.from(
-    new Set(images.map((image) => image.storagePath).filter((path): path is string => path.length > 0)),
-  );
-
-  if (storagePaths.length === 0) {
-    return images;
-  }
-
-  const { data, error } = await supabase.storage
-    .from(PRODUCT_STORAGE_BUCKET)
-    .createSignedUrls(storagePaths, 60 * 60 * 24 * 7);
-
-  if (error || !data) {
-    return images;
-  }
-
-  const signedUrlsByPath = new Map(
-    data
-      .filter((entry) => entry.path && entry.signedUrl)
-      .map((entry) => [entry.path, entry.signedUrl] as const),
-  );
-
-  return images.map((image) => ({
-    ...image,
-    imageUrl: signedUrlsByPath.get(image.storagePath) ?? image.imageUrl,
-  }));
+  return images;
 }
 
 async function hydrateAdminProductRecord(
@@ -292,6 +289,8 @@ function mapAdminProductRow(row: Record<string, unknown>): AdminProductRecord {
     series: typeof row.series === "string" ? row.series : "",
     status: row.status === "published" ? "published" : "draft",
     featured: Boolean(row.featured),
+    isFeatured: Boolean(row.is_featured),
+    featuredOrder: typeof row.featured_order === "number" ? row.featured_order : null,
     summary: typeof row.summary === "string" ? row.summary : "",
     description: typeof row.description === "string" ? row.description : "",
     highlight: typeof row.highlight === "string" ? row.highlight : "",
@@ -637,17 +636,18 @@ async function syncProductImages(
   await ensureProductStorageBucket(supabase);
 
   const removableImages = options.existingImages.filter((image) => options.removedImageIds.includes(image.id));
-  const removablePaths = removableImages
-    .map((image) => image.storagePath)
-    .filter((path): path is string => Boolean(path));
+  const removablePaths = removableImages.map((image) => image.storagePath);
 
   if (removablePaths.length > 0) {
-    const { error: storageError } = await supabase.storage
-      .from(PRODUCT_STORAGE_BUCKET)
-      .remove(removablePaths);
-
-    if (storageError) {
-      throw new AdminProductMutationError(`Unable to remove product images: ${storageError.message}`, 503);
+    try {
+      await removeProductImageVariantFiles(supabase, removablePaths);
+    } catch (error) {
+      throw new AdminProductMutationError(
+        `Unable to remove product images: ${
+          error instanceof Error ? error.message : "unknown storage removal failure"
+        }`,
+        503,
+      );
     }
   }
 
@@ -680,29 +680,51 @@ async function syncProductImages(
   for (const [index, file] of options.imageFiles.entries()) {
     nextSortOrder += 10;
 
-    const storagePath = `products/${options.slug}/${Date.now()}-${index}-${sanitizeFileName(file.name)}`;
     const fileBytes = new Uint8Array(await file.arrayBuffer());
-    const { error: uploadError } = await supabase.storage
-      .from(PRODUCT_STORAGE_BUCKET)
-      .upload(storagePath, fileBytes, {
-        contentType: file.type || undefined,
+    const assetStem = buildProductImageAssetStem(
+      `${Date.now()}-${index}-${sanitizeFileName(file.name)}`,
+    );
+    let uploadedAsset;
+
+    try {
+      uploadedAsset = await uploadProductImageVariantSet(supabase, {
+        productId: options.productId,
+        assetStem,
+        inputBuffer: fileBytes,
+        originalExtension: inferProductImageExtension({
+          fileName: file.name,
+          contentType: file.type,
+        }),
+        originalContentType: file.type || undefined,
         upsert: false,
       });
-
-    if (uploadError) {
+    } catch (error) {
       if (uploadedPaths.length > 0) {
-        await supabase.storage.from(PRODUCT_STORAGE_BUCKET).remove(uploadedPaths);
+        try {
+          await removeProductImageVariantFiles(supabase, uploadedPaths);
+        } catch {
+          // Preserve the original upload error. Storage cleanup is best effort here.
+        }
       }
 
-      throw new AdminProductMutationError(`Unable to upload product images: ${uploadError.message}`, 503);
+      throw new AdminProductMutationError(
+        `Unable to upload product images: ${
+          error instanceof Error ? error.message : "unknown upload failure"
+        }`,
+        503,
+      );
     }
 
-    uploadedPaths.push(storagePath);
+    uploadedPaths.push(
+      uploadedAsset.paths.originalPath,
+      uploadedAsset.paths.largePath,
+      uploadedAsset.paths.thumbPath,
+    );
 
     insertedRows.push({
       product_id: options.productId,
-      image_url: supabase.storage.from(PRODUCT_STORAGE_BUCKET).getPublicUrl(storagePath).data.publicUrl,
-      storage_path: storagePath,
+      image_url: uploadedAsset.urls.largeUrl,
+      storage_path: uploadedAsset.paths.originalPath,
       alt_text: `${options.productName} image ${remainingImages.length + index + 1}`,
       sort_order: nextSortOrder,
       is_primary: false,
@@ -714,7 +736,11 @@ async function syncProductImages(
 
     if (insertError) {
       if (uploadedPaths.length > 0) {
-        await supabase.storage.from(PRODUCT_STORAGE_BUCKET).remove(uploadedPaths);
+        try {
+          await removeProductImageVariantFiles(supabase, uploadedPaths);
+        } catch {
+          // Preserve the insert failure. Cleanup is best effort.
+        }
       }
 
       throw new AdminProductMutationError(`Unable to save product image records: ${insertError.message}`, 503);
@@ -774,7 +800,7 @@ async function cleanupProductStorageAssets(supabase: SupabaseClient, productId: 
     .filter((path): path is string => typeof path === "string" && path.length > 0);
 
   if (storagePaths.length > 0) {
-    await supabase.storage.from(PRODUCT_STORAGE_BUCKET).remove(storagePaths);
+    await removeProductImageVariantFiles(supabase, storagePaths);
   }
 }
 
@@ -786,6 +812,7 @@ function revalidateAdminProductPaths(options: {
   const paths = new Set<string>([
     "/admin",
     "/admin/products",
+    "/admin/products/featured",
     "/admin/products/new",
     "/products",
   ]);
@@ -897,6 +924,141 @@ export async function getAdminProductEditorData(productId?: string): Promise<{
   };
 }
 
+export async function getAdminFeaturedProductsData(): Promise<{
+  products: AdminProductRecord[];
+}> {
+  const supabase = createAdminSupabaseClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select(ADMIN_PRODUCT_SELECT)
+    .eq("status", "published")
+    .order("is_featured", { ascending: false })
+    .order("featured_order", { ascending: true, nullsFirst: false })
+    .order("updated_at", { ascending: false });
+
+  if (error) {
+    throw new Error(`Unable to load published products for featured selection: ${error.message}`);
+  }
+
+  return {
+    products: await hydrateAdminProductRecords(
+      supabase,
+      (data ?? []).map((entry) => mapAdminProductRow(entry as Record<string, unknown>)),
+    ),
+  };
+}
+
+export async function saveAdminFeaturedProducts(
+  selections: AdminFeaturedProductSelectionItem[],
+): Promise<{ message: string }> {
+  if (!Array.isArray(selections)) {
+    throw new AdminProductMutationError("Featured product payload must be an array.", 400);
+  }
+
+  if (selections.length > 10) {
+    throw new AdminProductMutationError("Select at most 10 featured products.", 400);
+  }
+
+  const normalizedSelections = selections.map((selection, index) => {
+    if (!selection || typeof selection.id !== "string" || selection.id.trim().length === 0) {
+      throw new AdminProductMutationError(`Featured product ${index + 1} is missing a valid id.`, 400);
+    }
+
+    return {
+      id: selection.id,
+    };
+  });
+
+  const seenIds = new Set<string>();
+
+  for (const selection of normalizedSelections) {
+    if (seenIds.has(selection.id)) {
+      throw new AdminProductMutationError("Each featured product can only be selected once.", 400);
+    }
+
+    seenIds.add(selection.id);
+  }
+
+  const supabase = createAdminSupabaseClient();
+
+  if (normalizedSelections.length > 0) {
+    const { data, error } = await supabase
+      .from("products")
+      .select("id, status")
+      .in("id", normalizedSelections.map((selection) => selection.id));
+
+    if (error) {
+      throw new AdminProductMutationError(`Unable to validate featured products: ${error.message}`, 503);
+    }
+
+    const publishedIds = new Set(
+      (data ?? [])
+        .filter((entry) => entry.status === "published")
+        .map((entry) => entry.id)
+        .filter((id): id is string => typeof id === "string"),
+    );
+
+    if (publishedIds.size !== normalizedSelections.length) {
+      throw new AdminProductMutationError("Only published products can be featured on the Products page.", 400);
+    }
+  }
+
+  const { error: clearOrderedError } = await supabase
+    .from("products")
+    .update({
+      is_featured: false,
+      featured_order: null,
+    })
+    .not("featured_order", "is", null);
+
+  if (clearOrderedError) {
+    throw new AdminProductMutationError(`Unable to clear existing featured product order: ${clearOrderedError.message}`, 503);
+  }
+
+  const { error: clearFlaggedError } = await supabase
+    .from("products")
+    .update({
+      is_featured: false,
+    })
+    .eq("is_featured", true)
+    .is("featured_order", null);
+
+  if (clearFlaggedError) {
+    throw new AdminProductMutationError(`Unable to clear existing featured products: ${clearFlaggedError.message}`, 503);
+  }
+
+  for (const [index, selection] of normalizedSelections.entries()) {
+    const featuredOrder = index + 1;
+    const { data, error: updateError } = await supabase
+      .from("products")
+      .update({
+        is_featured: true,
+        featured_order: featuredOrder,
+      })
+      .eq("id", selection.id)
+      .eq("status", "published")
+      .select("id")
+      .maybeSingle();
+
+    if (updateError) {
+      throw new AdminProductMutationError(`Unable to save featured products: ${updateError.message}`, 503);
+    }
+
+    if (!data?.id) {
+      throw new AdminProductMutationError("Only published products can be featured on the Products page.", 400);
+    }
+  }
+
+  revalidateAdminProductPaths({});
+
+  return {
+    message:
+      normalizedSelections.length > 0
+        ? "Featured products saved for the Products page."
+        : "Featured products cleared from the Products page.",
+  };
+}
+
 export async function createAdminProduct(formData: FormData): Promise<AdminMutationResult> {
   const supabase = createAdminSupabaseClient();
   const parsed = parseAdminProductFormData(formData);
@@ -919,6 +1081,8 @@ export async function createAdminProduct(formData: FormData): Promise<AdminMutat
         series: parsed.series,
         status: parsed.status,
         featured: false,
+        is_featured: false,
+        featured_order: null,
         summary: parsed.summary,
         description: parsed.description,
         highlight: parsed.summary,
@@ -1039,6 +1203,8 @@ export async function updateAdminProduct(
         name: parsed.name,
         series: parsed.series,
         status: parsed.status,
+        is_featured: parsed.status === "published" ? existingProduct.isFeatured : false,
+        featured_order: parsed.status === "published" ? existingProduct.featuredOrder : null,
         summary: parsed.summary,
         description: parsed.description,
         highlight: nextHighlight,

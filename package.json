@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "optimize:product-images": "node scripts/optimize-product-images.ts",
     "optimize:home-images": "node scripts/optimize-home-images.mjs",
     "optimize:about-images": "node scripts/optimize-about-images.mjs",
     "optimize:case-images": "node scripts/optimize-case-images.mjs",

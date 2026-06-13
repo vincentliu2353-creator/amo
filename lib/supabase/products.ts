@@ -1,14 +1,11 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-
 import {
   applyProductVisualFallback,
   resolveProductPrimaryImage,
   resolveProductShowcaseGallery,
 } from "@/lib/products/product-visuals";
+import { resolveProductImageVariantUrls } from "@/lib/products/product-image-variants";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { FaqItem, Product, ProductRelatedCase, ProductShowcaseImage, ProductShowcaseProduct, SpecItem } from "@/types";
-
-const PRODUCT_STORAGE_BUCKET = process.env.NEXT_PUBLIC_SUPABASE_PRODUCT_BUCKET ?? "product-media";
 
 interface CategoryRow {
   slug: string;
@@ -34,6 +31,9 @@ export interface ProductDetailResult {
   relatedCases: ProductRelatedCase[];
   images: ProductShowcaseImage[];
 }
+
+const PUBLIC_PRODUCT_SELECT =
+  "id, slug, name, series, summary, description, highlight, lead_time_text, min_order_qty, min_order_unit, hero_metric, tags, applications, features, specs, faq_items, featured, og_image_url, categories!inner(slug, name)";
 
 function normalizeStringArray(value: unknown): string[] {
   if (!Array.isArray(value)) {
@@ -164,62 +164,12 @@ async function getSupabase() {
   }
 }
 
-async function resolveSignedImageRows(
-  supabase: SupabaseClient,
-  rows: ProductImageRow[],
-) {
-  const storagePaths = Array.from(
-    new Set(
-      rows
-        .map((row) => row.storage_path)
-        .filter((path): path is string => typeof path === "string" && path.length > 0),
-    ),
-  );
-
-  if (storagePaths.length === 0) {
-    return rows;
-  }
-
-  const { data, error } = await supabase.storage
-    .from(PRODUCT_STORAGE_BUCKET)
-    .createSignedUrls(storagePaths, 60 * 60 * 24 * 7);
-
-  if (error || !data) {
-    return rows;
-  }
-
-  const signedUrlsByPath = new Map(
-    data
-      .filter((entry) => entry.path && entry.signedUrl)
-      .map((entry) => [entry.path, entry.signedUrl] as const),
-  );
-
-  return rows.map((row) => {
-    if (!row.storage_path) {
-      return row;
-    }
-
-    const signedUrl = signedUrlsByPath.get(row.storage_path);
-
-    if (!signedUrl) {
-      return row;
-    }
-
-    return {
-      ...row,
-      image_url: signedUrl,
-    };
-  });
-}
-
 export async function getPublishedProductCatalog(options: ProductCatalogOptions = {}) {
   const supabase = await getSupabase();
 
   const productsQuery = supabase
     .from("products")
-    .select(
-      "id, slug, name, series, summary, description, highlight, lead_time_text, min_order_qty, min_order_unit, hero_metric, tags, applications, features, specs, faq_items, featured, og_image_url, categories!inner(slug, name)",
-    )
+    .select(PUBLIC_PRODUCT_SELECT)
     .eq("status", "published");
 
   if (options.orderBy === "created_at_desc") {
@@ -263,23 +213,10 @@ export async function getPublishedProductCatalog(options: ProductCatalogOptions 
   };
 }
 
-export async function getPublishedProductShowcaseCatalog(): Promise<{
-  products: ProductShowcaseProduct[];
-  categories: string[];
-}>;
-export async function getPublishedProductShowcaseCatalog(options: ProductCatalogOptions): Promise<{
-  products: ProductShowcaseProduct[];
-  categories: string[];
-}>;
-export async function getPublishedProductShowcaseCatalog(options: ProductCatalogOptions = {}): Promise<{
-  products: ProductShowcaseProduct[];
-  categories: string[];
-}> {
-  const { products, categories } = await getPublishedProductCatalog(options);
-
+async function hydrateShowcaseProducts(products: ProductShowcaseProduct[] | Product[], categories: string[]) {
   if (products.length === 0) {
     return {
-      products: [],
+      products: [] as ProductShowcaseProduct[],
       categories,
     };
   }
@@ -320,19 +257,23 @@ export async function getPublishedProductShowcaseCatalog(options: ProductCatalog
     throw new Error(`Unable to load product gallery images: ${imagesError.message}`);
   }
 
-  const resolvedImageRows = await resolveSignedImageRows(
-    supabase,
-    (imagesResult ?? []) as ProductImageRow[],
-  );
   const imagesByProduct = new Map<string, ProductShowcaseImage[]>();
 
-  for (const row of resolvedImageRows) {
+  for (const row of (imagesResult ?? []) as ProductImageRow[]) {
     if (typeof row.product_id !== "string" || typeof row.image_url !== "string" || row.image_url.length === 0) {
       continue;
     }
 
+    const variants = resolveProductImageVariantUrls({
+      imageUrl: row.image_url,
+      storagePath: row.storage_path,
+    });
+
     const entry: ProductShowcaseImage = {
-      url: row.image_url,
+      url: variants.largeUrl || row.image_url,
+      originalUrl: variants.originalUrl,
+      largeUrl: variants.largeUrl,
+      thumbUrl: variants.thumbUrl,
       alt: row.alt_text?.trim() || "AMO product image",
       isPrimary: row.is_primary,
       sortOrder: row.sort_order,
@@ -363,14 +304,62 @@ export async function getPublishedProductShowcaseCatalog(options: ProductCatalog
   };
 }
 
+export async function getPublishedProductShowcaseCatalog(): Promise<{
+  products: ProductShowcaseProduct[];
+  categories: string[];
+}>;
+export async function getPublishedProductShowcaseCatalog(options: ProductCatalogOptions): Promise<{
+  products: ProductShowcaseProduct[];
+  categories: string[];
+}>;
+export async function getPublishedProductShowcaseCatalog(options: ProductCatalogOptions = {}): Promise<{
+  products: ProductShowcaseProduct[];
+  categories: string[];
+}> {
+  const { products, categories } = await getPublishedProductCatalog(options);
+  return hydrateShowcaseProducts(products, categories);
+}
+
+export async function getProductsPageShowcaseCatalog(): Promise<{
+  products: ProductShowcaseProduct[];
+}> {
+  const supabase = await getSupabase();
+  const categories: string[] = [];
+  const { data, error } = await supabase
+    .from("products")
+    .select(PUBLIC_PRODUCT_SELECT)
+    .eq("status", "published")
+    .eq("is_featured", true)
+    .order("featured_order", { ascending: true, nullsFirst: false })
+    .order("created_at", { ascending: false })
+    .limit(10);
+
+  if (error) {
+    throw new Error(`Unable to load featured Products page records: ${error.message}`);
+  }
+
+  const featuredProducts = (data ?? []).map((row) => mapProductRow(row as Record<string, unknown>));
+
+  if (featuredProducts.length > 0) {
+    return hydrateShowcaseProducts(featuredProducts, categories);
+  }
+
+  const fallback = await getPublishedProductShowcaseCatalog({
+    orderBy: "created_at_desc",
+    limit: 10,
+  });
+
+  return {
+    products: fallback.products,
+  };
+}
+
 export async function getPublishedProductBySlug(slug: string): Promise<ProductDetailResult | null> {
   const supabase = await getSupabase();
 
   const { data: productRow, error: productError } = await supabase
     .from("products")
-    .select(
-      "id, slug, name, series, summary, description, highlight, lead_time_text, min_order_qty, min_order_unit, hero_metric, tags, applications, features, specs, faq_items, featured, og_image_url, categories!inner(slug, name)",
-    )
+    .select(PUBLIC_PRODUCT_SELECT)
     .eq("status", "published")
     .eq("slug", slug)
     .maybeSingle();
@@ -415,16 +404,22 @@ export async function getPublishedProductBySlug(slug: string): Promise<ProductDe
     summary: entry.summary ?? "",
   }));
 
-  const resolvedImageRows = await resolveSignedImageRows(
-    supabase,
-    (imagesResult.data ?? []) as ProductImageRow[],
-  );
-  const images = resolvedImageRows.map((entry) => ({
-    url: entry.image_url,
-    alt: entry.alt_text?.trim() || product.name,
-    isPrimary: entry.is_primary,
-    sortOrder: entry.sort_order,
-  }));
+  const images = ((imagesResult.data ?? []) as ProductImageRow[]).map((entry) => {
+    const variants = resolveProductImageVariantUrls({
+      imageUrl: entry.image_url,
+      storagePath: entry.storage_path,
+    });
+
+    return {
+      url: variants.largeUrl || entry.image_url,
+      originalUrl: variants.originalUrl,
+      largeUrl: variants.largeUrl,
+      thumbUrl: variants.thumbUrl,
+      alt: entry.alt_text?.trim() || product.name,
+      isPrimary: entry.is_primary,
+      sortOrder: entry.sort_order,
+    };
+  });
   const resolvedGallery = resolveProductShowcaseGallery(product, images);
   const primaryImage =
     resolvedGallery.find((entry) => entry.isPrimary)?.url ?? resolvedGallery[0]?.url ?? product.productImage;

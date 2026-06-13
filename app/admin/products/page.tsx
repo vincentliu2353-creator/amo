@@ -60,9 +60,14 @@ export default async function AdminProductsPage({ searchParams }: AdminProductsP
               title="Products"
               description="Manage catalog records, open the dedicated upload flow, and review which products are published to the public catalog."
               actions={
-                <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
-                  New Product
-                </Link>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/admin/products/featured" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                    Featured Showcase
+                  </Link>
+                  <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
+                    New Product
+                  </Link>
+                </div>
               }
             >
               <AdminProductsConsole products={products} notice={getAdminProductsNotice(params)} />

@@ -1,12 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { ProductDotsTrigger } from "@/components/products/product-dots-trigger";
 import { ProductThumbRail } from "@/components/products/product-thumb-rail";
+import { pickShowcaseLargeImage } from "@/lib/products/product-image-selection";
 import type { ProductShowcaseProduct } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -150,7 +150,7 @@ export function ProductShowcase({ products, activeIndex, onSelect }: ProductShow
   }, [activeIndex, displayIndex, products.length]);
 
   const product = products[displayIndex];
-  const activeImage = product.galleryImages[0]?.url ?? product.productImage;
+  const activeImage = pickShowcaseLargeImage(product.galleryImages[0], product.productImage);
   const activeAlt = product.galleryImages[0]?.alt ?? product.name;
   const copy = buildProductCopy(product);
   const contentHiddenClass = transitionDirection === "next" ? "-translate-x-6 opacity-0" : "translate-x-6 opacity-0";
@@ -247,23 +247,15 @@ export function ProductShowcase({ products, activeIndex, onSelect }: ProductShow
 
                   {activeImage ? (
                     <div className="relative z-0 flex h-full w-full items-center justify-center">
-                      <img
+                      <Image
                         src={activeImage}
                         alt={activeAlt}
-                        className="relative z-0 h-full w-auto max-w-[118%] object-contain sm:max-w-[124%] lg:max-w-[136%] xl:max-w-[142%]"
-                        loading="eager"
-                        onError={(event) => {
-                          event.currentTarget.style.display = "none";
-                          const fallback = event.currentTarget.nextElementSibling;
-
-                          if (fallback instanceof HTMLElement) {
-                            fallback.style.display = "flex";
-                          }
-                        }}
+                        fill
+                        priority
+                        quality={88}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 52vw, 48vw"
+                        className="object-contain object-center"
                       />
-                      <div className="hidden h-full w-full items-center justify-center text-[clamp(2rem,6vw,4.5rem)] font-medium uppercase tracking-[0.18em] text-black/48">
-                        {buildMonogram(product.name)}
-                      </div>
                     </div>
                   ) : (
                     <div className="flex h-full w-full items-center justify-center text-[clamp(2rem,6vw,4.5rem)] font-medium uppercase tracking-[0.18em] text-black/48">

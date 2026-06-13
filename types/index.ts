@@ -35,6 +35,9 @@ export interface Product {
 
 export interface ProductShowcaseImage {
   url: string;
+  originalUrl?: string;
+  largeUrl?: string;
+  thumbUrl?: string;
   alt: string;
   isPrimary: boolean;
   sortOrder: number;
@@ -118,6 +121,9 @@ export interface AdminCategoryOption {
 export interface AdminProductImage {
   id: string;
   imageUrl: string;
+  originalUrl: string;
+  largeUrl: string;
+  thumbUrl: string;
   storagePath: string;
   altText: string;
   sortOrder: number;
@@ -135,6 +141,8 @@ export interface AdminProductRecord {
   series: string;
   status: ContentStatus;
   featured: boolean;
+  isFeatured: boolean;
+  featuredOrder: number | null;
   summary: string;
   description: string;
   highlight: string;

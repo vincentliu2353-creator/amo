@@ -81,6 +81,9 @@ export default async function AdminEditProductPage({
                   <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
                     Back to Products
                   </Link>
+                  <Link href="/admin/products/featured" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                    Featured Showcase
+                  </Link>
                   <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
                     New Product
                   </Link>

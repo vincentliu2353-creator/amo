@@ -13,7 +13,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "New Product",
-  description: "Create a new AMO product and upload gallery images into Supabase Storage.",
+  description: "Create a new AMO product manually or generate and publish batches from uploaded images.",
   path: "/admin/products/new",
 });
 
@@ -32,7 +32,7 @@ export default async function AdminNewProductPage() {
             <AdminShell
               current="products"
               title="New Product"
-              description="Create a dedicated catalog record, upload product images, and publish the result to the public Products experience."
+              description="Create a dedicated catalog record manually, or upload 1 to 10 images for one-click generation and immediate publish to the public Products experience."
               actions={
                 <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
                   Back to Products

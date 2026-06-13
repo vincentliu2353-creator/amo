@@ -137,6 +137,9 @@ export function resolveProductShowcaseGallery(
   return [
     {
       url: fallback.url,
+      originalUrl: fallback.url,
+      largeUrl: fallback.url,
+      thumbUrl: fallback.url,
       alt: fallback.alt,
       isPrimary: true,
       sortOrder: 0,

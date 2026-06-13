@@ -99,6 +99,9 @@ export default async function AdminPage() {
                     <Link href="/admin/products" className={buttonStyles({ variant: "secondary", size: "sm" })}>
                       Manage Products
                     </Link>
+                    <Link href="/admin/products/featured" className={buttonStyles({ variant: "secondary", size: "sm" })}>
+                      Featured Showcase
+                    </Link>
                     <Link href="/admin/products/new" className={buttonStyles({ size: "sm" })}>
                       New Product
                     </Link>

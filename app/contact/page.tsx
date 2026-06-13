@@ -5,25 +5,27 @@ import { buildMetadata } from "@/lib/seo";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
 export const metadata = buildMetadata({
-  title: "Contact",
-  description: "Have a project in mind? Let's discuss how magnetic levitation can create a unique experience.",
+  title: "Contact AMO | Magnetic Levitation Manufacturer",
+  description:
+    "Contact AMO for OEM inquiries, product information, and magnetic levitation project collaboration.",
   path: "/contact",
+  keywords: ["contact AMO", "magnetic levitation manufacturer contact", "OEM inquiry"],
 });
 
 const contactItems = [
   {
     label: "Email",
-    value: "hello@amo.com",
+    value: "hello@amolevitation.com",
     detail: "Project briefs, OEM inquiries, and commercial discussions.",
   },
   {
     label: "WhatsApp",
-    value: "+86 XXX XXXX XXXX",
+    value: "+852 6942 9864",
     detail: "Fast contact for active projects, samples, and timing questions.",
   },
   {
     label: "WeChat",
-    value: "AMO-Floating",
+    value: "vincent-mofan",
     detail: "Preferred for direct coordination with teams operating in China.",
   },
   {
@@ -104,7 +106,14 @@ export default function ContactPage() {
                     <p className="mt-3 text-sm leading-relaxed text-white/62">Also retail display, gifting, and exhibition work.</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-[0.24em] text-white/42">Base</p>
+                    <p className="text-xs uppercase tracking-[0.24em] text-white/42">Business Liaison</p>
+                    <p className="mt-4 text-4xl font-semibold tracking-tight text-white">Hong Kong</p>
+                    <p className="mt-3 text-sm leading-relaxed text-white/62">
+                      Mainly responsible for business liaison, creative and design.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.24em] text-white/42">Production Factory</p>
                     <p className="mt-4 text-4xl font-semibold tracking-tight text-white">Shenzhen</p>
                     <p className="mt-3 text-sm leading-relaxed text-white/62">Close to prototyping, supply chain, and export coordination.</p>
                   </div>

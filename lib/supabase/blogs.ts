@@ -2,6 +2,44 @@ import { calculateBlogReadTimeFromSections, parseBlogBody } from "@/lib/blogs";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { PublicBlogRecord } from "@/types";
 
+const LEGACY_BLOG_IMAGE_FALLBACKS: Record<string, string> = {
+  "how-to-spec-a-levitation-platform-for-oem-equipment":
+    "/images/blog/heroes/oem-magnetic-levitation-products-from-concept-to-production.webp",
+  "why-contactless-motion-matters-in-clean-manufacturing":
+    "/images/blog/heroes/how-to-choose-a-magnetic-levitation-manufacturer.webp",
+};
+
+const DEFAULT_BLOG_IMAGE_FALLBACK =
+  "/images/blog/heroes/the-future-of-floating-objects-why-magnetic-levitation-is-changing-product-presentation.webp";
+
+function isPlaceholderBlogImageUrl(url: string | null | undefined) {
+  if (typeof url !== "string" || url.trim().length === 0) {
+    return false;
+  }
+
+  const normalizedUrl = url.trim().toLowerCase();
+
+  return normalizedUrl.includes("amo.example.com") || /https?:\/\/[^/]*example\.com\//.test(normalizedUrl);
+}
+
+function resolveBlogCoverImage(slug: string, url: unknown) {
+  if (typeof url !== "string") {
+    return "";
+  }
+
+  const normalizedUrl = url.trim();
+
+  if (!normalizedUrl) {
+    return "";
+  }
+
+  if (!isPlaceholderBlogImageUrl(normalizedUrl)) {
+    return normalizedUrl;
+  }
+
+  return LEGACY_BLOG_IMAGE_FALLBACKS[slug] ?? DEFAULT_BLOG_IMAGE_FALLBACK;
+}
+
 function mapBlogRow(row: Record<string, unknown>): PublicBlogRecord {
   const sections = parseBlogBody(row.body);
   const publishedAt =
@@ -21,7 +59,10 @@ function mapBlogRow(row: Record<string, unknown>): PublicBlogRecord {
     author: "AMO Editorial",
     readTime: calculateBlogReadTimeFromSections(sections),
     sections,
-    coverImage: typeof row.og_image_url === "string" ? row.og_image_url : "",
+    coverImage: resolveBlogCoverImage(
+      typeof row.slug === "string" ? row.slug : "",
+      row.og_image_url,
+    ),
     seoTitle: typeof row.seo_title === "string" ? row.seo_title : "",
     seoDescription: typeof row.seo_description === "string" ? row.seo_description : "",
   };

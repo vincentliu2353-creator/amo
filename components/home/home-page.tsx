@@ -6,7 +6,11 @@ import { HomePhilosophy } from "@/components/home/home-philosophy";
 import { HomeProcess } from "@/components/home/home-process";
 import { HomeScenarios } from "@/components/home/home-scenarios";
 import { HomeTechnical } from "@/components/home/home-technical";
+import { FeaturedProductShowcaseSection } from "@/components/products/featured-product-showcase-section";
 import { blogPosts } from "@/data/blog";
+import { getPublishedBlogs } from "@/lib/supabase/blogs";
+import { getProductsPageShowcaseCatalog } from "@/lib/supabase/products";
+import type { ProductShowcaseProduct, PublicBlogRecord } from "@/types";
 import applicationExhibition from "@/public/images/home/applications/exhibition.webp";
 import applicationHotel from "@/public/images/home/applications/hotel.webp";
 import applicationMuseum from "@/public/images/home/applications/museum.webp";
@@ -165,20 +169,111 @@ const fallbackBlogPosts = [
   },
 ];
 
-const editorialPosts = [...blogPosts, ...fallbackBlogPosts].slice(0, 4).map((post) => ({
-  slug: post.slug,
-  title: post.title,
-  excerpt: post.excerpt,
-  publishedAt: post.publishedAt,
-  readTime: post.readTime,
-}));
+type HomeBlogSource = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  publishedAt: string;
+  readTime: string;
+  cover_image?: unknown;
+  coverImage?: unknown;
+  hero_image?: unknown;
+  heroImage?: unknown;
+  image_url?: unknown;
+  imageUrl?: unknown;
+  featured_image?: unknown;
+  featuredImage?: unknown;
+};
 
-export function HomePageExperience() {
+function isPlaceholderBlogImageUrl(url: string | null | undefined) {
+  if (typeof url !== "string" || url.trim().length === 0) {
+    return false;
+  }
+
+  const normalizedUrl = url.trim().toLowerCase();
+
+  return normalizedUrl.includes("amo.example.com") || /https?:\/\/[^/]*example\.com\//.test(normalizedUrl);
+}
+
+function resolveHomeBlogImage(post: HomeBlogSource) {
+  const candidates = [
+    post.coverImage,
+    post.cover_image,
+    post.heroImage,
+    post.hero_image,
+    post.imageUrl,
+    post.image_url,
+    post.featuredImage,
+    post.featured_image,
+  ];
+
+  for (const candidate of candidates) {
+    if (typeof candidate !== "string") {
+      continue;
+    }
+
+    const normalizedUrl = candidate.trim();
+
+    if (!normalizedUrl || isPlaceholderBlogImageUrl(normalizedUrl)) {
+      continue;
+    }
+
+    return normalizedUrl;
+  }
+
+  return "";
+}
+
+function mapHomeBlogPost(post: HomeBlogSource) {
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    publishedAt: post.publishedAt,
+    readTime: post.readTime,
+    coverImage: resolveHomeBlogImage(post),
+  };
+}
+
+function fallbackEditorialPosts() {
+  return [...blogPosts, ...fallbackBlogPosts].slice(0, 4).map((post) => mapHomeBlogPost(post));
+}
+
+export async function HomePageExperience() {
+  let editorialPosts = fallbackEditorialPosts();
+  let showcaseProducts: ProductShowcaseProduct[] = [];
+
+  const [blogsResult, showcaseResult] = await Promise.allSettled([
+    getPublishedBlogs(),
+    getProductsPageShowcaseCatalog(),
+  ]);
+
+  if (blogsResult.status === "fulfilled") {
+    const blogs = blogsResult.value;
+    if (blogs.length > 0) {
+      editorialPosts = blogs.slice(0, 4).map((post: PublicBlogRecord) =>
+        mapHomeBlogPost({
+          slug: post.slug,
+          title: post.title,
+          excerpt: post.excerpt,
+          publishedAt: post.publishedAt,
+          readTime: post.readTime,
+          coverImage: post.coverImage,
+        }),
+      );
+    }
+  }
+
+  if (showcaseResult.status === "fulfilled") {
+    showcaseProducts = showcaseResult.value.products;
+  }
+
   return (
     <>
       <HomeHero />
       <HomePhilosophy />
       <HomeCategories categories={categories} />
+      {showcaseProducts.length > 0 ? <FeaturedProductShowcaseSection products={showcaseProducts} /> : null}
       <HomeTechnical />
       <HomeProcess steps={processSteps} />
       <HomeScenarios scenarios={scenarios} />

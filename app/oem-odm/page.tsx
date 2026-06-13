@@ -23,9 +23,11 @@ const oemFaqs: FaqItem[] = [
 ];
 
 export const metadata = buildMetadata({
-  title: "OEM & ODM",
-  description: "See how AMO supports OEM and ODM levitation motion programs from concept framing to white-label production.",
+  title: "OEM & ODM Magnetic Levitation Manufacturing | AMO",
+  description:
+    "Custom magnetic levitation product development, engineering, prototyping, and manufacturing for brands worldwide.",
   path: "/oem-odm",
+  keywords: ["magnetic levitation OEM", "magnetic levitation ODM", "custom magnetic levitation products", "private label levitation products"],
 });
 
 export default function OemOdmPage() {

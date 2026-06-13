@@ -5,9 +5,11 @@ import { ProductsSiteHeader } from "@/components/products/products-site-header";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "About",
-  description: "Explore why AMO exists, why levitation matters, and how design, engineering, and gravity meet inside future floating experiences.",
+  title: "About AMO | Magnetic Levitation Technology Company",
+  description:
+    "Learn about AMO, a manufacturer focused on premium magnetic levitation products, custom solutions, and innovative display systems.",
   path: "/about",
+  keywords: ["about AMO", "magnetic levitation company", "magnetic levitation manufacturer"],
 });
 
 export default function AboutPage() {

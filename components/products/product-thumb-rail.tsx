@@ -1,11 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import type { ProductShowcaseProduct } from "@/types";
 
+import { pickShowcaseThumbImage } from "@/lib/products/product-image-selection";
 import { cn } from "@/lib/utils";
 
 function buildCompactIndices(activeIndex: number, total: number) {
@@ -59,7 +59,7 @@ export function ProductThumbRail({ products, activeIndex, expanded, desktopVisib
       <div className="flex gap-1.5 overflow-x-auto pb-1 md:hidden">
         {products.map((product, index) => {
           const active = index === activeIndex;
-          const image = product.galleryImages[0]?.url ?? product.productImage;
+          const image = pickShowcaseThumbImage(product.galleryImages[0], product.productImage);
 
           return (
             <button
@@ -73,22 +73,15 @@ export function ProductThumbRail({ products, activeIndex, expanded, desktopVisib
                 active ? "scale-[1.03] opacity-100 shadow-[0_12px_26px_rgba(15,23,42,0.12)]" : "opacity-[0.62]",
               )}
             >
-              <span className="flex h-12 w-20 items-center justify-center overflow-hidden rounded-[0.85rem] bg-[#f7f7f7]">
+              <span className="relative flex h-12 w-20 items-center justify-center overflow-hidden rounded-[0.85rem] bg-[#f7f7f7]">
                 {image ? (
                   <>
-                    <img
+                    <Image
                       src={image}
                       alt={product.galleryImages[0]?.alt ?? product.name}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      onError={(event) => {
-                        event.currentTarget.style.display = "none";
-                        const fallback = event.currentTarget.nextElementSibling;
-
-                        if (fallback instanceof HTMLElement) {
-                          fallback.style.display = "inline-flex";
-                        }
-                      }}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
                     />
                     <span className="hidden items-center justify-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/58">
                       {buildMonogram(product.name)}
@@ -128,7 +121,7 @@ export function ProductThumbRail({ products, activeIndex, expanded, desktopVisib
               : 0.94 + Math.max(0, 0.12 - focusDistance * 0.04)
             : 0.72;
           const opacity = visible ? (active ? 1 : Math.max(0.42, 0.72 - focusDistance * 0.12)) : 0;
-          const image = product.galleryImages[0]?.url ?? product.productImage;
+          const image = pickShowcaseThumbImage(product.galleryImages[0], product.productImage);
 
           return (
             <button
@@ -147,25 +140,18 @@ export function ProductThumbRail({ products, activeIndex, expanded, desktopVisib
             >
               <span
                 className={cn(
-                  "flex h-12 w-[4.875rem] items-center justify-center overflow-hidden rounded-[0.9rem] bg-[#f7f7f7] transition duration-300",
+                  "relative flex h-12 w-[4.875rem] items-center justify-center overflow-hidden rounded-[0.9rem] bg-[#f7f7f7] transition duration-300",
                   active ? "shadow-[0_12px_26px_rgba(15,23,42,0.12)]" : "",
                 )}
               >
                 {image ? (
                   <>
-                    <img
+                    <Image
                       src={image}
                       alt={product.galleryImages[0]?.alt ?? product.name}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      onError={(event) => {
-                        event.currentTarget.style.display = "none";
-                        const fallback = event.currentTarget.nextElementSibling;
-
-                        if (fallback instanceof HTMLElement) {
-                          fallback.style.display = "inline-flex";
-                        }
-                      }}
+                      fill
+                      sizes="78px"
+                      className="object-cover"
                     />
                     <span className="hidden items-center justify-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/58">
                       {buildMonogram(product.name)}

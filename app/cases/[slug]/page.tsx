@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { NexusPanel } from "@/components/ui/nexus-panel";
 import { caseStudies, getCaseStudyBySlug } from "@/data/cases";
 import { getProductBySlug } from "@/data/products";
-import { buildMetadata, generateBreadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, buildNoIndexMetadata, generateBreadcrumbJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return caseStudies.map((entry) => ({
@@ -25,17 +25,18 @@ export async function generateMetadata({ params }: CaseDetailPageProps) {
   const entry = getCaseStudyBySlug(slug);
 
   if (!entry) {
-    return buildMetadata({
-      title: "Case Study",
-      description: "AMO project reference.",
-      path: "/cases",
+    return buildNoIndexMetadata({
+      title: "Case Study Not Found | AMO",
+      description: "The requested AMO case study is unavailable.",
+      path: `/cases/${slug}`,
     });
   }
 
   return buildMetadata({
-    title: entry.title,
+    title: `${entry.title} | Magnetic Levitation Case Study | AMO`,
     description: entry.summary,
     path: `/cases/${entry.slug}`,
+    keywords: [entry.sector, "magnetic levitation case study", "floating display case study"],
   });
 }
 

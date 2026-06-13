@@ -1,12 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/home/home-scroll";
 import { ProductDetailQuoteActions } from "@/components/products/product-detail-quote-actions";
 import { Container } from "@/components/ui/container";
+import { pickShowcaseThumbImage } from "@/lib/products/product-image-selection";
 import type { ProductShowcaseProduct } from "@/types";
 
 const capabilityItems = [
@@ -65,16 +65,18 @@ function IconFrame({ label }: { label: string }) {
 }
 
 function RelatedProductCard({ product }: { product: ProductShowcaseProduct }) {
-  const image = product.galleryImages[0]?.url || product.productImage;
+  const image = pickShowcaseThumbImage(product.galleryImages[0], product.productImage);
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-black/8 bg-[#fafaf8] transition duration-500 hover:-translate-y-1 hover:border-black/12 hover:shadow-[0_28px_60px_rgba(15,23,42,0.08)]">
       <Link href={`/products/${product.slug}`} className="flex h-full flex-col">
         <div className="relative flex min-h-[18rem] items-center justify-center overflow-hidden bg-white p-6">
-          <img
+          <Image
             src={image}
             alt={product.galleryImages[0]?.alt || product.name}
-            className="h-[14rem] w-auto max-w-full object-contain transition duration-700 group-hover:scale-[1.03]"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+            className="object-contain p-6 transition duration-700 group-hover:scale-[1.03]"
           />
         </div>
 

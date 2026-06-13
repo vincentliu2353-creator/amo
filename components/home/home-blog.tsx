@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
 import { Container } from "@/components/ui/container";
 
 interface HomeBlogItem {
+  coverImage?: string;
   excerpt: string;
   publishedAt: string;
   readTime: string;
@@ -21,6 +23,7 @@ const fallbackPost: HomeBlogItem = {
   excerpt: "Why levitation works as a spatial communication tool for premium launches, hospitality, and curated merchandising.",
   publishedAt: "2026-01-16",
   readTime: "4 min read",
+  coverImage: "",
 };
 
 function BlogCardPlaceholder({ index }: { index: number }) {
@@ -45,6 +48,29 @@ function BlogCardPlaceholder({ index }: { index: number }) {
       <div className="absolute inset-x-12 top-[60%] h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
       <div className="absolute bottom-6 left-6 font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/42">
         Editorial Image Placeholder
+      </div>
+    </div>
+  );
+}
+
+function BlogCardVisual({ imageUrl, index, title }: { imageUrl?: string; index: number; title: string }) {
+  if (!imageUrl) {
+    return <BlogCardPlaceholder index={index} />;
+  }
+
+  return (
+    <div className="relative h-[18rem] overflow-hidden rounded-[2rem] border border-black/10 bg-black sm:h-[21rem]">
+      <Image
+        src={imageUrl}
+        alt={title}
+        fill
+        sizes="(min-width: 1024px) 34rem, (min-width: 640px) 30rem, 86vw"
+        className="object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.5))]" />
+      <div className="absolute inset-6 rounded-[1.5rem] border border-white/10" />
+      <div className="absolute bottom-6 left-6 font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/42">
+        AMO Journal
       </div>
     </div>
   );
@@ -119,7 +145,7 @@ export function HomeBlog({ posts }: { posts: HomeBlogItem[] }) {
               data-blog-card={index}
               className="group min-w-[86vw] snap-start border-y border-black/12 py-5 transition duration-500 hover:border-black/28 sm:min-w-[30rem] lg:min-w-[34rem]"
             >
-              <BlogCardPlaceholder index={index} />
+              <BlogCardVisual imageUrl={post.coverImage} index={index} title={post.title} />
               <div className="mt-6 flex items-center justify-between gap-4 font-sans text-[11px] font-medium uppercase leading-4 tracking-normal text-black/42">
                 <span>{categories[index % categories.length]}</span>
                 <span>{post.readTime}</span>

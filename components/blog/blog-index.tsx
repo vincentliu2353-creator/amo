@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { buttonStyles } from "@/components/ui/button";
 import { ArticleCard } from "@/components/ui/ArticleCard";
@@ -16,9 +16,8 @@ interface BlogIndexArticle {
   excerpt: string;
   publishedAt: string;
   readTime: string;
+  coverImage?: string;
 }
-
-const filters = ["All", "Design", "Technology", "OEM", "Retail", "Applications"] as const;
 
 function formatMeta(publishedAt: string, readTime: string) {
   try {
@@ -35,10 +34,20 @@ function formatMeta(publishedAt: string, readTime: string) {
 }
 
 export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
-  const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
+  const filters = useMemo(
+    () => ["All", ...Array.from(new Set(articles.map((article) => article.category)))],
+    [articles],
+  );
+  const [activeFilter, setActiveFilter] = useState("All");
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterState, setNewsletterState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [newsletterMessage, setNewsletterMessage] = useState("Receive new journal entries, product launches, and industrial updates.");
+
+  useEffect(() => {
+    if (!filters.includes(activeFilter)) {
+      setActiveFilter("All");
+    }
+  }, [activeFilter, filters]);
 
   const visibleArticles = useMemo(() => {
     if (activeFilter === "All") {
@@ -133,6 +142,7 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
                 excerpt={featuredArticle.excerpt}
                 meta={formatMeta(featuredArticle.publishedAt, featuredArticle.readTime)}
                 imageLabel="Featured"
+                imageUrl={featuredArticle.coverImage}
                 featured
                 tone="dark"
               />
@@ -147,6 +157,7 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
                       title={article.title}
                       excerpt={article.excerpt}
                       meta={formatMeta(article.publishedAt, article.readTime)}
+                      imageUrl={article.coverImage}
                       tone="dark"
                     />
                   ))}

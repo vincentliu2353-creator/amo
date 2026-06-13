@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -9,6 +10,7 @@ interface ArticleCardProps {
   excerpt: string;
   meta: string;
   imageLabel?: string;
+  imageUrl?: string;
   featured?: boolean;
   tone?: "light" | "dark";
 }
@@ -20,6 +22,7 @@ export function ArticleCard({
   excerpt,
   meta,
   imageLabel = "AMO Journal",
+  imageUrl,
   featured = false,
   tone = "light",
 }: ArticleCardProps) {
@@ -36,22 +39,33 @@ export function ArticleCard({
       <div className="overflow-hidden">
         <div
           className={cn(
-            "relative aspect-[4/3]",
+            "relative aspect-[4/3] overflow-hidden",
             tone === "dark"
               ? "bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_30%),linear-gradient(135deg,#151515,#090909_70%)]"
               : "bg-[#ecebe6]",
             featured && "h-full aspect-auto min-h-[22rem]",
           )}
         >
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              sizes={featured ? "(min-width: 1024px) 55vw, 100vw" : "(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"}
+              className="object-cover transition duration-500 group-hover:scale-[1.04]"
+            />
+          ) : null}
           <div
             className={cn(
               "absolute inset-0",
               tone === "dark"
-                ? "bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(9,9,9,0.16))]"
+                ? imageUrl
+                  ? "bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.46))]"
+                  : "bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(9,9,9,0.16))]"
                 : "bg-[linear-gradient(135deg,rgba(255,255,255,0.9),rgba(225,225,219,0.92))]",
             )}
           />
-          <div className="absolute inset-0 scale-100 transition duration-500 group-hover:scale-[1.04]">
+          <div className="absolute inset-0">
             <div className="flex h-full items-end justify-start p-6">
               <span
                 className={cn(

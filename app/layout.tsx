@@ -1,45 +1,59 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import "@/app/globals.css";
 
 import { HomeSiteFooter } from "@/components/layout/home-site-footer";
 import { HomeSiteHeader } from "@/components/layout/home-site-header";
 import { SiteStoreProvider } from "@/components/providers/site-store-provider";
+import { JsonLd } from "@/components/seo/json-ld";
 import { QuoteDock } from "@/components/rfq/quote-dock";
+import { DEFAULT_METADATA_ROBOTS, absoluteUrl, generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
-const displayFont = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const bodyFont = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
+const fontVariables = {
+  "--font-display":
+    '"Avenir Next Condensed", "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif',
+  "--font-body": '"Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif',
+} as CSSProperties;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "AMO | Magnetic Levitation Systems for OEM Manufacturing",
+    default: "AMO | Magnetic Levitation Products Manufacturer & OEM Solutions",
     template: "%s | AMO",
   },
   description: siteConfig.description,
+  applicationName: siteConfig.name,
+  robots: DEFAULT_METADATA_ROBOTS,
+  icons: {
+    icon: [{ url: siteConfig.logoPath, type: "image/png" }],
+    shortcut: [siteConfig.logoPath],
+    apple: [siteConfig.logoPath],
+  },
   openGraph: {
     siteName: siteConfig.name,
     type: "website",
+    url: siteConfig.url,
+    images: [
+      {
+        url: absoluteUrl("/images/home/hero/hero-bg.webp"),
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: [absoluteUrl("/images/home/hero/hero-bg.webp")],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${displayFont.variable} ${bodyFont.variable} font-body antialiased`}>
+      <body className="font-body antialiased" style={fontVariables}>
+        <JsonLd data={generateOrganizationJsonLd()} />
+        <JsonLd data={generateWebsiteJsonLd()} />
         <SiteStoreProvider>
           <div className="relative flex min-h-screen flex-col overflow-x-hidden">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(166,232,255,0.05),transparent_24%)]" />

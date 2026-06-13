@@ -65,9 +65,13 @@ export function ApprovedHomeFooter() {
             </div>
 
             <div className="mt-10 space-y-2 font-sans text-[14px] leading-[22.75px] text-slate-400">
-              <p>{siteConfig.address}</p>
-              <p>{siteConfig.phone}</p>
-              <p>{siteConfig.email}</p>
+              <div>
+                {siteConfig.addressLines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+              <p>Phone: {siteConfig.phone}</p>
+              <p>Email: {siteConfig.email}</p>
             </div>
           </div>
 
@@ -153,7 +157,7 @@ export function ApprovedHomeFooter() {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/8 pt-6 font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>(C) 2026 AMO. Magnetic levitation products and OEM display systems.</p>
-          <p>All imagery and video shown on the homepage are placeholders for the current build.</p>
+          <p>All website imagery and visual assets are protected intellectual property of AMO.</p>
         </div>
       </Container>
     </footer>
