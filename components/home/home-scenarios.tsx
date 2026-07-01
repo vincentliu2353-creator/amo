@@ -10,6 +10,7 @@ interface ScenarioItem {
   accent: string;
   blurb: string;
   caption: string;
+  imageAlt: string;
   imageSrc: StaticImageData;
   title: string;
 }
@@ -78,7 +79,7 @@ function ScenarioBackground({ scenario }: { scenario: ScenarioItem }) {
     <div className="absolute inset-0 overflow-hidden">
       <Image
         src={scenario.imageSrc}
-        alt=""
+        alt={scenario.imageAlt}
         fill
         loading="lazy"
         placeholder="blur"

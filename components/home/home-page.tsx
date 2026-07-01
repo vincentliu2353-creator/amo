@@ -27,6 +27,7 @@ const categories = [
   {
     accent: "150 223 255",
     imageSrc: futureClock,
+    imageAlt: "Levitating clock product concept in a dark premium display setting for desks, receptions, and gifting",
     idLabel: "01 / LEVITATING CLOCKS",
     title: "Levitating Clocks",
     description: "Time objects redesigned for modern spaces.",
@@ -35,6 +36,7 @@ const categories = [
   {
     accent: "255 210 168",
     imageSrc: futureLamp,
+    imageAlt: "Levitating lamp concept with floating light sculpture styling for hospitality and premium interiors",
     idLabel: "02 / LEVITATING LAMPS",
     title: "Levitating Lamps",
     description: "Floating light sculptures for premium interiors.",
@@ -43,6 +45,7 @@ const categories = [
   {
     accent: "180 255 229",
     imageSrc: futureArtObject,
+    imageAlt: "Floating display art object concept for brand storytelling, launch installations, and exhibitions",
     idLabel: "03 / DISPLAY ART OBJECTS",
     title: "Display Art Objects",
     description: "Magnetic display systems for brands and exhibitions.",
@@ -51,6 +54,7 @@ const categories = [
   {
     accent: "196 198 255",
     imageSrc: futureOemModule,
+    imageAlt: "OEM magnetic levitation module concept for custom product development and private label programs",
     idLabel: "04 / OEM MAGLEV MODULES",
     title: "OEM Maglev Modules",
     description: "Custom levitation platforms for product development.",
@@ -59,6 +63,7 @@ const categories = [
   {
     accent: "226 252 170",
     imageSrc: futureDisplayBase,
+    imageAlt: "Levitating display base concept for premium product launches, museum pedestals, and collector editions",
     idLabel: "05 / DISPLAY BASES",
     title: "Levitating Display Bases",
     description: "Floating stages for premium product launches, showcases, and collector presentation.",
@@ -67,6 +72,7 @@ const categories = [
   {
     accent: "255 189 224",
     imageSrc: futureBrandInstallation,
+    imageAlt: "Custom floating installation concept for hospitality lobbies, event activations, and branded spaces",
     idLabel: "06 / BRAND INSTALLATIONS",
     title: "Custom Floating Installations",
     description: "Statement levitation pieces for hospitality lobbies, event spaces, and branded spatial design.",
@@ -117,6 +123,7 @@ const scenarios = [
   {
     accent: "145 212 255",
     imageSrc: applicationRetail,
+    imageAlt: "Floating retail product display used as a premium hero presentation inside a store environment",
     title: "Retail Stores",
     caption: "Immersive Merchandising",
     blurb: "Floating presentation turns a product display into a spatial focal point, ideal for premium retail counters, flagship windows, and launch zones.",
@@ -124,6 +131,7 @@ const scenarios = [
   {
     accent: "204 232 255",
     imageSrc: applicationMuseum,
+    imageAlt: "Magnetic levitation museum display for collectible objects and curated exhibition storytelling",
     title: "Museums",
     caption: "Curated Display",
     blurb: "Levitation adds distance, precision, and visual calm for collectible objects, historical replicas, and interpretive exhibition storytelling.",
@@ -131,6 +139,7 @@ const scenarios = [
   {
     accent: "255 213 173",
     imageSrc: applicationHotel,
+    imageAlt: "Hospitality interior using floating lighting and levitating objects for premium atmosphere",
     title: "Hotels",
     caption: "Hospitality Atmosphere",
     blurb: "Lobbies, suites, and lounge environments benefit from floating lighting and kinetic objects that feel intentional rather than decorative.",
@@ -138,6 +147,7 @@ const scenarios = [
   {
     accent: "201 255 233",
     imageSrc: applicationOffice,
+    imageAlt: "Executive office environment featuring a floating display object for technology-led brand presence",
     title: "Offices",
     caption: "Executive Presence",
     blurb: "Reception zones, boardrooms, and innovation centers can use levitation to express technology leadership and brand confidence.",
@@ -145,6 +155,7 @@ const scenarios = [
   {
     accent: "229 230 255",
     imageSrc: applicationExhibition,
+    imageAlt: "Exhibition booth display using controlled levitation to highlight a hero product in a trade show setting",
     title: "Exhibitions",
     caption: "Trade Show Impact",
     blurb: "Spatial drama and controlled motion help draw traffic, isolate hero products, and create memorable booth signatures.",
@@ -152,6 +163,7 @@ const scenarios = [
   {
     accent: "255 214 230",
     imageSrc: applicationPremiumGifts,
+    imageAlt: "Premium floating gift presentation for private label launches and commemorative branded objects",
     title: "Premium Gifts",
     caption: "Collector Packaging",
     blurb: "Gift editions, private-label launches, and commemorative objects gain perceived value when the presentation itself feels engineered.",

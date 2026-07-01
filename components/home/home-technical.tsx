@@ -8,6 +8,9 @@ import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 import technologyBackground from "@/public/images/home/technology/technology-bg.webp";
 
+const TECHNOLOGY_BACKGROUND_ALT =
+  "Magnetic levitation technology scene showing a floating object in a dark precision-engineered environment";
+
 interface TechnicalFeature {
   description: string;
   icon: string;
@@ -114,7 +117,7 @@ function TechnologyBackground() {
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       <Image
         src={technologyBackground}
-        alt=""
+        alt={TECHNOLOGY_BACKGROUND_ALT}
         fill
         loading="lazy"
         placeholder="blur"

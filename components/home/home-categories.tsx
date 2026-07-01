@@ -8,6 +8,7 @@ interface ProductCategorySlide {
   description: string;
   details: string[];
   idLabel: string;
+  imageAlt: string;
   imageSrc: StaticImageData;
   title: string;
 }
@@ -24,12 +25,12 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-function CategoryProductVisual({ imageSrc }: { imageSrc: StaticImageData }) {
+function CategoryProductVisual({ imageAlt, imageSrc }: Pick<ProductCategorySlide, "imageAlt" | "imageSrc">) {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden>
       <Image
         src={imageSrc}
-        alt=""
+        alt={imageAlt}
         fill
         loading="lazy"
         placeholder="blur"
@@ -71,7 +72,7 @@ export function HomeCategories({ categories }: { categories: ProductCategorySlid
                   filter: `blur(${Math.min(Math.abs(distance), 1) * 6}px)`,
                 }}
               >
-                <CategoryProductVisual imageSrc={category.imageSrc} />
+                <CategoryProductVisual imageSrc={category.imageSrc} imageAlt={category.imageAlt} />
               </div>
             );
           })}
