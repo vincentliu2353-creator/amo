@@ -942,7 +942,8 @@ export function OemOdmPageExperience({ faqs }: { faqs: FaqItem[] }) {
                 <span className="block">TO LEVITATION.</span>
               </h1>
               <p className="mt-8 max-w-2xl text-[18px] leading-[1.7] text-white/68 sm:text-[20px]">
-                OEM & ODM solutions for magnetic levitation products, custom displays, and branded floating experiences.
+                We help global brands, distributors, and design studios move from concept to floating product with full OEM &
+                ODM development.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-3">

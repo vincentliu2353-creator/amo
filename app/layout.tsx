@@ -8,7 +8,7 @@ import { HomeSiteHeader } from "@/components/layout/home-site-header";
 import { SiteStoreProvider } from "@/components/providers/site-store-provider";
 import { JsonLd } from "@/components/seo/json-ld";
 import { QuoteDock } from "@/components/rfq/quote-dock";
-import { DEFAULT_METADATA_ROBOTS, absoluteUrl, generateOrganizationJsonLd, generateWebsiteJsonLd } from "@/lib/seo";
+import { DEFAULT_METADATA_ROBOTS, absoluteUrl, generateOrganizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
 const fontVariables = {
@@ -16,6 +16,8 @@ const fontVariables = {
     '"Avenir Next Condensed", "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif',
   "--font-body": '"Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif',
 } as CSSProperties;
+
+const FAVICON_PATH = "/amo-favicon.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -27,8 +29,8 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   robots: DEFAULT_METADATA_ROBOTS,
   icons: {
-    icon: [{ url: siteConfig.logoPath, type: "image/png" }],
-    shortcut: [siteConfig.logoPath],
+    icon: [{ url: FAVICON_PATH, type: "image/png", sizes: "22x22" }],
+    shortcut: [FAVICON_PATH],
     apple: [siteConfig.logoPath],
   },
   openGraph: {
@@ -53,7 +55,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en" suppressHydrationWarning>
       <body className="font-body antialiased" style={fontVariables}>
         <JsonLd data={generateOrganizationJsonLd()} />
-        <JsonLd data={generateWebsiteJsonLd()} />
         <SiteStoreProvider>
           <div className="relative flex min-h-screen flex-col overflow-x-hidden">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(166,232,255,0.05),transparent_24%)]" />

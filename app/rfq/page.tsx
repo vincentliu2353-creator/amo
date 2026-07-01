@@ -1,41 +1,40 @@
 import { Suspense } from "react";
 
-import { JsonLd } from "@/components/seo/json-ld";
-import { buildMetadata, generateFaqJsonLd } from "@/lib/seo";
-import type { FaqItem } from "@/types";
+import { buildMetadata } from "@/lib/seo";
 
 import RFQClient from "./RFQClient";
 
-const rfqFaqs: FaqItem[] = [
-  {
-    question: "What should I include in an AMO RFQ?",
-    answer:
-      "Include product interest, quantity, application, customization needs, branding requirements, and any timeline or packaging constraints.",
-  },
-  {
-    question: "Can I use the RFQ form for OEM and ODM projects?",
-    answer:
-      "Yes. The RFQ route supports standard product inquiries as well as custom magnetic levitation OEM and ODM development requests.",
-  },
-  {
-    question: "Do I need to select products before submitting an RFQ?",
-    answer:
-      "No. You can submit an RFQ without preselected items, but including products or reference requirements helps AMO respond more precisely.",
-  },
-];
-
 export const metadata = buildMetadata({
-  title: "Request for Quote | AMO Magnetic Levitation Manufacturer",
+  title: "Request a Quote for Custom Magnetic Levitation Products | AMO",
   description:
-    "Submit product, OEM, or custom magnetic levitation RFQs to AMO. Share quantity, application, and customization needs for a response from the team.",
+    "Use AMO to request magnetic levitation quote details for floating displays, levitating lamps, premium gifts, MOQ evaluation, sampling, bulk magnetic levitation products, and OEM magnetic levitation product development.",
   path: "/rfq",
-  keywords: ["magnetic levitation RFQ", "OEM magnetic levitation quote", "custom magnetic levitation inquiry"],
+  keywords: [
+    "magnetic levitation RFQ",
+    "custom magnetic levitation products",
+    "magnetic levitation wholesale",
+    "magnetic levitation products wholesale",
+    "MOQ magnetic levitation products",
+    "magnetic levitation lead time",
+    "magnetic levitation sample validation",
+    "magnetic levitation export readiness",
+    "B2B magnetic levitation sourcing",
+    "magnetic levitation sourcing checklist",
+    "magnetic levitation supplier China",
+    "magnetic levitation manufacturer China",
+    "custom levitating products supplier",
+    "request magnetic levitation quote",
+    "bulk magnetic levitation products",
+    "magnetic levitation products for brands",
+    "floating display manufacturer",
+    "levitating lamp manufacturer",
+    "OEM magnetic levitation products",
+  ],
 });
 
 export default function RfqPage() {
   return (
     <>
-      <JsonLd data={generateFaqJsonLd(rfqFaqs)} />
       <Suspense fallback={<main className="min-h-screen bg-black p-10 text-white">Loading RFQ...</main>}>
         <RFQClient />
       </Suspense>

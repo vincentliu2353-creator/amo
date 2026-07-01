@@ -6,7 +6,7 @@ import { ProductsErrorState } from "@/components/products/products-error-state";
 import { ProductsSiteHeader } from "@/components/products/products-site-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
-import { buildMetadata, buildNoIndexMetadata, generateBreadcrumbJsonLd, generateFaqJsonLd, generateProductJsonLd } from "@/lib/seo";
+import { buildMetadata, buildNoIndexMetadata, buildProductSeoKeywords, generateBreadcrumbJsonLd, generateProductJsonLd } from "@/lib/seo";
 import { getPublishedProductBySlug, getPublishedProductShowcaseCatalog } from "@/lib/supabase/products";
 import type { Product, ProductShowcaseProduct } from "@/types";
 
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps) {
       title: buildProductMetaTitle(product),
       description: buildProductMetaDescription(product),
       path: `/products/${product.slug}`,
-      keywords: [product.category, ...product.tags, ...product.applications],
+      keywords: buildProductSeoKeywords(product),
       image: product.productImage,
     });
   } catch {
@@ -129,7 +129,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   return (
     <>
       <JsonLd data={generateProductJsonLd(product)} />
-      {product.faqs.length > 0 ? <JsonLd data={generateFaqJsonLd(product.faqs)} /> : null}
       <JsonLd
         data={generateBreadcrumbJsonLd([
           { name: "Home", path: "/" },

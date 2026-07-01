@@ -181,12 +181,14 @@ export function RfqForm({
       <div className="border-b border-white/12 pb-14 md:pb-16">
         <p className="text-xs uppercase tracking-[0.28em] text-white/42">AMO Project Inquiry</p>
         <h1 className="mt-6 text-5xl font-semibold tracking-tight text-white md:text-7xl">
-          REQUEST A QUOTE
+          START THE
+          <br />
+          RFQ FLOW.
         </h1>
         <p className="mt-8 max-w-3xl text-base leading-relaxed text-white/66 md:text-lg">
-          Tell us what you want to build.
-          <br />
-          We will respond with pricing, lead time, and development recommendations.
+          Use this RFQ flow to share product type, application, target quantity, finish, sample needs, MOQ expectations, and
+          delivery schedule for custom magnetic levitation products. We will respond with pricing, lead time, and development
+          recommendations.
         </p>
       </div>
 

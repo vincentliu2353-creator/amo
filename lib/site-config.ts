@@ -1,11 +1,13 @@
 import type { NavItem } from "@/types";
 
+export const PRODUCTION_SITE_URL = "https://amolevitation.com";
+
 export const siteConfig = {
   name: "AMO",
   shortName: "AMO",
   description:
     "Premium magnetic levitation products for retail displays, gifts, lighting, and custom OEM projects. Manufacturer-direct solutions from AMO.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://amolevitation.com",
+  url: PRODUCTION_SITE_URL,
   logoPath: "/amo-logo-white.png",
   email: "hello@amolevitation.com",
   phone: "+852 6942 9864",

@@ -89,6 +89,7 @@ export interface PublicBlogRecord {
   category: string;
   excerpt: string;
   publishedAt: string;
+  updatedAt?: string;
   author: string;
   readTime: string;
   sections: BlogSection[];

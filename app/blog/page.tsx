@@ -2,15 +2,14 @@ import { ApprovedHomeFooter } from "@/components/layout/approved-home-footer";
 import { InnerPageShell } from "@/components/layout/inner-page-shell";
 import { BlogIndex } from "@/components/blog/blog-index";
 import { JsonLd } from "@/components/seo/json-ld";
-import { blogPosts } from "@/data/blog";
-import { BLOG_SEO_KEYWORDS, buildMetadata, generateBreadcrumbJsonLd } from "@/lib/seo";
+import { BLOG_SEO_KEYWORDS, buildMetadata, generateBlogJsonLd, generateBreadcrumbJsonLd } from "@/lib/seo";
 import { getPublishedBlogs } from "@/lib/supabase/blogs";
 import type { PublicBlogRecord } from "@/types";
 
 export const metadata = buildMetadata({
-  title: "Magnetic Levitation Blog & OEM Insights | AMO",
+  title: "Floating Display, OEM, and Magnetic Levitation Insights | AMO",
   description:
-    "Read AMO articles on magnetic levitation manufacturing, OEM development, floating display systems, and custom levitation product design.",
+    "Read AMO insights on floating displays, OEM sourcing, magnetic levitation technology, levitating clocks, levitating lamps, exhibitions, museums, hospitality, and high-intent B2B buying topics.",
   path: "/blog",
   keywords: BLOG_SEO_KEYWORDS,
 });
@@ -56,30 +55,13 @@ const placeholderArticles = [
   },
 ];
 
-function fallbackBlogs(): PublicBlogRecord[] {
-  return blogPosts.map((post, index) => ({
-    id: `fallback-${index}`,
-    slug: post.slug,
-    title: post.title,
-    category: post.category,
-    excerpt: post.excerpt,
-    publishedAt: post.publishedAt,
-    author: post.author,
-    readTime: post.readTime,
-    sections: post.sections,
-    coverImage: "",
-    seoTitle: post.title,
-    seoDescription: post.excerpt,
-  }));
-}
-
 export default async function BlogPage() {
   let blogs: PublicBlogRecord[] = [];
 
   try {
     blogs = await getPublishedBlogs();
   } catch {
-    blogs = fallbackBlogs();
+    blogs = [];
   }
 
   const articles =
@@ -103,6 +85,7 @@ export default async function BlogPage() {
           { name: "Blog", path: "/blog" },
         ])}
       />
+      <JsonLd data={generateBlogJsonLd(blogs)} />
       <InnerPageShell showHeader>
         <BlogIndex articles={articles} />
         <ApprovedHomeFooter />

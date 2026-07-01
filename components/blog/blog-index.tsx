@@ -108,11 +108,30 @@ export function BlogIndex({ articles }: { articles: BlogIndexArticle[] }) {
         <div className="min-h-[420px] border-b border-white/12 pb-14 md:min-h-[480px] md:pb-20">
           <PageHeader
             eyebrow="AMO Journal"
-            title={"Insights on magnetic levitation,\nindustrial design,\nengineering,\nand future spaces."}
-            description="A clean editorial index for product thinking, technical decisions, OEM collaboration, and commercial applications."
+            title={"Technical Stories,\nBrand Ideas,\nAnd Product Perspective."}
+            description="Read AMO insights on floating displays, OEM sourcing, magnetic levitation technology, retail attention, museums, hospitality, and buyer confidence."
             tone="dark"
             className="whitespace-pre-line"
-          />
+          >
+            <div className="flex flex-wrap gap-4 text-sm text-white/64">
+              <span>Start with</span>
+              <Link href="/products" className="text-white transition hover:text-white/78">
+                Products
+              </Link>
+              <span>/</span>
+              <Link href="/cases" className="text-white transition hover:text-white/78">
+                Cases
+              </Link>
+              <span>/</span>
+              <Link href="/oem-odm" className="text-white transition hover:text-white/78">
+                OEM & ODM
+              </Link>
+              <span>/</span>
+              <Link href="/rfq" className="text-white transition hover:text-white/78">
+                RFQ
+              </Link>
+            </div>
+          </PageHeader>
         </div>
 
         <div className="mt-12 flex flex-wrap gap-3 border-y border-white/12 py-5">

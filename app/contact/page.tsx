@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { ContactForm } from "@/components/contact/contact-form";
 import { ApprovedHomeFooter } from "@/components/layout/approved-home-footer";
 import { InnerPageShell } from "@/components/layout/inner-page-shell";
@@ -5,11 +7,23 @@ import { buildMetadata } from "@/lib/seo";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
 export const metadata = buildMetadata({
-  title: "Contact AMO | Magnetic Levitation Manufacturer",
+  title: "Contact AMO | Floating Display & OEM Magnetic Levitation Projects",
   description:
-    "Contact AMO for OEM inquiries, product information, and magnetic levitation project collaboration.",
+    "Contact AMO for floating display inquiries, OEM magnetic levitation projects, magnetic levitation display manufacturer China sourcing questions, levitating lamps, premium gift development, and commercial evaluations.",
   path: "/contact",
-  keywords: ["contact AMO", "magnetic levitation manufacturer contact", "OEM inquiry"],
+  keywords: [
+    "contact AMO",
+    "OEM magnetic levitation manufacturer",
+    "floating display supplier",
+    "levitating lamp manufacturer",
+    "magnetic levitation supplier China",
+    "magnetic levitation manufacturer China",
+    "custom magnetic levitation display manufacturer",
+    "OEM floating product display supplier",
+    "magnetic levitation display manufacturer China",
+    "custom levitating product manufacturer",
+    "magnetic levitation prototype manufacturer",
+  ],
 });
 
 const contactItems = [
@@ -44,12 +58,18 @@ export default function ContactPage() {
             <div className="border-b border-white/12 pb-16">
               <p className="text-xs uppercase tracking-[0.24em] text-white/42">Contact</p>
               <h1 className="mt-6 max-w-5xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-                LET&apos;S TALK ABOUT
+                LET&apos;S BUILD WHAT
                 <br />
-                FLOATING IDEAS.
+                FLOATS NEXT.
               </h1>
               <p className="mt-8 max-w-3xl text-base leading-relaxed text-white/68 md:text-lg">
-                Contact AMO for OEM development, custom levitation products, branded installations, and commercial evaluations.
+                Contact AMO for floating display inquiries, OEM magnetic levitation projects, levitating lamps, premium gift
+                development, and commercial evaluations. If you already have target quantities, sampling goals, or customization
+                requirements, send them through the{" "}
+                <Link href="/rfq" className="text-white transition hover:text-white/78">
+                  RFQ form
+                </Link>
+                .
               </p>
             </div>
 

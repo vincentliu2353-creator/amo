@@ -24,7 +24,8 @@ export function ProductsIntro({ progress }: ProductsIntroProps) {
           <span className="mt-2 block">Built To Inspire.</span>
         </h1>
         <p className="mx-auto mt-5 max-w-3xl text-[16px] leading-[1.55] text-white sm:text-[18px]">
-          Magnetic levitation products for modern spaces, premium brands, and unique experiences.
+          AMO products turn levitation into spatial presence, from floating displays and light objects to collectible gifts and
+          custom brand experiences.
         </p>
       </div>
     </div>

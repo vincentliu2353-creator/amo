@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { NexusPanel } from "@/components/ui/nexus-panel";
 import { caseStudies, getCaseStudyBySlug } from "@/data/cases";
 import { getProductBySlug } from "@/data/products";
-import { buildMetadata, buildNoIndexMetadata, generateBreadcrumbJsonLd } from "@/lib/seo";
+import { buildNoIndexMetadata, generateBreadcrumbJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return caseStudies.map((entry) => ({
@@ -32,11 +32,10 @@ export async function generateMetadata({ params }: CaseDetailPageProps) {
     });
   }
 
-  return buildMetadata({
-    title: `${entry.title} | Magnetic Levitation Case Study | AMO`,
+  return buildNoIndexMetadata({
+    title: `${entry.title} | Legacy Magnetic Levitation Case Study | AMO`,
     description: entry.summary,
     path: `/cases/${entry.slug}`,
-    keywords: [entry.sector, "magnetic levitation case study", "floating display case study"],
   });
 }
 

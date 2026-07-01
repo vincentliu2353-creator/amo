@@ -370,7 +370,7 @@ export function CasesPageExperience() {
             </h1>
             <p className="mx-auto mt-7 max-w-3xl text-[16px] leading-7 text-black/62 sm:text-[18px]">
               Magnetic levitation transforms products, objects, and brand moments into spatial experiences for retail,
-              hospitality, exhibitions, offices, and premium gifting.
+              hospitality, exhibitions, museums, and premium gifting.
             </p>
           </div>
 

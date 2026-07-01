@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +9,14 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { buttonStyles } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { buildBlogArticleMetadata, buildNoIndexMetadata, generateArticleJsonLd, generateBreadcrumbJsonLd } from "@/lib/seo";
+import {
+  buildBlogArticleMetadata,
+  buildNoIndexMetadata,
+  extractVisibleBlogFaqs,
+  generateArticleJsonLd,
+  generateBreadcrumbJsonLd,
+  generateFaqJsonLd,
+} from "@/lib/seo";
 import { getPublishedBlogBySlug } from "@/lib/supabase/blogs";
 
 export const dynamic = "force-dynamic";
@@ -88,6 +96,46 @@ function isCallToActionSection(heading: string) {
   return normalized === "call to action" || normalized === "cta";
 }
 
+function renderTextWithLinks(content: string, keyPrefix: string): ReactNode {
+  const matches = Array.from(content.matchAll(/\[([^\]]+)\]\((\/[^)\s]+)\)/g));
+
+  if (matches.length === 0) {
+    return content;
+  }
+
+  const nodes: ReactNode[] = [];
+  let cursor = 0;
+
+  matches.forEach((match, index) => {
+    const fullMatch = match[0];
+    const label = match[1];
+    const href = match[2];
+    const start = match.index ?? 0;
+
+    if (start > cursor) {
+      nodes.push(content.slice(cursor, start));
+    }
+
+    nodes.push(
+      <Link
+        key={`${keyPrefix}-link-${index}`}
+        href={href}
+        className="text-white underline decoration-white/34 underline-offset-4 transition hover:decoration-white"
+      >
+        {label}
+      </Link>,
+    );
+
+    cursor = start + fullMatch.length;
+  });
+
+  if (cursor < content.length) {
+    nodes.push(content.slice(cursor));
+  }
+
+  return nodes;
+}
+
 async function loadPublishedBlog(slug: string) {
   try {
     return await getPublishedBlogBySlug(slug);
@@ -149,6 +197,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             body: post.excerpt,
           },
         ];
+  const visibleFaqs = extractVisibleBlogFaqs(post);
 
   return (
     <>
@@ -160,6 +209,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         ])}
       />
       <JsonLd data={generateArticleJsonLd(post)} />
+      {visibleFaqs.length > 0 ? <JsonLd data={generateFaqJsonLd(visibleFaqs)} /> : null}
 
       <InnerPageShell showHeader>
         <section className="bg-black text-white">
@@ -242,7 +292,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                                 className="space-y-3 pl-6 text-base text-white/72 marker:text-white/48"
                               >
                                 {block.items.map((item) => (
-                                  <li key={item}>{item}</li>
+                                  <li key={item}>{renderTextWithLinks(item, `${section.heading}-list-${blockIndex}`)}</li>
                                 ))}
                               </ul>
                             );
@@ -250,7 +300,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
                           return (
                             <p key={`${section.heading}-${block.content.slice(0, 32)}-${blockIndex}`}>
-                              {block.content}
+                              {renderTextWithLinks(block.content, `${section.heading}-${blockIndex}`)}
                             </p>
                           );
                         })}
@@ -277,7 +327,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     <Link href="/blog" className={buttonStyles({ variant: "secondary", size: "sm" })}>
                       Browse Journal
                     </Link>
-                    <Link href="/request-quote" className={buttonStyles({ size: "sm" })}>
+                    <Link href="/rfq" className={buttonStyles({ size: "sm" })}>
                       Request Quote
                     </Link>
                   </div>

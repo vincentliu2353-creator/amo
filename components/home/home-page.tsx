@@ -7,7 +7,6 @@ import { HomeProcess } from "@/components/home/home-process";
 import { HomeScenarios } from "@/components/home/home-scenarios";
 import { HomeTechnical } from "@/components/home/home-technical";
 import { FeaturedProductShowcaseSection } from "@/components/products/featured-product-showcase-section";
-import { blogPosts } from "@/data/blog";
 import { getPublishedBlogs } from "@/lib/supabase/blogs";
 import { getProductsPageShowcaseCatalog } from "@/lib/supabase/products";
 import type { ProductShowcaseProduct, PublicBlogRecord } from "@/types";
@@ -167,6 +166,27 @@ const fallbackBlogPosts = [
     publishedAt: "2026-01-16",
     readTime: "4 min read",
   },
+  {
+    slug: "oem-floating-display-projects",
+    title: "OEM Floating Display Projects: From Brand Brief To Production",
+    excerpt: "A practical look at how custom magnetic levitation display programs move from concept and sampling into production.",
+    publishedAt: "2026-01-24",
+    readTime: "5 min read",
+  },
+  {
+    slug: "premium-magnetic-levitation-gifts",
+    title: "Premium Magnetic Levitation Gifts For Brand Programs",
+    excerpt: "How premium gifts, commemorative objects, and limited editions gain value through engineered floating presentation.",
+    publishedAt: "2026-02-02",
+    readTime: "5 min read",
+  },
+  {
+    slug: "floating-displays-for-retail-and-hospitality",
+    title: "Floating Displays For Retail, Hospitality, And Exhibition Spaces",
+    excerpt: "Where floating display systems fit best across luxury retail, hotel interiors, exhibitions, and museum environments.",
+    publishedAt: "2026-02-12",
+    readTime: "4 min read",
+  },
 ];
 
 type HomeBlogSource = {
@@ -236,7 +256,7 @@ function mapHomeBlogPost(post: HomeBlogSource) {
 }
 
 function fallbackEditorialPosts() {
-  return [...blogPosts, ...fallbackBlogPosts].slice(0, 4).map((post) => mapHomeBlogPost(post));
+  return fallbackBlogPosts.map((post) => mapHomeBlogPost(post));
 }
 
 export async function HomePageExperience() {

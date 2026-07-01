@@ -1,44 +1,33 @@
 import { HomePageExperience } from "@/components/home/home-page";
 import { JsonLd } from "@/components/seo/json-ld";
-import { buildMetadata, generateFaqJsonLd } from "@/lib/seo";
-import type { FaqItem } from "@/types";
-
-const homeFaqs: FaqItem[] = [
-  {
-    question: "What products does AMO manufacture?",
-    answer:
-      "AMO manufactures levitating clocks, levitating lamps, floating display systems, levitating display bases, and custom magnetic levitation products for B2B customers.",
-  },
-  {
-    question: "Does AMO support OEM and ODM projects?",
-    answer:
-      "Yes. AMO supports OEM and ODM programs including custom development, prototyping, branding, packaging, and production planning.",
-  },
-  {
-    question: "Which industries use AMO magnetic levitation products?",
-    answer:
-      "AMO products are used in retail, luxury gifting, exhibitions, museums, hospitality, interior design, and premium product display environments.",
-  },
-];
+import { buildMetadata, generateWebsiteJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "AMO | Magnetic Levitation Products Manufacturer & OEM Solutions",
+  title: "AMO | Magnetic Levitation Manufacturer for Floating Displays, Lamps & Premium Gifts",
   description:
-    "Premium magnetic levitation products for retail displays, gifts, lighting, and custom OEM projects. Manufacturer-direct solutions from AMO.",
+    "AMO is a magnetic levitation products manufacturer creating floating displays, levitating lamps, premium gifts, and OEM/ODM product development for future retail, hospitality, gifting, and custom brand display experiences.",
   path: "/",
   keywords: [
-    "levitating clocks",
-    "levitating lamps",
+    "magnetic levitation manufacturer",
+    "magnetic levitation products manufacturer",
+    "magnetic levitation factory",
+    "magnetic levitation company",
+    "magnetic levitation solution provider",
+    "magnetic levitation product supplier",
+    "magnetic levitation device manufacturer",
+    "floating display manufacturer",
+    "levitating lamp manufacturer",
     "floating display systems",
+    "magnetic levitation corporate gifts",
     "custom magnetic levitation products",
-    "magnetic levitation OEM",
+    "OEM magnetic levitation products",
   ],
 });
 
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={generateFaqJsonLd(homeFaqs)} />
+      <JsonLd data={generateWebsiteJsonLd()} />
       <HomePageExperience />
     </>
   );

@@ -4,7 +4,7 @@ type ProductVisualKey = "clock" | "lamp" | "sculpture" | "platform";
 
 type ProductVisualSubject = Pick<Product, "slug" | "name" | "category" | "summary" | "description" | "highlight" | "tags" | "applications">;
 
-const PRODUCT_VISUAL_ORDER: ProductVisualKey[] = ["clock", "lamp", "sculpture", "platform"];
+const PRODUCT_VISUAL_ORDER: ProductVisualKey[] = ["lamp", "sculpture", "platform"];
 
 const PRODUCT_VISUAL_LIBRARY: Record<
   ProductVisualKey,
@@ -15,7 +15,7 @@ const PRODUCT_VISUAL_LIBRARY: Record<
 > = {
   clock: {
     url: "/products/rendered/levitating-clock-hero.png",
-    alt: "Photorealistic levitating clock product render on a white studio background",
+    alt: "Photorealistic magnetic levitation desktop product render on a white studio background",
   },
   lamp: {
     url: "/products/rendered/levitating-lamp-hero.png",

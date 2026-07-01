@@ -25,9 +25,26 @@ const oemFaqs: FaqItem[] = [
 export const metadata = buildMetadata({
   title: "OEM & ODM Magnetic Levitation Manufacturing | AMO",
   description:
-    "Custom magnetic levitation product development, engineering, prototyping, and manufacturing for brands worldwide.",
+    "Work with AMO on OEM and ODM magnetic levitation projects, including ODM magnetic levitation products, private label magnetic levitation products, floating displays, levitating lamps, premium gifts, design brief review, prototype validation, sampling, mass production, and delivery planning.",
   path: "/oem-odm",
-  keywords: ["magnetic levitation OEM", "magnetic levitation ODM", "custom magnetic levitation products", "private label levitation products"],
+  keywords: [
+    "OEM magnetic levitation products",
+    "magnetic levitation ODM",
+    "ODM magnetic levitation products",
+    "custom magnetic levitation products",
+    "custom magnetic levitation manufacturer",
+    "private label magnetic levitation products",
+    "magnetic levitation OEM manufacturer",
+    "magnetic levitation ODM supplier",
+    "custom floating products manufacturer",
+    "floating display manufacturer",
+    "levitating lamp manufacturer",
+    "design brief for OEM magnetic levitation products",
+    "magnetic levitation prototype validation",
+    "OEM magnetic levitation sampling",
+    "magnetic levitation mass production",
+    "OEM floating display development",
+  ],
 });
 
 export default function OemOdmPage() {

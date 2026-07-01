@@ -1,4 +1,5 @@
 import { calculateBlogReadTimeFromSections, parseBlogBody } from "@/lib/blogs";
+import { applyBlogArticleRefresh } from "@/lib/blog-article-refresh";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { PublicBlogRecord } from "@/types";
 
@@ -49,7 +50,7 @@ function mapBlogRow(row: Record<string, unknown>): PublicBlogRecord {
         ? row.created_at
         : new Date().toISOString();
 
-  return {
+  return applyBlogArticleRefresh({
     id: typeof row.id === "string" ? row.id : "",
     slug: typeof row.slug === "string" ? row.slug : "",
     title: typeof row.title === "string" ? row.title : "AMO Journal",
@@ -59,13 +60,14 @@ function mapBlogRow(row: Record<string, unknown>): PublicBlogRecord {
     author: "AMO Editorial",
     readTime: calculateBlogReadTimeFromSections(sections),
     sections,
+    updatedAt: typeof row.updated_at === "string" ? row.updated_at : "",
     coverImage: resolveBlogCoverImage(
       typeof row.slug === "string" ? row.slug : "",
       row.og_image_url,
     ),
     seoTitle: typeof row.seo_title === "string" ? row.seo_title : "",
     seoDescription: typeof row.seo_description === "string" ? row.seo_description : "",
-  };
+  });
 }
 
 function getSupabase() {
@@ -83,7 +85,7 @@ export async function getPublishedBlogs() {
   const { data, error } = await supabase
     .from("blogs")
     .select(
-      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, og_image_url, published_at, created_at",
+      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, og_image_url, published_at, created_at, updated_at",
     )
     .eq("status", "published")
     .order("published_at", { ascending: false })
@@ -101,7 +103,7 @@ export async function getPublishedBlogBySlug(slug: string) {
   const { data, error } = await supabase
     .from("blogs")
     .select(
-      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, og_image_url, published_at, created_at",
+      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, og_image_url, published_at, created_at, updated_at",
     )
     .eq("status", "published")
     .eq("slug", slug)
