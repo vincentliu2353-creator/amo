@@ -24,6 +24,7 @@ interface ApplicationCase {
   blurb: string;
   details: string;
   image: CaseImageAsset;
+  imageDetail: string;
   label: string;
   title: string;
 }
@@ -36,7 +37,7 @@ interface SpaceScenario {
 
 const featuredCase = {
   description:
-    "Instead of placing the product on a standard shelf, the object is suspended above a minimal magnetic base, creating a visual pause point that attracts attention from across the space.",
+    "Lifted above a pared-back magnetic base, the object is given its own field of attention. The result feels less like shelving and more like staging, helping visitors slow down, focus, and remember the piece.",
   details: [
     { label: "Application", value: "Retail Flagship Store" },
     { label: "Use Case", value: "Hero Product Display" },
@@ -51,76 +52,82 @@ const selectedApplications = [
   {
     label: "Case 01",
     title: "RETAIL FLAGSHIP",
-    blurb: "Floating product display for premium shelves, launch areas, and window installations.",
-    details: "Best for: luxury retail, electronics, jewelry, fragrance, design objects",
+    blurb: "A controlled floating display for hero products, limited editions, and window moments where immediate focus matters.",
+    details: "Luxury retail, fragrance, jewelry, watches, premium electronics",
     image: applicationCaseImages.retail,
+    imageDetail: "Floating retail display staged for a flagship environment and hero-product focus.",
   },
   {
     label: "Case 02",
     title: "MUSEUM INSTALLATION",
-    blurb: "Suspended artifacts and symbolic objects presented as quiet, weightless focal points.",
-    details: "Best for: museums, galleries, cultural exhibitions, science centers",
+    blurb: "Artifacts and symbolic objects gain a quieter, more ceremonial presence when they appear held apart from the surrounding architecture.",
+    details: "Museums, galleries, cultural exhibitions, science centers",
     image: applicationCaseImages.museum,
+    imageDetail: "Museum presentation using levitation to create distance, focus, and calm.",
   },
   {
     label: "Case 03",
     title: "HOTEL LOBBY",
-    blurb: "Floating sculptural objects used as ambient centerpieces for high-end hospitality spaces.",
-    details: "Best for: hotels, resorts, clubs, reception areas",
+    blurb: "Sculptural levitation introduces atmosphere without noise, turning arrival zones into composed focal points.",
+    details: "Hotels, resorts, clubs, reception halls",
     image: applicationCaseImages.hotel,
+    imageDetail: "Hospitality installation designed as a calm focal point within a premium arrival space.",
   },
   {
     label: "Case 04",
     title: "EXHIBITION BOOTH",
-    blurb: "Magnetic levitation creates strong visual attraction in crowded trade show environments.",
-    details: "Best for: exhibitions, product launches, brand events, showrooms",
+    blurb: "In crowded fairgrounds, a floating centerpiece helps a brand hold attention before the conversation even begins.",
+    details: "Trade shows, launches, brand activations, private showrooms",
     image: applicationCaseImages.exhibition,
+    imageDetail: "Exhibition presentation built to isolate a hero object in a high-traffic setting.",
   },
   {
     label: "Case 05",
     title: "OFFICE & MEETING SPACE",
-    blurb: "Floating clocks, lamps, or art objects bring a futuristic atmosphere into executive interiors.",
-    details: "Best for: headquarters, meeting rooms, VIP lounges, design studios",
+    blurb: "Floating clocks, lamps, and objects bring a restrained technological signature to executive and creative interiors.",
+    details: "Headquarters, meeting rooms, VIP lounges, design studios",
     image: applicationCaseImages.office,
+    imageDetail: "Executive interior using levitation as a precise, architectural accent.",
   },
   {
     label: "Case 06",
     title: "PREMIUM GIFTS",
-    blurb: "Customized floating products for corporate gifts, limited editions, and brand campaigns.",
-    details: "Best for: corporate gifting, distributor programs, brand collaborations",
+    blurb: "Custom floating editions turn commemorative gifts and collector programs into presentation pieces with lasting recall.",
+    details: "Corporate gifting, partner programs, private-label collaborations",
     image: applicationCaseImages.gifting,
+    imageDetail: "Collector-style gift presentation shaped around levitation and branded detailing.",
   },
 ] satisfies ApplicationCase[];
 
 const spaceScenarios = [
   {
     title: "Retail Stores",
-    copy: "Create a premium focus point for hero products and limited-edition displays.",
+    copy: "Give hero products and limited editions a focal point that feels intentional rather than promotional.",
     image: spaceCaseImages.retail,
   },
   {
     title: "Museums",
-    copy: "Present objects with a sense of silence, distance, and importance.",
+    copy: "Frame objects with silence, distance, and a stronger sense of significance.",
     image: spaceCaseImages.museum,
   },
   {
     title: "Hotels",
-    copy: "Introduce futuristic atmosphere into lobbies, lounges, and premium suites.",
+    copy: "Bring a composed futuristic atmosphere to lobbies, lounges, and premium suites.",
     image: spaceCaseImages.hotel,
   },
   {
     title: "Offices",
-    copy: "Add a calm technological identity to executive and creative environments.",
+    copy: "Introduce a restrained technological identity to executive and creative environments.",
     image: spaceCaseImages.office,
   },
   {
     title: "Exhibitions",
-    copy: "Help visitors stop, look, and remember your product in a crowded environment.",
+    copy: "Make visitors stop, look, and remember the object before the pitch begins.",
     image: spaceCaseImages.exhibition,
   },
   {
     title: "Premium Gifts",
-    copy: "Turn branded gifts into collectible objects with visual impact.",
+    copy: "Turn branded gifts into collector-like objects with greater perceived value.",
     image: spaceCaseImages.gifting,
   },
 ] satisfies SpaceScenario[];
@@ -403,7 +410,7 @@ export function CasesPageExperience() {
                 href="/rfq"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-black bg-black px-5 py-2 text-[10px] font-medium uppercase tracking-[0.22em] text-white transition duration-300 hover:bg-black/88 sm:text-[11px]"
               >
-                <span>Request Similar Solution</span>
+                <span>Discuss A Similar Project</span>
                 <ArrowIcon />
               </Link>
             </div>
@@ -412,15 +419,15 @@ export function CasesPageExperience() {
           <CaseStageVisual
             className="min-h-[24rem] sm:min-h-[30rem] lg:min-h-[42rem]"
             captionMode="plain"
-            detail="Placeholder media for a silent floating hero product inside a luxury retail setting."
+            detail="A hero object held in quiet suspension within a luxury retail interior."
             image={featuredCase.image}
             imageFit="cover"
-            label="Application Placeholder"
+            label="Featured Setting"
             priority
             quality={92}
             sizes="(max-width: 1024px) 100vw, 54vw"
             theme="dark"
-            title="Premium retail centerpiece"
+            title="Hero Display Moment"
           />
         </Container>
       </section>
@@ -430,9 +437,9 @@ export function CasesPageExperience() {
           <div className="flex min-h-[calc(100svh-9rem)] flex-col justify-center">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-3xl">
-                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-black/38">SELECTED APPLICATIONS</p>
+                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-black/38">SELECTED ENVIRONMENTS</p>
                 <h2 className="mt-5 font-sans text-[clamp(2.4rem,4.8vw,4.8rem)] font-medium leading-[0.95] tracking-[-0.06em] text-black">
-                  One environment at a time.
+                  Where levitation earns its place.
                 </h2>
               </div>
 
@@ -455,7 +462,7 @@ export function CasesPageExperience() {
                   <p className="mt-5 text-[15px] leading-7 text-black/60">{activeCase.blurb}</p>
 
                   <div className="mt-7 rounded-[26px] border border-black/8 bg-white/84 px-5 py-4">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">Details</p>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-black/38">Context</p>
                     <p className="mt-3 text-[14px] leading-6 text-black/60">{activeCase.details}</p>
                   </div>
                 </div>
@@ -464,7 +471,7 @@ export function CasesPageExperience() {
                   key={activeCase.image.src}
                   className="min-h-[20rem] sm:min-h-[24rem] lg:min-h-[31rem]"
                   captionMode="plain"
-                  detail="Placeholder media for the current application environment."
+                  detail={activeCase.imageDetail}
                   image={activeCase.image}
                   imageFit="cover"
                   label="Case Environment"
@@ -504,8 +511,8 @@ export function CasesPageExperience() {
                 OBJECTS BECOME EXPERIENCES.
               </h2>
               <p className="mt-5 max-w-2xl text-[15px] leading-7 text-black/58">
-                Magnetic levitation changes how people notice, approach, and remember a product. It creates a moment of
-                curiosity before the message is even explained.
+                Magnetic levitation changes how a product is approached and remembered. It creates a pause before the
+                explanation, giving the object presence before the story begins.
               </p>
             </div>
 
@@ -513,7 +520,7 @@ export function CasesPageExperience() {
               <CaseStageVisual
                 captionMode="plain"
                 className="min-h-[24rem] sm:min-h-[30rem] lg:min-h-[38rem]"
-                detail="Static. Familiar. Easy to ignore."
+                detail="Expected. Static. Easily passed over."
                 image={comparisonCaseImages.before}
                 imageFit="cover"
                 label="BEFORE"
@@ -521,13 +528,13 @@ export function CasesPageExperience() {
                 quality={92}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 theme="dark"
-                title="A product placed on a normal surface."
+                title="A hero object resting on a conventional display."
               />
 
               <CaseStageVisual
                 captionMode="plain"
                 className="min-h-[24rem] sm:min-h-[30rem] lg:min-h-[38rem]"
-                detail="Unexpected. Memorable. Spatial."
+                detail="Suspended. Precise. Difficult to forget."
                 image={comparisonCaseImages.after}
                 imageFit="cover"
                 label="AFTER"
@@ -535,7 +542,7 @@ export function CasesPageExperience() {
                 quality={92}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 theme="dark"
-                title="A product floating silently above its base."
+                title="A hero object held in quiet suspension."
               />
             </div>
           </div>
@@ -584,8 +591,8 @@ export function CasesPageExperience() {
                 <div className="mt-10 max-w-[28rem] border-t border-white/12 pt-5">
                   <p className="text-[10px] font-medium uppercase tracking-[0.24em] text-white">Space Note</p>
                   <p className="mt-3 text-[14px] leading-6 text-white">
-                    Magnetic levitation creates a visual pause point that makes the object feel more deliberate than a
-                    normal display surface can.
+                    Levitation introduces distance and stillness, giving the object a sense of intent that conventional
+                    display hardware rarely achieves.
                   </p>
                 </div>
 
@@ -629,7 +636,7 @@ export function CasesPageExperience() {
             <div className="max-w-3xl">
               <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/40">OEM PROJECT TIMELINE</p>
               <h2 className="mt-5 font-sans text-[clamp(2.4rem,4.8vw,4.8rem)] font-medium leading-[0.95] tracking-[-0.06em] text-white">
-                FROM CASE IDEA TO FLOATING INSTALLATION.
+                FROM BRIEF TO FLOATING INSTALLATION.
               </h2>
               <p className="mt-5 max-w-2xl text-[15px] leading-7 text-white/62">
                 AMO supports brands, distributors, and design studios from early concept to commercial delivery.
@@ -695,8 +702,8 @@ export function CasesPageExperience() {
               LET YOUR PRODUCT FLOAT.
             </h2>
             <p className="mt-6 max-w-3xl text-[15px] leading-7 text-white/64 sm:text-[16px]">
-              Create a magnetic levitation experience for your next retail space, exhibition, hotel project, or custom
-              product launch.
+              Bring magnetic levitation into your next retail environment, exhibition build, hospitality project, or
+              branded launch moment.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

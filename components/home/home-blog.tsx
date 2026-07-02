@@ -47,7 +47,7 @@ function BlogCardPlaceholder({ index }: { index: number }) {
       <div className="absolute inset-x-12 top-[28%] h-px bg-gradient-to-r from-transparent via-white/18 to-transparent" />
       <div className="absolute inset-x-12 top-[60%] h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
       <div className="absolute bottom-6 left-6 font-sans text-[12px] font-medium uppercase leading-4 tracking-normal text-white/42">
-        Editorial Image Placeholder
+        AMO Journal
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ export function HeroVideoPlaceholder() {
       <div className="absolute left-[10%] top-[18%] h-44 w-44 rounded-full border border-white/10" />
       <div className="absolute left-[12%] top-[20%] h-40 w-40 animate-home-pulse rounded-full border border-white/15" />
       <div className="absolute bottom-[14%] left-[8%] rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] uppercase tracking-[0.34em] text-white/45">
-        Video Placeholder
+        AMO Motion Study
       </div>
     </div>
   );
