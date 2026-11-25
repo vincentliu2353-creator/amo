@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 
 import { Container } from "@/components/ui/container";
-import heroBackground from "@/public/images/home/hero/hero-bg.webp";
+const heroBackground = "/images/home/hero/hero-bg.webp";
 
 export function HomeHero() {
   return (

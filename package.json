@@ -8,6 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "export:sales-deck": "node scripts/export-sales-deck.mjs",
+    "export:company-deck": "node scripts/export-company-deck.mjs",
+    "optimize:site-images": "node scripts/optimize-site-images.ts",
     "optimize:product-images": "node scripts/optimize-product-images.ts",
     "optimize:home-images": "node scripts/optimize-home-images.mjs",
     "optimize:about-images": "node scripts/optimize-about-images.mjs",
@@ -21,7 +24,8 @@
     "next": "^15.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanity": "^3.0.0"
+    "sanity": "^3.0.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
@@ -31,7 +35,6 @@
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.5.2",
     "postcss": "^8.5.0",
-    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.0.0"
   }

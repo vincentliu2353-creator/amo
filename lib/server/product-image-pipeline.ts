@@ -1,17 +1,16 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import sharp from "sharp";
+import { encodeWebp } from "./encode-webp.ts";
 
 import {
   buildProductImageVariantPaths,
   collectProductImageVariantStoragePaths,
   getProductStoragePublicUrl,
-  normalizeProductImageExtension,
   resolveProductImageContentType,
   sanitizeProductImageAssetStem,
 } from "../products/product-image-variants.ts";
 
 export const PRODUCT_IMAGE_LARGE_MAX_WIDTH = 1600;
-export const PRODUCT_IMAGE_THUMB_MAX_WIDTH = 480;
+export const PRODUCT_IMAGE_THUMB_MAX_WIDTH = 768;
 export const PRODUCT_IMAGE_LARGE_QUALITY = 86;
 export const PRODUCT_IMAGE_THUMB_QUALITY = 80;
 
@@ -34,81 +33,44 @@ export function buildProductImageAssetStem(value: string) {
   return sanitizeProductImageAssetStem(value);
 }
 
-export async function createProductImageVariantBuffers(options: {
-  inputBuffer: ArrayBuffer | ArrayBufferView | Buffer;
-  largeQuality?: number;
-  thumbQuality?: number;
-}) {
-  const inputBuffer = toBuffer(options.inputBuffer);
-  const largeQuality = options.largeQuality ?? PRODUCT_IMAGE_LARGE_QUALITY;
-  const thumbQuality = options.thumbQuality ?? PRODUCT_IMAGE_THUMB_QUALITY;
-
-  const [largeBuffer, thumbBuffer] = await Promise.all([
-    sharp(inputBuffer)
-      .rotate()
-      .resize({
-        width: PRODUCT_IMAGE_LARGE_MAX_WIDTH,
-        withoutEnlargement: true,
-        fit: "inside",
-        kernel: sharp.kernel.lanczos3,
-      })
-      .webp({
-        quality: largeQuality,
-        effort: 5,
-      })
-      .toBuffer(),
-    sharp(inputBuffer)
-      .rotate()
-      .resize({
-        width: PRODUCT_IMAGE_THUMB_MAX_WIDTH,
-        withoutEnlargement: true,
-        fit: "inside",
-        kernel: sharp.kernel.lanczos3,
-      })
-      .webp({
-        quality: thumbQuality,
-        effort: 5,
-      })
-      .toBuffer(),
-  ]);
-
-  return {
-    originalBuffer: inputBuffer,
-    largeBuffer,
-    thumbBuffer,
-  };
-}
-
 export async function uploadProductImageVariantSet(
   supabase: SupabaseClient,
   options: {
     assetStem: string;
     inputBuffer: ArrayBuffer | ArrayBufferView | Buffer;
     originalContentType?: string | null;
-    originalExtension: string;
+    originalExtension?: string;
     productId: string;
     upsert?: boolean;
   },
 ) {
+  const input = toBuffer(options.inputBuffer);
+  // The backfill may retain a legacy original at its existing path. New admin
+  // uploads store a compressed WebP in that slot and declare their actual widths.
+  const preserveOriginal = Boolean(options.originalExtension);
+  const [large, thumb, original] = await Promise.all([
+    encodeWebp(input, {
+      width: PRODUCT_IMAGE_LARGE_MAX_WIDTH, maxBytes: 400_000, quality: PRODUCT_IMAGE_LARGE_QUALITY,
+    }),
+    encodeWebp(input, {
+      width: PRODUCT_IMAGE_THUMB_MAX_WIDTH, maxBytes: 150_000, quality: PRODUCT_IMAGE_THUMB_QUALITY,
+    }),
+    preserveOriginal ? null : encodeWebp(input, { width: 2400, maxBytes: 900_000, quality: 90 }),
+  ]);
   const paths = buildProductImageVariantPaths({
     productId: options.productId,
-    assetStem: options.assetStem,
-    originalExtension: normalizeProductImageExtension(options.originalExtension),
+    assetStem: preserveOriginal ? options.assetStem : `${options.assetStem}-amo-p-${thumb.info.width}x${large.info.width}w`,
+    originalExtension: options.originalExtension ?? ".webp",
   });
   const originalContentType =
-    options.originalContentType?.trim() ||
-    resolveProductImageContentType(paths.originalExtension);
-  const { originalBuffer, largeBuffer, thumbBuffer } =
-    await createProductImageVariantBuffers({
-      inputBuffer: options.inputBuffer,
-    });
+    options.originalContentType?.trim() || resolveProductImageContentType(paths.originalExtension);
   const uploadedPaths: string[] = [];
 
   try {
     for (const [path, body, contentType] of [
-      [paths.originalPath, originalBuffer, originalContentType],
-      [paths.largePath, largeBuffer, "image/webp"],
-      [paths.thumbPath, thumbBuffer, "image/webp"],
+      [paths.originalPath, original?.data ?? input, originalContentType],
+      [paths.largePath, large.data, "image/webp"],
+      [paths.thumbPath, thumb.data, "image/webp"],
     ] as const) {
       const { error } = await supabase.storage
         .from(PRODUCT_STORAGE_BUCKET)

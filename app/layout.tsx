@@ -3,11 +3,9 @@ import type { CSSProperties, ReactNode } from "react";
 
 import "@/app/globals.css";
 
-import { HomeSiteFooter } from "@/components/layout/home-site-footer";
-import { HomeSiteHeader } from "@/components/layout/home-site-header";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import { SiteStoreProvider } from "@/components/providers/site-store-provider";
 import { JsonLd } from "@/components/seo/json-ld";
-import { QuoteDock } from "@/components/rfq/quote-dock";
 import { DEFAULT_METADATA_ROBOTS, absoluteUrl, generateOrganizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -56,13 +54,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body className="font-body antialiased" style={fontVariables}>
         <JsonLd data={generateOrganizationJsonLd()} />
         <SiteStoreProvider>
-          <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(166,232,255,0.05),transparent_24%)]" />
-            <HomeSiteHeader />
-            <div className="relative flex-1">{children}</div>
-            <HomeSiteFooter />
-            <QuoteDock />
-          </div>
+          <SiteChrome>{children}</SiteChrome>
         </SiteStoreProvider>
       </body>
     </html>

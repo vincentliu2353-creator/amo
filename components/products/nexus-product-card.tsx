@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { getProductThumbnailProps } from "@/lib/images/image-sources";
 import Link from "next/link";
 
 import { ProductActions } from "@/components/products/product-actions";
@@ -48,7 +49,7 @@ export function NexusProductCard({ product }: { product: Product }) {
 
               <div className="mt-5 flex min-h-[188px] items-center justify-center">
                 <img
-                  src={product.productImage}
+                  {...getProductThumbnailProps(product.productImage, "(max-width: 640px) 70vw, 320px")}
                   alt={product.name}
                   className="max-h-[12rem] w-auto max-w-full object-contain drop-shadow-[0_28px_56px_rgba(15,23,42,0.18)]"
                 />

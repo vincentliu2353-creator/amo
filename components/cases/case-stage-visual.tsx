@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 
 import type { CaseImageAsset } from "@/components/cases/case-image-assets";
 import { cn } from "@/lib/utils";

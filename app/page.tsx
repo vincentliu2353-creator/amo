@@ -2,6 +2,8 @@ import { HomePageExperience } from "@/components/home/home-page";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata, generateWebsiteJsonLd } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = buildMetadata({
   title: "AMO | Magnetic Levitation Manufacturer for Floating Displays, Lamps & Premium Gifts",
   description:

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 import { useState } from "react";
 
 import type { ProductShowcaseProduct } from "@/types";
@@ -77,6 +77,7 @@ export function ProductThumbRail({ products, activeIndex, expanded, desktopVisib
                 {image ? (
                   <>
                     <Image
+                      thumbnail
                       src={image}
                       alt={product.galleryImages[0]?.alt ?? product.name}
                       fill
@@ -147,6 +148,7 @@ export function ProductThumbRail({ products, activeIndex, expanded, desktopVisib
                 {image ? (
                   <>
                     <Image
+                      thumbnail
                       src={image}
                       alt={product.galleryImages[0]?.alt ?? product.name}
                       fill

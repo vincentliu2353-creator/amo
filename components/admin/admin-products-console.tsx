@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -143,6 +143,7 @@ export function AdminProductsConsole({ products, notice }: AdminProductsConsoleP
                       <div className="relative flex h-24 items-center justify-center bg-white/[0.04] p-3">
                         {previewImage ? (
                           <Image
+                            thumbnail
                             src={previewImage}
                             alt={product.name}
                             fill

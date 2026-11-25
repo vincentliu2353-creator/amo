@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { slugifyValue } from "@/lib/admin/product-form";
-import { resolveProductImageVariantUrls, inferProductImageExtension } from "@/lib/products/product-image-variants";
+import { resolveProductImageVariantUrls } from "@/lib/products/product-image-variants";
 import { PRODUCT_SHOWCASE_SPEC_FIELDS } from "@/lib/products/spec-fields";
 import {
   buildProductImageAssetStem,
@@ -691,11 +691,6 @@ async function syncProductImages(
         productId: options.productId,
         assetStem,
         inputBuffer: fileBytes,
-        originalExtension: inferProductImageExtension({
-          fileName: file.name,
-          contentType: file.type,
-        }),
-        originalContentType: file.type || undefined,
         upsert: false,
       });
     } catch (error) {

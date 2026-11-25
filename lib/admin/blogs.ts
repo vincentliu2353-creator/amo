@@ -5,6 +5,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { createAdminSupabaseClient } from "@/lib/supabase/server";
 import { parseBlogContentInput, serializeBlogBody } from "@/lib/blogs";
+import { encodeWebp } from "@/lib/server/encode-webp";
 import { absoluteUrl } from "@/lib/seo";
 import type { AdminBlogRecord, ContentStatus } from "@/types";
 
@@ -247,20 +248,45 @@ async function uploadBlogCoverImage(
 ) {
   await ensureBlogStorageBucket(supabase);
 
-  const storagePath = `blogs/${slug}/${Date.now()}-${sanitizeFileName(file.name)}`;
-  const fileBytes = new Uint8Array(await file.arrayBuffer());
-  const { error: uploadError } = await supabase.storage
-    .from(BLOG_STORAGE_BUCKET)
-    .upload(storagePath, fileBytes, {
-      contentType: file.type || undefined,
-      upsert: false,
+  const stem = `blogs/${slug}/${Date.now()}-${sanitizeFileName(file.name.replace(/\.[^.]+$/, ""))}`;
+  const input = Buffer.from(await file.arrayBuffer());
+  let desktop;
+  let mobile;
+  try {
+    [desktop, mobile] = await Promise.all([
+      encodeWebp(input, { width: 1600, maxBytes: 600_000, quality: 86 }),
+      encodeWebp(input, { width: 768, maxBytes: 150_000, quality: 82 }),
+    ]);
+  } catch {
+    throw new AdminBlogMutationError("Unable to read the cover image. Choose a valid JPG, PNG, or WebP.", 400, {
+      coverImageFile: "Choose a valid image file.",
     });
-
-  if (uploadError) {
-    throw new AdminBlogMutationError(`Unable to upload the cover image: ${uploadError.message}`, 503);
   }
 
-  return supabase.storage.from(BLOG_STORAGE_BUCKET).getPublicUrl(storagePath).data.publicUrl;
+  const hasMobile = mobile.info.width < desktop.info.width;
+  const mobilePath = `${stem}-amo-b-${mobile.info.width}w.webp`;
+  const storagePath = hasMobile
+    ? `${stem}-amo-b-${mobile.info.width}x${desktop.info.width}w.webp`
+    : `${stem}.webp`;
+  const bucket = supabase.storage.from(BLOG_STORAGE_BUCKET);
+  const upload = (path: string, bytes: Buffer) => bucket.upload(path, bytes, {
+    contentType: "image/webp",
+    upsert: false,
+  });
+
+  if (hasMobile) {
+    const { error } = await upload(mobilePath, mobile.data);
+    if (error) {
+      throw new AdminBlogMutationError(`Unable to upload the cover image: ${error.message}`, 503);
+    }
+  }
+  const { error } = await upload(storagePath, desktop.data);
+  if (error) {
+    if (hasMobile) await bucket.remove([mobilePath]);
+    throw new AdminBlogMutationError(`Unable to upload the cover image: ${error.message}`, 503);
+  }
+
+  return bucket.getPublicUrl(storagePath).data.publicUrl;
 }
 
 async function getAdminBlogById(supabase: SupabaseClient, blogId: string) {

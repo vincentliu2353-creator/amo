@@ -10,18 +10,19 @@ import { FeaturedProductShowcaseSection } from "@/components/products/featured-p
 import { getPublishedBlogs } from "@/lib/supabase/blogs";
 import { getProductsPageShowcaseCatalog } from "@/lib/supabase/products";
 import type { ProductShowcaseProduct, PublicBlogRecord } from "@/types";
-import applicationExhibition from "@/public/images/home/applications/exhibition.webp";
-import applicationHotel from "@/public/images/home/applications/hotel.webp";
-import applicationMuseum from "@/public/images/home/applications/museum.webp";
-import applicationOffice from "@/public/images/home/applications/office.webp";
-import applicationPremiumGifts from "@/public/images/home/applications/premium-gifts.webp";
-import applicationRetail from "@/public/images/home/applications/retail.webp";
-import futureArtObject from "@/public/images/home/future-objects/art-object.webp";
-import futureBrandInstallation from "@/public/images/home/future-objects/brand-installation.webp";
-import futureClock from "@/public/images/home/future-objects/clock.webp";
-import futureDisplayBase from "@/public/images/home/future-objects/display-base.webp";
-import futureLamp from "@/public/images/home/future-objects/lamp.webp";
-import futureOemModule from "@/public/images/home/future-objects/oem-module.webp";
+
+const applicationExhibition = "/images/home/applications/exhibition.webp";
+const applicationHotel = "/images/home/applications/hotel.webp";
+const applicationMuseum = "/images/home/applications/museum.webp";
+const applicationOffice = "/images/home/applications/office.webp";
+const applicationPremiumGifts = "/images/home/applications/premium-gifts.webp";
+const applicationRetail = "/images/home/applications/retail.webp";
+const futureArtObject = "/images/home/future-objects/art-object.webp";
+const futureBrandInstallation = "/images/home/future-objects/brand-installation.webp";
+const futureClock = "/images/home/future-objects/clock.webp";
+const futureDisplayBase = "/images/home/future-objects/display-base.webp";
+const futureLamp = "/images/home/future-objects/lamp.webp";
+const futureOemModule = "/images/home/future-objects/oem-module.webp";
 
 const categories = [
   {

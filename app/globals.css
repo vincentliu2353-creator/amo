@@ -167,3 +167,78 @@ h4 {
     transition-duration: 0.01ms !important;
   }
 }
+
+@page {
+  size: 16in 9in;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0 !important;
+    background: #000 !important;
+  }
+
+  body {
+    min-height: auto !important;
+  }
+
+  .sales-deck-page {
+    padding: 0 !important;
+    background: #000 !important;
+  }
+
+  .company-deck-page {
+    padding: 0 !important;
+    background: #000 !important;
+  }
+
+  .sales-deck-screen-note {
+    display: none !important;
+  }
+
+  .sales-deck-slide-shell {
+    min-height: 0 !important;
+    padding: 0 !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .sales-deck-slide-shell:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .sales-deck-slide {
+    width: 16in !important;
+    height: 9in !important;
+    max-width: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .company-deck-shell {
+    min-height: 0 !important;
+    padding: 0 !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .company-deck-shell:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .company-deck-slide {
+    width: 16in !important;
+    height: 9in !important;
+    max-width: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+}

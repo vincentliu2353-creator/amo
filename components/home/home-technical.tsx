@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 import { useState } from "react";
 
 import { ScrollReveal } from "@/components/home/home-scroll";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
-import technologyBackground from "@/public/images/home/technology/technology-bg.webp";
+const technologyBackground = "/images/home/technology/technology-bg.webp";
 
 const TECHNOLOGY_BACKGROUND_ALT =
   "Magnetic levitation technology scene showing a floating object in a dark precision-engineered environment";

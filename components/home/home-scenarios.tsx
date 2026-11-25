@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "@/components/ui/responsive-image";
 import { useState } from "react";
 
 import { Container } from "@/components/ui/container";
@@ -11,7 +11,7 @@ interface ScenarioItem {
   blurb: string;
   caption: string;
   imageAlt: string;
-  imageSrc: StaticImageData;
+  imageSrc: string;
   title: string;
 }
 

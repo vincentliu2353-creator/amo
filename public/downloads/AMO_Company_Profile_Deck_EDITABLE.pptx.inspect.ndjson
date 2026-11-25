@@ -1,0 +1,701 @@
+{"kind":"deck","id":"pr/n8zppj","name":"Deck"}
+{"kind":"layout","layoutId":"a98bd42b-46f4-4755-8460-7c45aaa62c21","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"62e55206-b32a-4772-b87c-c2e02f89458b","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/auzabu","slide":1,"title":"01 / 30","textShapes":3}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":1,"text":"01 / 30","textPreview":"01 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":1,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":1,"text":"Magnetic Levitation","textPreview":"Magnetic Levitation","textChars":19,"textLines":1,"bbox":[450,348,380,22]}
+{"kind":"image","id":"im/j6tovaho","slide":1,"name":"","alt":"amo-logo-white.png","bbox":[540,292,200,36]}
+{"kind":"notes","id":"nt/auzabu","slide":1,"text":""}
+{"kind":"slide","id":"sl/0d25xv","slide":2,"title":"AMO COMPANY PROFILE DECK","textShapes":12}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":2,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":2,"text":"02 / 30","textPreview":"02 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":2,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/7u54zido","slide":2,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":2,"text":"OPENING","textPreview":"OPENING","textChars":7,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":2,"text":"Magnetic Levitation for Future Spaces","textPreview":"Magnetic Levitation for Future Spaces","textChars":37,"textLines":1,"bbox":[58,108,456,120]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":2,"text":"Custom floating display systems for premium retail, hospitality, gifting, exhibitions, and OEM product development.","textPreview":"Custom floating display systems for premium retail, hospitality, gifting, exhibitions, and OEM product development.","textChars":115,"textLines":1,"bbox":[58,214,456,70]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":2,"text":"AMO creates magnetic levitation products that turn ordinary objects into spatial focal points.","textPreview":"AMO creates magnetic levitation products that turn ordinary objects into spatial focal points.","textChars":94,"textLines":1,"bbox":[58,286,456,90]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":2,"bbox":[58,322,72,28]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":2,"text":"Retail","textPreview":"Retail","textChars":6,"textLines":1,"bbox":[58,328,72,28]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":2,"bbox":[138,322,98,28]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":2,"text":"Hospitality","textPreview":"Hospitality","textChars":11,"textLines":1,"bbox":[138,328,98,28]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":2,"bbox":[244,322,110,28]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":2,"text":"Premium Gifts","textPreview":"Premium Gifts","textChars":13,"textLines":1,"bbox":[244,328,110,28]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":2,"bbox":[362,322,92,28]}
+{"kind":"textbox","id":"sh/obm58z25","slide":2,"text":"Exhibitions","textPreview":"Exhibitions","textChars":11,"textLines":1,"bbox":[362,328,92,28]}
+{"kind":"shape","id":"sh/zupwb2hw","slide":2,"bbox":[462,322,132,28]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":2,"text":"OEM Development","textPreview":"OEM Development","textChars":15,"textLines":1,"bbox":[462,328,132,28]}
+{"kind":"shape","id":"sh/eloj2t83","slide":2,"bbox":[676,96,488,530]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":2,"bbox":[1178,96,38,530]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":2,"bbox":[1188,146,18,0.1]}
+{"kind":"shape","id":"sh/ed8bat47","slide":2,"bbox":[1188,576,18,0.1]}
+{"kind":"image","id":"im/29gr2p8n","slide":2,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/s72x4nap","slide":2,"name":"","alt":"oem-hero.webp","bbox":[676,96,488,530]}
+{"kind":"notes","id":"nt/0d25xv","slide":2,"text":""}
+{"kind":"slide","id":"sl/0g27p8","slide":3,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"textbox","id":"sh/val87ed8","slide":3,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":3,"text":"03 / 30","textPreview":"03 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":3,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":3,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/vixczed8","slide":3,"text":"PROBLEM INSIGHT","textPreview":"PROBLEM INSIGHT","textChars":15,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":3,"text":"The Problem with Static Display","textPreview":"The Problem with Static Display","textChars":31,"textLines":1,"bbox":[58,108,340,120]}
+{"kind":"textbox","id":"sh/d0z61032","slide":3,"text":"Premium products are often presented in the same way as ordinary products.","textPreview":"Premium products are often presented in the same way as ordinary products.","textChars":74,"textLines":1,"bbox":[58,214,340,70]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":3,"text":"Shelves, counters, and standard stands show the object, but they rarely create a moment. In crowded retail, exhibitions, and launch environments, attention disappears quickly.","textPreview":"Shelves, counters, and standard stands show the object, but they rarely create a moment. In crowded retail, exhibitions, and launch envir...","textChars":175,"textLines":1,"bbox":[58,286,340,90]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":3,"bbox":[456,94,760,386]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":3,"bbox":[456,514,360,84]}
+{"kind":"shape","id":"sh/9cvixcze","slide":3,"bbox":[472,526,28,0.1]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":3,"text":"Typical Scene","textPreview":"Typical Scene","textChars":13,"textLines":1,"bbox":[472,538,328,22]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":3,"text":"Standard shelf, standard counter, standard sightline.","textPreview":"Standard shelf, standard counter, standard sightline.","textChars":53,"textLines":1,"bbox":[472,558,328,40]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":3,"bbox":[856,514,360,84]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":3,"bbox":[872,526,28,0.1]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":3,"text":"Result","textPreview":"Result","textChars":6,"textLines":1,"bbox":[872,538,328,22]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":3,"text":"The object is present, but the brand moment never happens.","textPreview":"The object is present, but the brand moment never happens.","textChars":58,"textLines":1,"bbox":[872,558,328,40]}
+{"kind":"image","id":"im/1kre1w7m","slide":3,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/w7mp0bi9","slide":3,"name":"","alt":"before-standard-display.webp","bbox":[456,94,760,386]}
+{"kind":"notes","id":"nt/0g27p8","slide":3,"text":""}
+{"kind":"slide","id":"sl/s9vbcn","slide":4,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"shape","id":"sh/qxs72x4n","slide":4,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":4,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":4,"text":"04 / 30","textPreview":"04 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":4,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":4,"bbox":[58,96,40,0.1]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":4,"text":"ATTENTION","textPreview":"ATTENTION","textChars":9,"textLines":1,"bbox":[110,88,220,16]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":4,"text":"A New Way to Hold Attention","textPreview":"A New Way to Hold Attention","textChars":27,"textLines":1,"bbox":[58,114,432,120]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":4,"text":"Levitation adds movement, silence, distance, and focus.","textPreview":"Levitation adds movement, silence, distance, and focus.","textChars":55,"textLines":1,"bbox":[58,220,432,70]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":4,"text":"When an object floats, people stop. The display becomes less like a stand and more like a controlled brand moment.","textPreview":"When an object floats, people stop. The display becomes less like a stand and more like a controlled brand moment.","textChars":114,"textLines":1,"bbox":[58,292,432,90]}
+{"kind":"shape","id":"sh/r65wjudg","slide":4,"bbox":[58,560,208,84]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":4,"bbox":[74,572,28,0.1]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":4,"text":"Visual Effect","textPreview":"Visual Effect","textChars":13,"textLines":1,"bbox":[74,584,176,22]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":4,"text":"One object. One field of focus. Less noise around it.","textPreview":"One object. One field of focus. Less noise around it.","textChars":53,"textLines":1,"bbox":[74,604,176,40]}
+{"kind":"shape","id":"sh/nih4byhg","slide":4,"bbox":[988,560,228,84]}
+{"kind":"shape","id":"sh/yxobm58z","slide":4,"bbox":[1004,572,28,0.1]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":4,"text":"Brand Impact","textPreview":"Brand Impact","textChars":12,"textLines":1,"bbox":[1004,584,196,22]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":4,"text":"The presentation becomes part of the value perception.","textPreview":"The presentation becomes part of the value perception.","textChars":54,"textLines":1,"bbox":[1004,604,196,40]}
+{"kind":"image","id":"im/8v6psfil","slide":4,"name":"","alt":"display-base.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/qpg3ex0n","slide":4,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/s9vbcn","slide":4,"text":""}
+{"kind":"slide","id":"sl/qpquko","slide":5,"title":"AMO COMPANY PROFILE DECK","textShapes":5}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":5,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/wval87ed","slide":5,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":5,"text":"05 / 30","textPreview":"05 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":5,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/7adsji5s","slide":5,"bbox":[58,150,44,0.1]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":5,"text":"Levitation is not a feature.\nIt is a new way to present value.","textPreview":"Levitation is not a feature. | It is a new way to present value.","textChars":62,"textLines":2,"bbox":[58,170,620,160]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":5,"text":"AMO uses magnetic levitation as a design language for future retail, premium gifting, and spatial brand experiences.","textPreview":"AMO uses magnetic levitation as a design language for future retail, premium gifting, and spatial brand experiences.","textChars":116,"textLines":1,"bbox":[58,340,470,60]}
+{"kind":"image","id":"im/0z61032l","slide":5,"name":"","alt":"about-ch05-magnetic-field.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/itgfmlkj","slide":5,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/qpquko","slide":5,"text":""}
+{"kind":"slide","id":"sl/9if369","slide":6,"title":"AMO COMPANY PROFILE DECK","textShapes":10}
+{"kind":"textbox","id":"sh/d8bat47y","slide":6,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/knih4byh","slide":6,"text":"06 / 30","textPreview":"06 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/vu9knih4","slide":6,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":6,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/d0z61032","slide":6,"text":"COMPANY PROFILE","textPreview":"COMPANY PROFILE","textChars":15,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":6,"text":"AMO is a B2B magnetic levitation product and OEM / ODM solution company.","textPreview":"AMO is a B2B magnetic levitation product and OEM / ODM solution company.","textChars":72,"textLines":1,"bbox":[58,108,386,120]}
+{"kind":"textbox","id":"sh/vixczed8","slide":6,"text":"We design and manufacture floating display products, levitating lamps, magnetic display bases, OEM modules, premium gifts, and custom levitation systems for commercial environments.","textPreview":"We design and manufacture floating display products, levitating lamps, magnetic display bases, OEM modules, premium gifts, and custom lev...","textChars":181,"textLines":1,"bbox":[58,286,386,90]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":6,"bbox":[58,492,332,84]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":6,"bbox":[74,504,28,0.1]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":6,"text":"Business Role","textPreview":"Business Role","textChars":13,"textLines":1,"bbox":[74,516,300,22]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":6,"text":"Manufacturer-direct support for buyers, studios, distributors, and commercial project teams.","textPreview":"Manufacturer-direct support for buyers, studios, distributors, and commercial project teams.","textChars":92,"textLines":1,"bbox":[74,536,300,40]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":6,"bbox":[58,592,332,84]}
+{"kind":"shape","id":"sh/g7adsji5","slide":6,"bbox":[74,604,28,0.1]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":6,"text":"Project Lens","textPreview":"Project Lens","textChars":12,"textLines":1,"bbox":[74,616,300,22]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":6,"text":"Presentation logic, engineering stability, and delivery readiness are developed together.","textPreview":"Presentation logic, engineering stability, and delivery readiness are developed together.","textChars":89,"textLines":1,"bbox":[74,636,300,40]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":6,"bbox":[520,96,690,392]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":6,"bbox":[520,522,334,162]}
+{"kind":"shape","id":"sh/0fepkzup","slide":6,"bbox":[876,522,334,162]}
+{"kind":"image","id":"im/jm1cfa9w","slide":6,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/vixczed8","slide":6,"name":"","alt":"development-capability.webp","bbox":[520,96,690,392]}
+{"kind":"image","id":"im/ex0nuxc3","slide":6,"name":"","alt":"about-ch04-metal-surface.webp","bbox":[520,522,334,162]}
+{"kind":"image","id":"im/w3m94fu1","slide":6,"name":"","alt":"about-ch04-precision-edge.webp","bbox":[876,522,334,162]}
+{"kind":"notes","id":"nt/9if369","slide":6,"text":""}
+{"kind":"slide","id":"sl/pzgmxj","slide":7,"title":"AMO COMPANY PROFILE DECK","textShapes":13}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":7,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":7,"text":"07 / 30","textPreview":"07 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":7,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":7,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":7,"text":"BUSINESS STRUCTURE","textPreview":"BUSINESS STRUCTURE","textChars":18,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":7,"text":"Global Business Structure","textPreview":"Global Business Structure","textChars":25,"textLines":1,"bbox":[58,108,520,120]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":7,"text":"Business liaison in Hong Kong. Production capability in Shenzhen. Service for international B2B projects.","textPreview":"Business liaison in Hong Kong. Production capability in Shenzhen. Service for international B2B projects.","textChars":105,"textLines":1,"bbox":[58,214,520,70]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":7,"text":"AMO supports global brands, distributors, design studios, retail display partners, and project-based buyers with design, engineering, sampling, production, and delivery coordination.","textPreview":"AMO supports global brands, distributors, design studios, retail display partners, and project-based buyers with design, engineering, sam...","textChars":182,"textLines":1,"bbox":[58,286,520,90]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":7,"bbox":[214,446,794,0.1]}
+{"kind":"shape","id":"sh/lwval87e","slide":7,"bbox":[184,504,854,0.1]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":7,"bbox":[244,562,734,0.1]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":7,"bbox":[299,499,10,10]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":7,"bbox":[304,434,0.1,54]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":7,"text":"Hong Kong","textPreview":"Hong Kong","textChars":9,"textLines":1,"bbox":[194,378,220,26]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":7,"text":"Commercial contact, international communication, and project coordination.","textPreview":"Commercial contact, international communication, and project coordination.","textChars":74,"textLines":1,"bbox":[176,412,256,56]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":7,"bbox":[607,499,10,10]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":7,"bbox":[612,434,0.1,54]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":7,"text":"Shenzhen","textPreview":"Shenzhen","textChars":8,"textLines":1,"bbox":[502,378,220,26]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":7,"text":"Engineering follow-through, production planning, assembly control, and manufacturing execution.","textPreview":"Engineering follow-through, production planning, assembly control, and manufacturing execution.","textChars":95,"textLines":1,"bbox":[484,412,256,56]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":7,"bbox":[913,499,10,10]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":7,"bbox":[918,434,0.1,54]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":7,"text":"Global Delivery","textPreview":"Global Delivery","textChars":15,"textLines":1,"bbox":[808,378,220,26]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":7,"text":"Sampling, packaging, export coordination, and delivery support for international programs.","textPreview":"Sampling, packaging, export coordination, and delivery support for international programs.","textChars":90,"textLines":1,"bbox":[790,412,256,56]}
+{"kind":"image","id":"im/ji5snelo","slide":7,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/pzgmxj","slide":7,"text":""}
+{"kind":"slide","id":"sl/bjqzj5","slide":8,"title":"AMO COMPANY PROFILE DECK","textShapes":13}
+{"kind":"textbox","id":"sh/fyxobm58","slide":8,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":8,"text":"08 / 30","textPreview":"08 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":8,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/8v6psfil","slide":8,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":8,"text":"COOPERATION MODEL","textPreview":"COOPERATION MODEL","textChars":17,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":8,"text":"Business Model","textPreview":"Business Model","textChars":14,"textLines":1,"bbox":[58,108,540,120]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":8,"text":"Finished Products. OEM Development. ODM Collaboration.","textPreview":"Finished Products. OEM Development. ODM Collaboration.","textChars":54,"textLines":1,"bbox":[58,214,540,70]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":8,"text":"AMO supports three levels of cooperation for buyers with different timing, complexity, and customization depth.","textPreview":"AMO supports three levels of cooperation for buyers with different timing, complexity, and customization depth.","textChars":111,"textLines":1,"bbox":[58,286,540,90]}
+{"kind":"shape","id":"sh/a9w3m94f","slide":8,"bbox":[58,264,356,410]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":8,"text":"Finished Products","textPreview":"Finished Products","textChars":17,"textLines":1,"bbox":[80,288,312,40]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":8,"text":"Finished magnetic levitation products ready for distributors and commercial buyers who want a premium category already resolved.","textPreview":"Finished magnetic levitation products ready for distributors and commercial buyers who want a premium category already resolved.","textChars":128,"textLines":1,"bbox":[80,336,312,108]}
+{"kind":"shape","id":"sh/al87ed8b","slide":8,"bbox":[446,264,356,410]}
+{"kind":"textbox","id":"sh/z61032ls","slide":8,"text":"OEM Development","textPreview":"OEM Development","textChars":15,"textLines":1,"bbox":[468,288,312,40]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":8,"text":"OEM customization based on existing AMO product platforms, tuned around branding, packaging, finish, lighting, and use case.","textPreview":"OEM customization based on existing AMO product platforms, tuned around branding, packaging, finish, lighting, and use case.","textChars":124,"textLines":1,"bbox":[468,336,312,108]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":8,"bbox":[834,264,356,410]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":8,"text":"ODM Collaboration","textPreview":"ODM Collaboration","textChars":17,"textLines":1,"bbox":[856,288,312,40]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":8,"text":"ODM collaboration for new floating concepts that need product definition, engineering logic, prototype validation, and manufacturing planning.","textPreview":"ODM collaboration for new floating concepts that need product definition, engineering logic, prototype validation, and manufacturing plan...","textChars":142,"textLines":1,"bbox":[856,336,312,108]}
+{"kind":"image","id":"im/9gr2p8nq","slide":8,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/qpg3ex0n","slide":8,"name":"","alt":"clock.webp","bbox":[80,456,312,186]}
+{"kind":"image","id":"im/qd4vmtwr","slide":8,"name":"","alt":"custom-branding.webp","bbox":[468,456,312,186]}
+{"kind":"image","id":"im/x0nuxc3y","slide":8,"name":"","alt":"oem-module.webp","bbox":[856,456,312,186]}
+{"kind":"notes","id":"nt/bjqzj5","slide":8,"text":""}
+{"kind":"slide","id":"sl/dc3acz","slide":9,"title":"AMO COMPANY PROFILE DECK","textShapes":13}
+{"kind":"shape","id":"sh/d4vmtwra","slide":9,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":9,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/61032lsz","slide":9,"text":"09 / 30","textPreview":"09 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":9,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":9,"bbox":[0,0,560,720]}
+{"kind":"shape","id":"sh/vahoza1g","slide":9,"bbox":[58,104,40,0.1]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":9,"text":"AUDIENCE","textPreview":"AUDIENCE","textChars":8,"textLines":1,"bbox":[110,96,220,16]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":9,"text":"Who We Serve","textPreview":"Who We Serve","textChars":12,"textLines":1,"bbox":[58,122,358,120]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":9,"text":"Built for partners who need premium product presentation.","textPreview":"Built for partners who need premium product presentation.","textChars":57,"textLines":1,"bbox":[58,300,358,90]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":9,"text":"Buyers come to AMO when the object needs to feel more visible, more valuable, and more intentional inside a space.","textPreview":"Buyers come to AMO when the object needs to feel more visible, more valuable, and more intentional inside a space.","textChars":114,"textLines":1,"bbox":[58,278,332,80]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":9,"text":"Brands","textPreview":"Brands","textChars":6,"textLines":1,"bbox":[752,132,378,34]}
+{"kind":"shape","id":"sh/crmhk3q5","slide":9,"bbox":[752,174,396,0.1]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":9,"text":"Design Studios","textPreview":"Design Studios","textChars":14,"textLines":1,"bbox":[752,204,378,34]}
+{"kind":"shape","id":"sh/ulwval87","slide":9,"bbox":[752,246,396,0.1]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":9,"text":"Retail Display Partners","textPreview":"Retail Display Partners","textChars":23,"textLines":1,"bbox":[752,276,378,34]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":9,"bbox":[752,318,396,0.1]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":9,"text":"Event & Exhibition Agencies","textPreview":"Event & Exhibition Agencies","textChars":27,"textLines":1,"bbox":[752,348,378,34]}
+{"kind":"shape","id":"sh/1032lszq","slide":9,"bbox":[752,390,396,0.1]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":9,"text":"Premium Gift Companies","textPreview":"Premium Gift Companies","textChars":22,"textLines":1,"bbox":[752,420,378,34]}
+{"kind":"shape","id":"sh/judg7ads","slide":9,"bbox":[752,462,396,0.1]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":9,"text":"Distributors","textPreview":"Distributors","textChars":12,"textLines":1,"bbox":[752,492,378,34]}
+{"kind":"shape","id":"sh/1orytsvu","slide":9,"bbox":[752,534,396,0.1]}
+{"kind":"image","id":"im/zidonyd0","slide":9,"name":"","alt":"space-office.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/hoza1gvy","slide":9,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/dc3acz","slide":9,"text":""}
+{"kind":"slide","id":"sl/ykgl82","slide":10,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":10,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":10,"text":"10 / 30","textPreview":"10 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":10,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/t47y1kre","slide":10,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":10,"text":"TRUST SIGNAL","textPreview":"TRUST SIGNAL","textChars":12,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":10,"text":"Why Clients Choose AMO","textPreview":"Why Clients Choose AMO","textChars":22,"textLines":1,"bbox":[58,108,334,120]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":10,"text":"Design presence, engineering stability, and commercial readiness.","textPreview":"Design presence, engineering stability, and commercial readiness.","textChars":65,"textLines":1,"bbox":[58,214,334,70]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":10,"bbox":[458,110,764,510]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":10,"text":"Design-led Presentation","textPreview":"Design-led Presentation","textChars":23,"textLines":1,"bbox":[486,156,188,28]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":10,"text":"Stable Magnetic Architecture","textPreview":"Stable Magnetic Architecture","textChars":28,"textLines":1,"bbox":[1028,156,170,28]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":10,"text":"OEM / ODM Customization","textPreview":"OEM / ODM Customization","textChars":23,"textLines":1,"bbox":[486,574,170,28]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":10,"text":"Prototype & Sampling Support","textPreview":"Prototype & Sampling Support","textChars":28,"textLines":1,"bbox":[670,574,184,28]}
+{"kind":"textbox","id":"sh/83itgfml","slide":10,"text":"Production & Delivery Coordination","textPreview":"Production & Delivery Coordination","textChars":34,"textLines":1,"bbox":[868,574,238,28]}
+{"kind":"shape","id":"sh/fil0rqd4","slide":10,"bbox":[676,170,86,0.1]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":10,"bbox":[942,170,70,0.1]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":10,"bbox":[650,560,136,0.1]}
+{"kind":"shape","id":"sh/4zidonyd","slide":10,"bbox":[848,560,92,0.1]}
+{"kind":"image","id":"im/sfil0rqd","slide":10,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/29gr2p8n","slide":10,"name":"","alt":"development-capability.webp","bbox":[592,150,430,420]}
+{"kind":"notes","id":"nt/ykgl82","slide":10,"text":""}
+{"kind":"slide","id":"sl/x8x1ea","slide":11,"title":"AMO COMPANY PROFILE DECK","textShapes":15}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":11,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":11,"text":"11 / 30","textPreview":"11 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":11,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":11,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":11,"text":"TECHNICAL CAPABILITY","textPreview":"TECHNICAL CAPABILITY","textChars":20,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":11,"text":"Magnetic Levitation System","textPreview":"Magnetic Levitation System","textChars":26,"textLines":1,"bbox":[58,108,388,120]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":11,"text":"A complete system of object, base, magnetic field, electronics, balance, and presentation.","textPreview":"A complete system of object, base, magnetic field, electronics, balance, and presentation.","textChars":90,"textLines":1,"bbox":[58,214,388,70]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":11,"text":"AMO does not simply place an object above a base. We design the floating behavior, visual rhythm, structure, surface, and commercial use case as one system.","textPreview":"AMO does not simply place an object above a base. We design the floating behavior, visual rhythm, structure, surface, and commercial use ...","textChars":156,"textLines":1,"bbox":[58,286,388,90]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":11,"bbox":[486,100,736,358]}
+{"kind":"shape","id":"sh/fepkzupw","slide":11,"bbox":[486,494,176,144]}
+{"kind":"shape","id":"sh/mtwra5gb","slide":11,"bbox":[502,506,28,0.1]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":11,"text":"Object","textPreview":"Object","textChars":6,"textLines":1,"bbox":[502,518,144,22]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":11,"text":"The floating object is tuned as part of the field, not treated as decoration added later.","textPreview":"The floating object is tuned as part of the field, not treated as decoration added later.","textChars":89,"textLines":1,"bbox":[502,538,144,100]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":11,"bbox":[670,494,176,144]}
+{"kind":"shape","id":"sh/mlkjm1cf","slide":11,"bbox":[686,506,28,0.1]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":11,"text":"Base","textPreview":"Base","textChars":4,"textLines":1,"bbox":[686,518,144,22]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":11,"text":"The base controls lift, balance, power behavior, and surface language at the same time.","textPreview":"The base controls lift, balance, power behavior, and surface language at the same time.","textChars":87,"textLines":1,"bbox":[686,538,144,100]}
+{"kind":"shape","id":"sh/4nap4r65","slide":11,"bbox":[854,494,176,144]}
+{"kind":"shape","id":"sh/t83itgfm","slide":11,"bbox":[870,506,28,0.1]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":11,"text":"Control","textPreview":"Control","textChars":7,"textLines":1,"bbox":[870,518,144,22]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":11,"text":"Electronics and magnetic control define how calm, stable, and repeatable the motion feels.","textPreview":"Electronics and magnetic control define how calm, stable, and repeatable the motion feels.","textChars":90,"textLines":1,"bbox":[870,538,144,100]}
+{"kind":"shape","id":"sh/4byhgn29","slide":11,"bbox":[1038,494,176,144]}
+{"kind":"shape","id":"sh/twra5gbq","slide":11,"bbox":[1054,506,28,0.1]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":11,"text":"Presentation","textPreview":"Presentation","textChars":12,"textLines":1,"bbox":[1054,518,144,22]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":11,"text":"Presentation intent shapes height, rotation, proportion, and the way attention is directed.","textPreview":"Presentation intent shapes height, rotation, proportion, and the way attention is directed.","textChars":91,"textLines":1,"bbox":[1054,538,144,100]}
+{"kind":"image","id":"im/czed8v6p","slide":11,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/fil0rqd4","slide":11,"name":"","alt":"oem-module.webp","bbox":[486,100,736,358]}
+{"kind":"notes","id":"nt/x8x1ea","slide":11,"text":""}
+{"kind":"slide","id":"sl/wdie6r","slide":12,"title":"AMO COMPANY PROFILE DECK","textShapes":13}
+{"kind":"textbox","id":"sh/ulwval87","slide":12,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":12,"text":"12 / 30","textPreview":"12 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":12,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":12,"bbox":[58,108,540,520]}
+{"kind":"shape","id":"sh/ji5snelo","slide":12,"bbox":[664,112,40,0.1]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":12,"text":"ENGINEERING DETAIL","textPreview":"ENGINEERING DETAIL","textChars":18,"textLines":1,"bbox":[716,104,220,16]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":12,"text":"Stable Levitation","textPreview":"Stable Levitation","textChars":17,"textLines":1,"bbox":[664,130,520,120]}
+{"kind":"textbox","id":"sh/d0z61032","slide":12,"text":"Controlled balance for long-term visual presentation.","textPreview":"Controlled balance for long-term visual presentation.","textChars":53,"textLines":1,"bbox":[664,236,520,70]}
+{"kind":"textbox","id":"sh/kf6dcbul","slide":12,"text":"Stability depends on magnetic tuning, object weight, center of gravity, base structure, and environmental use. AMO evaluates these factors during engineering and prototype development.","textPreview":"Stability depends on magnetic tuning, object weight, center of gravity, base structure, and environmental use. AMO evaluates these factor...","textChars":184,"textLines":1,"bbox":[664,308,520,90]}
+{"kind":"shape","id":"sh/vu9knih4","slide":12,"bbox":[664,378,18,0.1]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":12,"text":"Balance","textPreview":"Balance","textChars":7,"textLines":1,"bbox":[692,366,220,18]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":12,"text":"How the object sits inside the field without wandering or visual tension.","textPreview":"How the object sits inside the field without wandering or visual tension.","textChars":73,"textLines":1,"bbox":[692,388,444,48]}
+{"kind":"shape","id":"sh/knih4byh","slide":12,"bbox":[664,466,18,0.1]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":12,"text":"Center of Gravity","textPreview":"Center of Gravity","textChars":17,"textLines":1,"bbox":[692,454,220,18]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":12,"text":"Where weight is carried and how that influences the floating attitude.","textPreview":"Where weight is carried and how that influences the floating attitude.","textChars":70,"textLines":1,"bbox":[692,476,444,48]}
+{"kind":"shape","id":"sh/dcbulwva","slide":12,"bbox":[664,554,18,0.1]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":12,"text":"Magnetic Control","textPreview":"Magnetic Control","textChars":16,"textLines":1,"bbox":[692,542,220,18]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":12,"text":"How electronics and field tuning keep the experience calm and repeatable.","textPreview":"How electronics and field tuning keep the experience calm and repeatable.","textChars":73,"textLines":1,"bbox":[692,564,444,48]}
+{"kind":"image","id":"im/w3m94fu1","slide":12,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/3q5o7qpg","slide":12,"name":"","alt":"oem-hero.webp","bbox":[58,108,540,520]}
+{"kind":"notes","id":"nt/wdie6r","slide":12,"text":""}
+{"kind":"slide","id":"sl/76sv22","slide":13,"title":"AMO COMPANY PROFILE DECK","textShapes":10}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":13,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":13,"text":"13 / 30","textPreview":"13 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":13,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":13,"bbox":[58,104,40,0.1]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":13,"text":"MOTION","textPreview":"MOTION","textChars":6,"textLines":1,"bbox":[110,96,220,16]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":13,"text":"360°–720° Rotation","textPreview":"360°–720° Rotation","textChars":18,"textLines":1,"bbox":[58,122,406,120]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":13,"text":"Rotation is useful for retail counters, exhibitions, windows, and product launch displays where the object needs to be seen continuously without manual interaction.","textPreview":"Rotation is useful for retail counters, exhibitions, windows, and product launch displays where the object needs to be seen continuously ...","textChars":164,"textLines":1,"bbox":[58,228,406,70]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":13,"text":"Movement helps the object become visible from every angle.","textPreview":"Movement helps the object become visible from every angle.","textChars":58,"textLines":1,"bbox":[58,300,406,90]}
+{"kind":"shape","id":"sh/0z61032l","slide":13,"bbox":[58,314,124,28]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":13,"text":"Retail Counters","textPreview":"Retail Counters","textChars":15,"textLines":1,"bbox":[58,320,124,28]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":13,"bbox":[190,314,126,28]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":13,"text":"Launch Displays","textPreview":"Launch Displays","textChars":15,"textLines":1,"bbox":[190,320,126,28]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":13,"bbox":[324,314,140,28]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":13,"text":"Exhibition Viewing","textPreview":"Exhibition Viewing","textChars":18,"textLines":1,"bbox":[324,320,140,28]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":13,"bbox":[516,108,706,520]}
+{"kind":"shape","id":"sh/72x4nap4","slide":13,"bbox":[694,176,380,380]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":13,"bbox":[736,218,294,294]}
+{"kind":"image","id":"im/zed8v6ps","slide":13,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/itgfmlkj","slide":13,"name":"","alt":"clock.webp","bbox":[686,206,400,320]}
+{"kind":"notes","id":"nt/76sv22","slide":13,"text":""}
+{"kind":"slide","id":"sl/0hrw2w","slide":14,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"shape","id":"sh/5gbq1ory","slide":14,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":14,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":14,"text":"14 / 30","textPreview":"14 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/54zidony","slide":14,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/cj6tovah","slide":14,"bbox":[58,102,40,0.1]}
+{"kind":"textbox","id":"sh/judg7ads","slide":14,"text":"ATMOSPHERE","textPreview":"ATMOSPHERE","textChars":10,"textLines":1,"bbox":[110,94,220,16]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":14,"text":"Silent Operation","textPreview":"Silent Operation","textChars":16,"textLines":1,"bbox":[58,120,420,120]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":14,"text":"Designed for spaces where technology should feel calm.","textPreview":"Designed for spaces where technology should feel calm.","textChars":54,"textLines":1,"bbox":[58,226,420,70]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":14,"text":"AMO products are suitable for premium spaces where the display must attract attention without mechanical noise or visual distraction.","textPreview":"AMO products are suitable for premium spaces where the display must attract attention without mechanical noise or visual distraction.","textChars":133,"textLines":1,"bbox":[58,298,420,90]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":14,"bbox":[58,574,222,84]}
+{"kind":"shape","id":"sh/bm58z25k","slide":14,"bbox":[74,586,28,0.1]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":14,"text":"Best Context","textPreview":"Best Context","textChars":12,"textLines":1,"bbox":[74,598,190,22]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":14,"text":"Hotels, showrooms, suites, lounges, and executive interiors.","textPreview":"Hotels, showrooms, suites, lounges, and executive interiors.","textChars":60,"textLines":1,"bbox":[74,618,190,40]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":14,"bbox":[928,518,268,146]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":14,"text":"Operational Mood","textPreview":"Operational Mood","textChars":16,"textLines":1,"bbox":[948,542,180,18]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":14,"text":"The technology stays in service of the space. Calm acoustics are part of the luxury impression.","textPreview":"The technology stays in service of the space. Calm acoustics are part of the luxury impression.","textChars":95,"textLines":1,"bbox":[948,568,220,70]}
+{"kind":"image","id":"im/b6xkf6dc","slide":14,"name":"","alt":"hotel.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/tcj6tova","slide":14,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/0hrw2w","slide":14,"text":""}
+{"kind":"slide","id":"sl/bzos5r","slide":15,"title":"AMO COMPANY PROFILE DECK","textShapes":10}
+{"kind":"textbox","id":"sh/yd0z6103","slide":15,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":15,"text":"15 / 30","textPreview":"15 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":15,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":15,"bbox":[58,112,40,0.1]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":15,"text":"LOAD LOGIC","textPreview":"LOAD LOGIC","textChars":10,"textLines":1,"bbox":[110,104,220,16]}
+{"kind":"textbox","id":"sh/rmhk3q5o","slide":15,"text":"Load & Balance Engineering","textPreview":"Load & Balance Engineering","textChars":26,"textLines":1,"bbox":[58,130,418,120]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":15,"text":"Every floating object needs its own magnetic logic.","textPreview":"Every floating object needs its own magnetic logic.","textChars":51,"textLines":1,"bbox":[58,236,418,70]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":15,"text":"Weight, volume, shell material, center of gravity, base geometry, and viewing angle all affect the final system. AMO evaluates these variables before prototype development.","textPreview":"Weight, volume, shell material, center of gravity, base geometry, and viewing angle all affect the final system. AMO evaluates these vari...","textChars":172,"textLines":1,"bbox":[58,308,418,90]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":15,"bbox":[548,112,642,500]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":15,"text":"Weight","textPreview":"Weight","textChars":6,"textLines":1,"bbox":[600,144,140,18]}
+{"kind":"shape","id":"sh/upwb2hwf","slide":15,"bbox":[608,168,152,68]}
+{"kind":"textbox","id":"sh/54zidony","slide":15,"text":"Center of Gravity","textPreview":"Center of Gravity","textChars":17,"textLines":1,"bbox":[950,180,140,18]}
+{"kind":"shape","id":"sh/cj6tovah","slide":15,"bbox":[958,204,-10,110]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":15,"text":"Viewing Intent","textPreview":"Viewing Intent","textChars":14,"textLines":1,"bbox":[838,562,140,18]}
+{"kind":"shape","id":"sh/udg7adsj","slide":15,"bbox":[846,586,42,-138]}
+{"kind":"image","id":"im/obm58z25","slide":15,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/nih4byhg","slide":15,"name":"","alt":"floating-display-sculpture-hero.png","bbox":[640,180,428,340]}
+{"kind":"notes","id":"nt/bzos5r","slide":15,"text":""}
+{"kind":"slide","id":"sl/ot4bzl","slide":16,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"textbox","id":"sh/ovahoza1","slide":16,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":16,"text":"16 / 30","textPreview":"16 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":16,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":16,"bbox":[58,100,40,0.1]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":16,"text":"REPEATABILITY","textPreview":"REPEATABILITY","textChars":13,"textLines":1,"bbox":[110,92,220,16]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":16,"text":"Commercial Reliability","textPreview":"Commercial Reliability","textChars":22,"textLines":1,"bbox":[58,118,382,120]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":16,"text":"From visual effect to repeatable use.","textPreview":"From visual effect to repeatable use.","textChars":37,"textLines":1,"bbox":[58,224,382,70]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":16,"text":"Commercial projects require more than a successful demo. AMO focuses on stable performance, component selection, assembly consistency, packaging protection, and quality control before delivery.","textPreview":"Commercial projects require more than a successful demo. AMO focuses on stable performance, component selection, assembly consistency, pa...","textChars":193,"textLines":1,"bbox":[58,296,382,90]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":16,"bbox":[58,324,706,360]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":16,"bbox":[828,226,330,90]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":16,"bbox":[844,238,28,0.1]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":16,"text":"Components","textPreview":"Components","textChars":10,"textLines":1,"bbox":[844,250,298,22]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":16,"bbox":[828,336,330,90]}
+{"kind":"shape","id":"sh/58z25kb6","slide":16,"bbox":[844,348,28,0.1]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":16,"text":"Assembly","textPreview":"Assembly","textChars":8,"textLines":1,"bbox":[844,360,298,22]}
+{"kind":"shape","id":"sh/neloj2t8","slide":16,"bbox":[828,446,330,90]}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":16,"bbox":[844,458,28,0.1]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":16,"text":"QC","textPreview":"QC","textChars":2,"textLines":1,"bbox":[844,470,298,22]}
+{"kind":"shape","id":"sh/vixczed8","slide":16,"bbox":[828,556,330,90]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":16,"bbox":[844,568,28,0.1]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":16,"text":"Packaging","textPreview":"Packaging","textChars":9,"textLines":1,"bbox":[844,580,298,22]}
+{"kind":"image","id":"im/6psfil0r","slide":16,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/dcbulwva","slide":16,"name":"","alt":"about-ch04-metal-surface.webp","bbox":[58,324,706,360]}
+{"kind":"notes","id":"nt/ot4bzl","slide":16,"text":""}
+{"kind":"slide","id":"sl/q5j237","slide":17,"title":"AMO COMPANY PROFILE DECK","textShapes":14}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":17,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":17,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":17,"text":"17 / 30","textPreview":"17 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":17,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":17,"bbox":[58,94,40,0.1]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":17,"text":"OEM CAPABILITY","textPreview":"OEM CAPABILITY","textChars":14,"textLines":1,"bbox":[110,86,220,16]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":17,"text":"OEM / ODM Development","textPreview":"OEM / ODM Development","textChars":21,"textLines":1,"bbox":[58,112,468,120]}
+{"kind":"textbox","id":"sh/032lszqt","slide":17,"text":"From concept to floating product.","textPreview":"From concept to floating product.","textChars":33,"textLines":1,"bbox":[58,218,468,70]}
+{"kind":"textbox","id":"sh/tovahoza","slide":17,"text":"A clear path from project idea to production-ready magnetic levitation product.","textPreview":"A clear path from project idea to production-ready magnetic levitation product.","textChars":79,"textLines":1,"bbox":[58,290,468,90]}
+{"kind":"shape","id":"sh/ixczed8v","slide":17,"bbox":[92,520,1092,0.1]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":17,"bbox":[92,454,124,110]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":17,"text":"Brief","textPreview":"Brief","textChars":5,"textLines":1,"bbox":[102,496,104,24]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":17,"bbox":[248,470,124,94]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":17,"text":"Concept","textPreview":"Concept","textChars":7,"textLines":1,"bbox":[258,506,104,24]}
+{"kind":"shape","id":"sh/bulwval8","slide":17,"bbox":[404,454,124,110]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":17,"text":"Engineering","textPreview":"Engineering","textChars":11,"textLines":1,"bbox":[414,496,104,24]}
+{"kind":"shape","id":"sh/t47y1kre","slide":17,"bbox":[560,470,124,94]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":17,"text":"Prototype","textPreview":"Prototype","textChars":9,"textLines":1,"bbox":[570,506,104,24]}
+{"kind":"shape","id":"sh/83itgfml","slide":17,"bbox":[716,454,124,110]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":17,"text":"Sampling","textPreview":"Sampling","textChars":8,"textLines":1,"bbox":[726,496,104,24]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":17,"bbox":[872,470,124,94]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":17,"text":"Production","textPreview":"Production","textChars":10,"textLines":1,"bbox":[882,506,104,24]}
+{"kind":"shape","id":"sh/4fu18jqh","slide":17,"bbox":[1028,454,124,110]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":17,"text":"Delivery","textPreview":"Delivery","textChars":8,"textLines":1,"bbox":[1038,496,104,24]}
+{"kind":"image","id":"im/vu9knih4","slide":17,"name":"","alt":"oem-module.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/d0z61032","slide":17,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/q5j237","slide":17,"text":""}
+{"kind":"slide","id":"sl/0jalf2","slide":18,"title":"AMO COMPANY PROFILE DECK","textShapes":12}
+{"kind":"textbox","id":"sh/032lszqt","slide":18,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/tovahoza","slide":18,"text":"18 / 30","textPreview":"18 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":18,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/bulwval8","slide":18,"bbox":[58,100,40,0.1]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":18,"text":"VALIDATION","textPreview":"VALIDATION","textChars":10,"textLines":1,"bbox":[110,92,220,16]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":18,"text":"Prototype & Sampling","textPreview":"Prototype & Sampling","textChars":20,"textLines":1,"bbox":[58,118,384,120]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":18,"text":"Before production, the floating behavior must be proven.","textPreview":"Before production, the floating behavior must be proven.","textChars":56,"textLines":1,"bbox":[58,224,384,70]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":18,"text":"The prototype stage validates levitation stability, rotation rhythm, visual proportion, material direction, lighting, user experience, and packaging readiness.","textPreview":"The prototype stage validates levitation stability, rotation rhythm, visual proportion, material direction, lighting, user experience, an...","textChars":159,"textLines":1,"bbox":[58,296,384,90]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":18,"bbox":[58,372,16,0.1]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":18,"text":"Levitation Stability","textPreview":"Levitation Stability","textChars":20,"textLines":1,"bbox":[84,360,236,22]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":18,"bbox":[58,418,16,0.1]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":18,"text":"Rotation Rhythm","textPreview":"Rotation Rhythm","textChars":15,"textLines":1,"bbox":[84,406,236,22]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":18,"bbox":[58,464,16,0.1]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":18,"text":"Material Finish","textPreview":"Material Finish","textChars":15,"textLines":1,"bbox":[84,452,236,22]}
+{"kind":"shape","id":"sh/94fu18jq","slide":18,"bbox":[58,510,16,0.1]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":18,"text":"Lighting Effect","textPreview":"Lighting Effect","textChars":15,"textLines":1,"bbox":[84,498,236,22]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":18,"bbox":[58,556,16,0.1]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":18,"text":"Packaging Readiness","textPreview":"Packaging Readiness","textChars":19,"textLines":1,"bbox":[84,544,236,22]}
+{"kind":"shape","id":"sh/a5gbq1or","slide":18,"bbox":[470,114,520,410]}
+{"kind":"shape","id":"sh/s72x4nap","slide":18,"bbox":[1012,114,196,196]}
+{"kind":"shape","id":"sh/adsji5sn","slide":18,"bbox":[1012,328,196,196]}
+{"kind":"image","id":"im/6hcrmhk3","slide":18,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/0bi9s36h","slide":18,"name":"","alt":"development-capability.webp","bbox":[470,114,520,410]}
+{"kind":"image","id":"im/i5sneloj","slide":18,"name":"","alt":"custom-surface-finish.webp","bbox":[1012,114,196,196]}
+{"kind":"image","id":"im/wjudg7ad","slide":18,"name":"","alt":"custom-packaging.webp","bbox":[1012,328,196,196]}
+{"kind":"notes","id":"nt/0jalf2","slide":18,"text":""}
+{"kind":"slide","id":"sl/jccvh8","slide":19,"title":"AMO COMPANY PROFILE DECK","textShapes":14}
+{"kind":"textbox","id":"sh/neloj2t8","slide":19,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":19,"text":"19 / 30","textPreview":"19 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":19,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/cbulwval","slide":19,"bbox":[58,100,40,0.1]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":19,"text":"CUSTOMIZATION","textPreview":"CUSTOMIZATION","textChars":13,"textLines":1,"bbox":[110,92,220,16]}
+{"kind":"textbox","id":"sh/u54zidon","slide":19,"text":"Customization System","textPreview":"Customization System","textChars":20,"textLines":1,"bbox":[58,118,366,120]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":19,"text":"Designed around the brand, object, and application.","textPreview":"Designed around the brand, object, and application.","textChars":51,"textLines":1,"bbox":[58,224,366,70]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":19,"text":"Customizable elements include object shape, base form, material, finish, logo, lighting, levitation height, rotation, packaging, and OEM module integration.","textPreview":"Customizable elements include object shape, base form, material, finish, logo, lighting, levitation height, rotation, packaging, and OEM ...","textChars":156,"textLines":1,"bbox":[58,296,366,90]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":19,"bbox":[428,108,794,510]}
+{"kind":"textbox","id":"sh/83itgfml","slide":19,"text":"Object","textPreview":"Object","textChars":6,"textLines":1,"bbox":[470,188,128,22]}
+{"kind":"shape","id":"sh/xobm58z2","slide":19,"bbox":[548,200,86,0.1]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":19,"text":"Base","textPreview":"Base","textChars":4,"textLines":1,"bbox":[470,286,128,22]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":19,"bbox":[548,298,86,0.1]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":19,"text":"Finish","textPreview":"Finish","textChars":6,"textLines":1,"bbox":[470,384,128,22]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":19,"bbox":[548,396,86,0.1]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":19,"text":"Lighting","textPreview":"Lighting","textChars":8,"textLines":1,"bbox":[1052,172,138,22]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":19,"bbox":[976,184,64,0.1]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":19,"text":"Logo","textPreview":"Logo","textChars":4,"textLines":1,"bbox":[1052,252,138,22]}
+{"kind":"shape","id":"sh/eloj2t83","slide":19,"bbox":[976,264,64,0.1]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":19,"text":"Packaging","textPreview":"Packaging","textChars":9,"textLines":1,"bbox":[1052,332,138,22]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":19,"bbox":[976,344,64,0.1]}
+{"kind":"textbox","id":"sh/7u54zido","slide":19,"text":"Module","textPreview":"Module","textChars":6,"textLines":1,"bbox":[1052,412,138,22]}
+{"kind":"shape","id":"sh/ed8bat47","slide":19,"bbox":[976,424,64,0.1]}
+{"kind":"image","id":"im/h4byhgn2","slide":19,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/gn29gr2p","slide":19,"name":"","alt":"brand-installation.webp","bbox":[642,166,366,336]}
+{"kind":"notes","id":"nt/jccvh8","slide":19,"text":""}
+{"kind":"slide","id":"sl/3d7co7","slide":20,"title":"AMO COMPANY PROFILE DECK","textShapes":13}
+{"kind":"textbox","id":"sh/cj6tovah","slide":20,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/54zidony","slide":20,"text":"20 / 30","textPreview":"20 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":20,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/nap4r65w","slide":20,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/cvixczed","slide":20,"text":"PRODUCT MATRIX","textPreview":"PRODUCT MATRIX","textChars":14,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":20,"text":"Product Range Overview","textPreview":"Product Range Overview","textChars":22,"textLines":1,"bbox":[58,108,440,120]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":20,"text":"A complete magnetic levitation product ecosystem.","textPreview":"A complete magnetic levitation product ecosystem.","textChars":49,"textLines":1,"bbox":[58,214,440,70]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":20,"bbox":[58,258,410,392]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":20,"bbox":[58,608,410,42]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":20,"text":"Floating Display Bases","textPreview":"Floating Display Bases","textChars":22,"textLines":1,"bbox":[74,620,378,20]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":20,"bbox":[494,258,224,188]}
+{"kind":"shape","id":"sh/idonyd0z","slide":20,"bbox":[494,404,224,42]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":20,"text":"Levitating Clocks","textPreview":"Levitating Clocks","textChars":17,"textLines":1,"bbox":[510,416,192,20]}
+{"kind":"shape","id":"sh/0je9cvix","slide":20,"bbox":[740,258,224,188]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":20,"bbox":[740,404,224,42]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":20,"text":"Levitating Lamps","textPreview":"Levitating Lamps","textChars":16,"textLines":1,"bbox":[756,416,192,20]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":20,"bbox":[986,258,224,188]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":20,"bbox":[986,404,224,42]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":20,"text":"Display Art Objects","textPreview":"Display Art Objects","textChars":19,"textLines":1,"bbox":[1002,416,192,20]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":20,"bbox":[494,462,224,188]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":20,"bbox":[494,608,224,42]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":20,"text":"OEM Maglev Modules","textPreview":"OEM Maglev Modules","textChars":18,"textLines":1,"bbox":[510,620,192,20]}
+{"kind":"shape","id":"sh/zupwb2hw","slide":20,"bbox":[740,462,224,188]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":20,"bbox":[740,608,224,42]}
+{"kind":"textbox","id":"sh/7u54zido","slide":20,"text":"Premium Gifts","textPreview":"Premium Gifts","textChars":13,"textLines":1,"bbox":[756,620,192,20]}
+{"kind":"shape","id":"sh/ed8bat47","slide":20,"bbox":[986,462,224,188]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":20,"bbox":[986,608,224,42]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":20,"text":"Custom Installations","textPreview":"Custom Installations","textChars":20,"textLines":1,"bbox":[1002,620,192,20]}
+{"kind":"image","id":"im/2t83itgf","slide":20,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/crmhk3q5","slide":20,"name":"","alt":"display-base.webp","bbox":[58,258,410,392]}
+{"kind":"image","id":"im/c3ylc7u5","slide":20,"name":"","alt":"clock.webp","bbox":[494,258,224,188]}
+{"kind":"image","id":"im/8bat47y1","slide":20,"name":"","alt":"lamp.webp","bbox":[740,258,224,188]}
+{"kind":"image","id":"im/jm1cfa9w","slide":20,"name":"","alt":"art-object.webp","bbox":[986,258,224,188]}
+{"kind":"image","id":"im/judg7ads","slide":20,"name":"","alt":"oem-module.webp","bbox":[494,462,224,188]}
+{"kind":"image","id":"im/mlkjm1cf","slide":20,"name":"","alt":"premium-gifts.webp","bbox":[740,462,224,188]}
+{"kind":"image","id":"im/mtwra5gb","slide":20,"name":"","alt":"brand-installation.webp","bbox":[986,462,224,188]}
+{"kind":"notes","id":"nt/3d7co7","slide":20,"text":""}
+{"kind":"slide","id":"sl/3c7ph4","slide":21,"title":"AMO COMPANY PROFILE DECK","textShapes":13}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":21,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":21,"text":"21 / 30","textPreview":"21 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":21,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":21,"bbox":[58,92,40,0.1]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":21,"text":"CATEGORY 01","textPreview":"CATEGORY 01","textChars":11,"textLines":1,"bbox":[110,84,220,16]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":21,"text":"Floating Display Bases","textPreview":"Floating Display Bases","textChars":22,"textLines":1,"bbox":[58,110,426,120]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":21,"text":"For hero products, limited editions, retail counters, and exhibition presentation.","textPreview":"For hero products, limited editions, retail counters, and exhibition presentation.","textChars":82,"textLines":1,"bbox":[58,216,426,70]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":21,"text":"Display bases help brands isolate one object and make it the visual center of a counter, window, booth, or presentation table.","textPreview":"Display bases help brands isolate one object and make it the visual center of a counter, window, booth, or presentation table.","textChars":126,"textLines":1,"bbox":[58,288,426,90]}
+{"kind":"shape","id":"sh/9knih4by","slide":21,"bbox":[58,314,82,28]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":21,"text":"Watches","textPreview":"Watches","textChars":7,"textLines":1,"bbox":[58,320,82,28]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":21,"bbox":[148,314,84,28]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":21,"text":"Jewelry","textPreview":"Jewelry","textChars":7,"textLines":1,"bbox":[148,320,84,28]}
+{"kind":"shape","id":"sh/9w3m94fu","slide":21,"bbox":[240,314,96,28]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":21,"text":"Fragrance","textPreview":"Fragrance","textChars":9,"textLines":1,"bbox":[240,320,96,28]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":21,"bbox":[344,314,102,28]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":21,"text":"Collectibles","textPreview":"Collectibles","textChars":12,"textLines":1,"bbox":[344,320,102,28]}
+{"kind":"shape","id":"sh/94fu18jq","slide":21,"bbox":[58,350,76,28]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":21,"text":"Awards","textPreview":"Awards","textChars":6,"textLines":1,"bbox":[58,356,76,28]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":21,"bbox":[142,350,132,28]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":21,"text":"Limited Editions","textPreview":"Limited Editions","textChars":16,"textLines":1,"bbox":[142,356,132,28]}
+{"kind":"shape","id":"sh/ed8bat47","slide":21,"bbox":[58,394,456,288]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":21,"bbox":[578,118,630,180]}
+{"kind":"shape","id":"sh/eloj2t83","slide":21,"bbox":[578,306,630,180]}
+{"kind":"shape","id":"sh/wval87ed","slide":21,"bbox":[578,494,630,180]}
+{"kind":"image","id":"im/kf6dcbul","slide":21,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/cfa9w3m9","slide":21,"name":"","alt":"display-base.webp","bbox":[58,394,456,288]}
+{"kind":"image","id":"im/u18jqh0f","slide":21,"name":"","alt":"space-retail-store.webp","bbox":[578,118,630,180]}
+{"kind":"image","id":"im/c7u54zid","slide":21,"name":"","alt":"retail.webp","bbox":[578,306,630,180]}
+{"kind":"image","id":"im/upwb2hwf","slide":21,"name":"","alt":"application-exhibition.webp","bbox":[578,494,630,180]}
+{"kind":"notes","id":"nt/3c7ph4","slide":21,"text":""}
+{"kind":"slide","id":"sl/0lrcwj","slide":22,"title":"AMO COMPANY PROFILE DECK","textShapes":12}
+{"kind":"shape","id":"sh/nqxs72x4","slide":22,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":22,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":22,"text":"22 / 30","textPreview":"22 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":22,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":22,"bbox":[58,102,40,0.1]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":22,"text":"CATEGORY 02","textPreview":"CATEGORY 02","textChars":11,"textLines":1,"bbox":[110,94,220,16]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":22,"text":"Levitating Lamps","textPreview":"Levitating Lamps","textChars":16,"textLines":1,"bbox":[58,120,440,120]}
+{"kind":"textbox","id":"sh/u54zidon","slide":22,"text":"Floating light objects for hospitality, interiors, and signature spaces.","textPreview":"Floating light objects for hospitality, interiors, and signature spaces.","textChars":72,"textLines":1,"bbox":[58,226,440,70]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":22,"text":"AMO levitating lamps combine light, balance, and movement to create a quiet technological atmosphere in premium environments.","textPreview":"AMO levitating lamps combine light, balance, and movement to create a quiet technological atmosphere in premium environments.","textChars":125,"textLines":1,"bbox":[58,298,440,90]}
+{"kind":"shape","id":"sh/cbulwval","slide":22,"bbox":[58,594,92,28]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":22,"text":"Hotels","textPreview":"Hotels","textChars":6,"textLines":1,"bbox":[58,600,92,28]}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":22,"bbox":[168,594,92,28]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":22,"text":"Lounges","textPreview":"Lounges","textChars":7,"textLines":1,"bbox":[168,600,92,28]}
+{"kind":"shape","id":"sh/czed8v6p","slide":22,"bbox":[278,594,92,28]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":22,"text":"Suites","textPreview":"Suites","textChars":6,"textLines":1,"bbox":[278,600,92,28]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":22,"bbox":[58,628,102,28]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":22,"text":"Showrooms","textPreview":"Showrooms","textChars":9,"textLines":1,"bbox":[58,634,102,28]}
+{"kind":"shape","id":"sh/fyxobm58","slide":22,"bbox":[168,628,92,28]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":22,"text":"Offices","textPreview":"Offices","textChars":7,"textLines":1,"bbox":[168,634,92,28]}
+{"kind":"image","id":"im/pg3ex0nu","slide":22,"name":"","alt":"lamp.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/7adsji5s","slide":22,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/0lrcwj","slide":22,"text":""}
+{"kind":"slide","id":"sl/98wxsz","slide":23,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"textbox","id":"sh/032lszqt","slide":23,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/tovahoza","slide":23,"text":"23 / 30","textPreview":"23 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":23,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/bulwval8","slide":23,"bbox":[478,96,728,544]}
+{"kind":"shape","id":"sh/0fepkzup","slide":23,"bbox":[58,112,40,0.1]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":23,"text":"CATEGORY 03","textPreview":"CATEGORY 03","textChars":11,"textLines":1,"bbox":[110,104,220,16]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":23,"text":"Levitating Clocks","textPreview":"Levitating Clocks","textChars":17,"textLines":1,"bbox":[58,130,336,120]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":23,"text":"Levitating clocks bring time, motion, and spatial presence together for premium interiors, offices, gifts, and design-led product collections.","textPreview":"Levitating clocks bring time, motion, and spatial presence together for premium interiors, offices, gifts, and design-led product collect...","textChars":142,"textLines":1,"bbox":[58,236,336,70]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":23,"text":"Functional objects with a floating visual identity.","textPreview":"Functional objects with a floating visual identity.","textChars":51,"textLines":1,"bbox":[58,308,336,90]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":23,"bbox":[58,544,20,0.1]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":23,"text":"Executive Gifts","textPreview":"Executive Gifts","textChars":15,"textLines":1,"bbox":[88,534,136,18]}
+{"kind":"shape","id":"sh/gvy90je9","slide":23,"bbox":[228,544,20,0.1]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":23,"text":"Office Interiors","textPreview":"Office Interiors","textChars":16,"textLines":1,"bbox":[258,534,136,18]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":23,"bbox":[58,584,20,0.1]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":23,"text":"Design Stores","textPreview":"Design Stores","textChars":13,"textLines":1,"bbox":[88,574,136,18]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":23,"bbox":[228,584,20,0.1]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":23,"text":"Collector Products","textPreview":"Collector Products","textChars":18,"textLines":1,"bbox":[258,574,136,18]}
+{"kind":"image","id":"im/yxobm58z","slide":23,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/lkjm1cfa","slide":23,"name":"","alt":"levitating-clock-hero.png","bbox":[540,132,604,454]}
+{"kind":"notes","id":"nt/98wxsz","slide":23,"text":""}
+{"kind":"slide","id":"sl/mdz9hc","slide":24,"title":"AMO COMPANY PROFILE DECK","textShapes":7}
+{"kind":"shape","id":"sh/al87ed8b","slide":24,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":24,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":24,"text":"24 / 30","textPreview":"24 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":24,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/zupwb2hw","slide":24,"bbox":[710,0,570,720]}
+{"kind":"shape","id":"sh/obm58z25","slide":24,"bbox":[810,168,40,0.1]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":24,"text":"CATEGORY 04","textPreview":"CATEGORY 04","textChars":11,"textLines":1,"bbox":[862,160,220,16]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":24,"text":"Display Art Objects","textPreview":"Display Art Objects","textChars":19,"textLines":1,"bbox":[810,186,394,120]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":24,"text":"Floating objects as sculptural brand language.","textPreview":"Floating objects as sculptural brand language.","textChars":46,"textLines":1,"bbox":[810,292,394,70]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":24,"text":"Suspended objects can become symbolic displays for exhibitions, museums, retail environments, collector spaces, and future-facing brand storytelling.","textPreview":"Suspended objects can become symbolic displays for exhibitions, museums, retail environments, collector spaces, and future-facing brand s...","textChars":149,"textLines":1,"bbox":[810,364,394,90]}
+{"kind":"image","id":"im/cfa9w3m9","slide":24,"name":"","alt":"art-object.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/u9knih4b","slide":24,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/mdz9hc","slide":24,"text":""}
+{"kind":"slide","id":"sl/p0tcl0","slide":25,"title":"AMO COMPANY PROFILE DECK","textShapes":19}
+{"kind":"textbox","id":"sh/u9knih4b","slide":25,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/judg7ads","slide":25,"text":"25 / 30","textPreview":"25 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":25,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/1orytsvu","slide":25,"bbox":[58,100,40,0.1]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":25,"text":"CATEGORY 05","textPreview":"CATEGORY 05","textChars":11,"textLines":1,"bbox":[110,92,220,16]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":25,"text":"OEM Maglev Modules","textPreview":"OEM Maglev Modules","textChars":18,"textLines":1,"bbox":[58,118,392,120]}
+{"kind":"textbox","id":"sh/cvixczed","slide":25,"text":"AMO can support module-based development for partners who need levitation platforms, custom bases, embedded electronics, object integration, or branded product lines.","textPreview":"AMO can support module-based development for partners who need levitation platforms, custom bases, embedded electronics, object integrati...","textChars":166,"textLines":1,"bbox":[58,224,392,70]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":25,"text":"Magnetic systems for private-label and product development programs.","textPreview":"Magnetic systems for private-label and product development programs.","textChars":68,"textLines":1,"bbox":[58,296,392,90]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":25,"bbox":[438,104,784,520]}
+{"kind":"shape","id":"sh/j2t83itg","slide":25,"bbox":[466,134,220,148]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":25,"bbox":[482,146,28,0.1]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":25,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[482,148,40,16]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":25,"text":"Levitation Platform","textPreview":"Levitation Platform","textChars":19,"textLines":1,"bbox":[482,164,188,22]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":25,"text":"Base architecture, magnetic field planning, and presentation scale.","textPreview":"Base architecture, magnetic field planning, and presentation scale.","textChars":67,"textLines":1,"bbox":[482,184,188,104]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":25,"bbox":[466,402,220,148]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":25,"bbox":[482,414,28,0.1]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":25,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[482,416,40,16]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":25,"text":"Control Electronics","textPreview":"Control Electronics","textChars":19,"textLines":1,"bbox":[482,432,188,22]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":25,"text":"Power behavior, load tuning, rotation, and stability logic.","textPreview":"Power behavior, load tuning, rotation, and stability logic.","textChars":59,"textLines":1,"bbox":[482,452,188,104]}
+{"kind":"shape","id":"sh/al87ed8b","slide":25,"bbox":[854,134,220,148]}
+{"kind":"shape","id":"sh/z61032ls","slide":25,"bbox":[870,146,28,0.1]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":25,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[870,148,40,16]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":25,"text":"Object Integration","textPreview":"Object Integration","textChars":18,"textLines":1,"bbox":[870,164,188,22]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":25,"text":"Shell structure, material selection, balance, and brand adaptation.","textPreview":"Shell structure, material selection, balance, and brand adaptation.","textChars":67,"textLines":1,"bbox":[870,184,188,104]}
+{"kind":"shape","id":"sh/zupwb2hw","slide":25,"bbox":[854,402,220,148]}
+{"kind":"shape","id":"sh/obm58z25","slide":25,"bbox":[870,414,28,0.1]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":25,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[870,416,40,16]}
+{"kind":"textbox","id":"sh/7u54zido","slide":25,"text":"Product Line Support","textPreview":"Product Line Support","textChars":20,"textLines":1,"bbox":[870,432,188,22]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":25,"text":"Private-label products, custom bases, and distributor-ready programs.","textPreview":"Private-label products, custom bases, and distributor-ready programs.","textChars":69,"textLines":1,"bbox":[870,452,188,104]}
+{"kind":"image","id":"im/k3q5o7qp","slide":25,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/ji5snelo","slide":25,"name":"","alt":"oem-module.webp","bbox":[662,150,372,380]}
+{"kind":"notes","id":"nt/p0tcl0","slide":25,"text":""}
+{"kind":"slide","id":"sl/vbdrtw","slide":26,"title":"AMO COMPANY PROFILE DECK","textShapes":11}
+{"kind":"textbox","id":"sh/8bat47y1","slide":26,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":26,"text":"26 / 30","textPreview":"26 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":26,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/j2t83itg","slide":26,"bbox":[58,108,610,520]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":26,"bbox":[732,130,40,0.1]}
+{"kind":"textbox","id":"sh/ulwval87","slide":26,"text":"CATEGORY 06","textPreview":"CATEGORY 06","textChars":11,"textLines":1,"bbox":[784,122,220,16]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":26,"text":"Premium Gifts","textPreview":"Premium Gifts","textChars":13,"textLines":1,"bbox":[732,148,470,120]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":26,"text":"Make the gift display-worthy.","textPreview":"Make the gift display-worthy.","textChars":29,"textLines":1,"bbox":[732,254,470,70]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":26,"text":"A floating branded object can become a VIP gift, commemorative product, executive award, collector edition, or launch souvenir that continues to live on a desk, shelf, or display surface.","textPreview":"A floating branded object can become a VIP gift, commemorative product, executive award, collector edition, or launch souvenir that conti...","textChars":187,"textLines":1,"bbox":[732,326,470,90]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":26,"bbox":[732,502,144,28]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":26,"text":"VIP Gifts","textPreview":"VIP Gifts","textChars":9,"textLines":1,"bbox":[732,508,144,28]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":26,"bbox":[892,502,144,28]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":26,"text":"Executive Awards","textPreview":"Executive Awards","textChars":16,"textLines":1,"bbox":[892,508,144,28]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":26,"bbox":[732,538,144,28]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":26,"text":"Collector Editions","textPreview":"Collector Editions","textChars":18,"textLines":1,"bbox":[732,544,144,28]}
+{"kind":"shape","id":"sh/ji5snelo","slide":26,"bbox":[892,538,144,28]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":26,"text":"Launch Souvenirs","textPreview":"Launch Souvenirs","textChars":16,"textLines":1,"bbox":[892,544,144,28]}
+{"kind":"image","id":"im/qh0fepkz","slide":26,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/1w7mp0bi","slide":26,"name":"","alt":"premium-gifts.webp","bbox":[58,108,610,520]}
+{"kind":"notes","id":"nt/vbdrtw","slide":26,"text":""}
+{"kind":"slide","id":"sl/82nlt2","slide":27,"title":"AMO COMPANY PROFILE DECK","textShapes":10}
+{"kind":"shape","id":"sh/bq1oryts","slide":27,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":27,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":27,"text":"27 / 30","textPreview":"27 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":27,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":27,"bbox":[54,430,446,236]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":27,"bbox":[82,470,40,0.1]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":27,"text":"APPLICATION 01","textPreview":"APPLICATION 01","textChars":14,"textLines":1,"bbox":[134,462,220,16]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":27,"text":"Retail & Visual Merchandising","textPreview":"Retail & Visual Merchandising","textChars":29,"textLines":1,"bbox":[82,488,394,120]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":27,"text":"Create a premium pause point inside retail space.","textPreview":"Create a premium pause point inside retail space.","textChars":49,"textLines":1,"bbox":[82,594,394,70]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":27,"text":"For boutique counters, flagship stores, launch zones, and window displays, levitation helps one product stand apart from surrounding visual noise.","textPreview":"For boutique counters, flagship stores, launch zones, and window displays, levitation helps one product stand apart from surrounding visu...","textChars":146,"textLines":1,"bbox":[82,666,394,90]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":27,"bbox":[82,618,108,28]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":27,"text":"Hero Product","textPreview":"Hero Product","textChars":12,"textLines":1,"bbox":[82,624,108,28]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":27,"bbox":[198,618,106,28]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":27,"text":"Launch Zone","textPreview":"Launch Zone","textChars":11,"textLines":1,"bbox":[198,624,106,28]}
+{"kind":"shape","id":"sh/p4r65wju","slide":27,"bbox":[312,618,118,28]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":27,"text":"Window Display","textPreview":"Window Display","textChars":14,"textLines":1,"bbox":[312,624,118,28]}
+{"kind":"image","id":"im/h4byhgn2","slide":27,"name":"","alt":"space-retail-store.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/3ylc7u54","slide":27,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/82nlt2","slide":27,"text":""}
+{"kind":"slide","id":"sl/vrkgyj","slide":28,"title":"AMO COMPANY PROFILE DECK","textShapes":10}
+{"kind":"shape","id":"sh/itgfmlkj","slide":28,"bbox":[0,0,1280,720]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":28,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":28,"text":"28 / 30","textPreview":"28 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":28,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/72x4nap4","slide":28,"bbox":[0,0,600,720]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":28,"bbox":[58,100,40,0.1]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":28,"text":"APPLICATION 02","textPreview":"APPLICATION 02","textChars":14,"textLines":1,"bbox":[110,92,220,16]}
+{"kind":"textbox","id":"sh/lwval87e","slide":28,"text":"Exhibitions & Brand Activations","textPreview":"Exhibitions & Brand Activations","textChars":31,"textLines":1,"bbox":[58,118,430,120]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":28,"text":"Movement attracts attention in crowded environments.","textPreview":"Movement attracts attention in crowded environments.","textChars":52,"textLines":1,"bbox":[58,224,430,70]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":28,"text":"Trade shows, pop-ups, and product launches need a clear visual hook. A floating object creates curiosity, filming moments, and a memorable booth signature.","textPreview":"Trade shows, pop-ups, and product launches need a clear visual hook. A floating object creates curiosity, filming moments, and a memorabl...","textChars":155,"textLines":1,"bbox":[58,296,430,90]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":28,"bbox":[58,588,88,28]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":28,"text":"Curiosity","textPreview":"Curiosity","textChars":9,"textLines":1,"bbox":[58,594,88,28]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":28,"bbox":[154,588,124,28]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":28,"text":"Filming Moments","textPreview":"Filming Moments","textChars":15,"textLines":1,"bbox":[154,594,124,28]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":28,"bbox":[286,588,120,28]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":28,"text":"Booth Signature","textPreview":"Booth Signature","textChars":15,"textLines":1,"bbox":[286,594,120,28]}
+{"kind":"image","id":"im/8nqxs72x","slide":28,"name":"","alt":"space-exhibition.webp","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/qh0fepkz","slide":28,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"notes","id":"nt/vrkgyj","slide":28,"text":""}
+{"kind":"slide","id":"sl/q7q5z9","slide":29,"title":"AMO COMPANY PROFILE DECK","textShapes":10}
+{"kind":"textbox","id":"sh/sneloj2t","slide":29,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":29,"text":"29 / 30","textPreview":"29 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":29,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/3ex0nuxc","slide":29,"bbox":[58,90,40,0.1]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":29,"text":"APPLICATION 03","textPreview":"APPLICATION 03","textChars":14,"textLines":1,"bbox":[110,82,220,16]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":29,"text":"Hospitality, Museums & Offices","textPreview":"Hospitality, Museums & Offices","textChars":30,"textLines":1,"bbox":[58,108,494,120]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":29,"text":"Quiet technology for premium spaces.","textPreview":"Quiet technology for premium spaces.","textChars":36,"textLines":1,"bbox":[58,214,494,70]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":29,"text":"AMO products can support hotel lobbies, lounges, suites, CEO offices, museums, collector rooms, and future-facing interiors where the object needs presence without noise.","textPreview":"AMO products can support hotel lobbies, lounges, suites, CEO offices, museums, collector rooms, and future-facing interiors where the obj...","textChars":170,"textLines":1,"bbox":[58,286,494,90]}
+{"kind":"shape","id":"sh/bm58z25k","slide":29,"bbox":[58,316,366,346]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":29,"bbox":[58,608,366,54]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":29,"text":"Hospitality","textPreview":"Hospitality","textChars":11,"textLines":1,"bbox":[76,624,180,20]}
+{"kind":"shape","id":"sh/bat47y1k","slide":29,"bbox":[448,316,366,346]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":29,"bbox":[448,608,366,54]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":29,"text":"Museums","textPreview":"Museums","textChars":7,"textLines":1,"bbox":[466,624,180,20]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":29,"bbox":[838,316,366,346]}
+{"kind":"shape","id":"sh/udg7adsj","slide":29,"bbox":[838,608,366,54]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":29,"text":"Offices","textPreview":"Offices","textChars":7,"textLines":1,"bbox":[856,624,180,20]}
+{"kind":"image","id":"im/uxc3ylc7","slide":29,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/hoza1gvy","slide":29,"name":"","alt":"hotel.webp","bbox":[58,316,366,346]}
+{"kind":"image","id":"im/hgn29gr2","slide":29,"name":"","alt":"museum.webp","bbox":[448,316,366,346]}
+{"kind":"image","id":"im/h4byhgn2","slide":29,"name":"","alt":"office.webp","bbox":[838,316,366,346]}
+{"kind":"notes","id":"nt/q7q5z9","slide":29,"text":""}
+{"kind":"slide","id":"sl/ww7s55","slide":30,"title":"AMO COMPANY PROFILE DECK","textShapes":24}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":30,"text":"AMO COMPANY PROFILE DECK","textPreview":"AMO COMPANY PROFILE DECK","textChars":24,"textLines":1,"bbox":[126,30,190,20]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":30,"text":"30 / 30","textPreview":"30 / 30","textChars":7,"textLines":1,"bbox":[42,684,140,20]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":30,"text":"AMOLEVITATION.COM","textPreview":"AMOLEVITATION.COM","textChars":17,"textLines":1,"bbox":[1010,684,228,20]}
+{"kind":"shape","id":"sh/4zidonyd","slide":30,"bbox":[58,110,40,0.1]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":30,"text":"CALL TO ACTION","textPreview":"CALL TO ACTION","textChars":14,"textLines":1,"bbox":[110,102,220,16]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":30,"text":"Start Your Floating Display Project","textPreview":"Start Your Floating Display Project","textChars":35,"textLines":1,"bbox":[58,128,470,120]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":30,"text":"Send us the object, the use case, and the launch goal.","textPreview":"Send us the object, the use case, and the launch goal.","textChars":54,"textLines":1,"bbox":[58,234,470,70]}
+{"kind":"textbox","id":"sh/83itgfml","slide":30,"text":"To prepare a useful proposal, please share:","textPreview":"To prepare a useful proposal, please share:","textChars":43,"textLines":1,"bbox":[58,304,332,22]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":30,"text":"1. Object Type","textPreview":"1. Object Type","textChars":14,"textLines":1,"bbox":[58,344,360,24]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":30,"text":"2. Quantity Target","textPreview":"2. Quantity Target","textChars":18,"textLines":1,"bbox":[58,376,360,24]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":30,"text":"3. Application Scenario","textPreview":"3. Application Scenario","textChars":23,"textLines":1,"bbox":[58,408,360,24]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":30,"text":"4. Customization Needs","textPreview":"4. Customization Needs","textChars":22,"textLines":1,"bbox":[58,440,360,24]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":30,"text":"5. Timeline","textPreview":"5. Timeline","textChars":11,"textLines":1,"bbox":[58,472,360,24]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":30,"text":"6. Target Market","textPreview":"6. Target Market","textChars":16,"textLines":1,"bbox":[58,504,360,24]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":30,"text":"7. Reference Images or Concept Notes","textPreview":"7. Reference Images or Concept Notes","textChars":36,"textLines":1,"bbox":[58,536,360,24]}
+{"kind":"shape","id":"sh/58z25kb6","slide":30,"bbox":[642,80,570,566]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":30,"text":"RFQ","textPreview":"RFQ","textChars":3,"textLines":1,"bbox":[682,126,180,18]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":30,"text":"amolevitation.com/rfq","textPreview":"amolevitation.com/rfq","textChars":21,"textLines":1,"bbox":[682,150,260,24]}
+{"kind":"textbox","id":"sh/fepkzupw","slide":30,"text":"Email","textPreview":"Email","textChars":5,"textLines":1,"bbox":[682,210,180,18]}
+{"kind":"textbox","id":"sh/mtwra5gb","slide":30,"text":"hello@amolevitation.com","textPreview":"hello@amolevitation.com","textChars":23,"textLines":1,"bbox":[682,234,260,24]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":30,"text":"WhatsApp / Phone","textPreview":"WhatsApp / Phone","textChars":16,"textLines":1,"bbox":[682,294,180,18]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":30,"text":"+852 6942 9864","textPreview":"+852 6942 9864","textChars":14,"textLines":1,"bbox":[682,318,260,24]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":30,"text":"Website","textPreview":"Website","textChars":7,"textLines":1,"bbox":[682,378,180,18]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":30,"text":"amolevitation.com","textPreview":"amolevitation.com","textChars":17,"textLines":1,"bbox":[682,402,260,24]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":30,"text":"Business Liaison","textPreview":"Business Liaison","textChars":16,"textLines":1,"bbox":[682,462,180,18]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":30,"text":"Unit No. 1201, 12th Floor, Metropolis Tower,\n10 Metropolis Drive,\nHunghom, Kowloon,\nHong Kong","textPreview":"Unit No. 1201, 12th Floor, Metropolis Tower, | 10 Metropolis Drive, | Hunghom, Kowloon, | Hong Kong","textChars":93,"textLines":4,"bbox":[682,488,246,110]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":30,"bbox":[990,376,180,200]}
+{"kind":"image","id":"im/lc7u54zi","slide":30,"name":"","alt":"amo-logo-white.png","bbox":[42,28,74,18]}
+{"kind":"image","id":"im/p0bi9s36","slide":30,"name":"","alt":"amo-whatsapp-qr.png","bbox":[990,376,180,200]}
+{"kind":"notes","id":"nt/ww7s55","slide":30,"text":""}

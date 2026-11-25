@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { getProductThumbnailProps } from "@/lib/images/image-sources";
 import Link from "next/link";
 
 import { ProductActions } from "@/components/products/product-actions";
@@ -32,7 +33,7 @@ export function ProductCard({ product }: { product: Product }) {
             <div className="rounded-[1.2rem] bg-[radial-gradient(circle_at_top,rgba(15,23,42,0.08),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f5f5f5_100%)] p-4">
               <div className="flex min-h-[14rem] items-center justify-center">
                 <img
-                  src={product.productImage}
+                  {...getProductThumbnailProps(product.productImage, "(max-width: 640px) 70vw, 320px")}
                   alt={product.name}
                   className="max-h-[13rem] w-auto max-w-full object-contain drop-shadow-[0_24px_48px_rgba(15,23,42,0.16)]"
                 />

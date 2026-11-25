@@ -96,6 +96,7 @@ export interface PublicBlogRecord {
   coverImage: string;
   seoTitle: string;
   seoDescription: string;
+  seoKeywords: string[];
 }
 
 export interface NavItem {

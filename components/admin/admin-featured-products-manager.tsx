@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -359,6 +359,7 @@ export function AdminFeaturedProductsManager({ products }: AdminFeaturedProducts
                         <div className="relative flex h-20 items-center justify-center bg-white/[0.04] p-3">
                           {previewImage ? (
                             <Image
+                              thumbnail
                               src={previewImage}
                               alt={product.name}
                               fill

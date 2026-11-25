@@ -4,6 +4,8 @@ import { PRODUCTION_SITE_URL } from "@/lib/site-config";
 import { getPublishedBlogs } from "@/lib/supabase/blogs";
 import { getPublishedProductCatalog } from "@/lib/supabase/products";
 
+export const dynamic = "force-dynamic";
+
 const siteUrl = PRODUCTION_SITE_URL;
 const now = new Date();
 

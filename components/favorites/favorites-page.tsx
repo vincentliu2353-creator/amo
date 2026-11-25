@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+import { getProductThumbnailProps } from "@/lib/images/image-sources";
+
 import { useSiteStore } from "@/components/providers/site-store-provider";
 import { buttonStyles } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -71,7 +73,8 @@ export function FavoritesPage({ products }: { products: Product[] }) {
             <article key={product.slug} className="overflow-hidden rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]">
               <div className="aspect-[4/3] overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.1),transparent_28%),linear-gradient(140deg,#161616,#090909_72%)]">
                 {product.productImage ? (
-                  <img src={product.productImage} alt={product.name} className="h-full w-full object-cover transition duration-500 hover:scale-[1.04]" />
+                  // eslint-disable-next-line @next/next/no-img-element -- Uses pregenerated srcSet with the image’s existing intrinsic layout.
+                  <img {...getProductThumbnailProps(product.productImage, "(max-width: 640px) 70vw, 320px")} alt={product.name} className="h-full w-full object-cover transition duration-500 hover:scale-[1.04]" />
                 ) : (
                   <div className="flex h-full items-end p-6">
                     <span className="rounded-full border border-white/14 bg-black/40 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-white/48">

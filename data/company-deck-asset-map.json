@@ -1,0 +1,55 @@
+{
+  "page02": {
+    "hero": "/images/oem/optimized/oem-hero.webp"
+  },
+  "page06": {
+    "detailA": "/images/about/about-ch04-metal-surface.webp",
+    "detailB": "/images/about/about-ch04-precision-edge.webp",
+    "main": "/images/oem/optimized/development-capability.webp"
+  },
+  "page09": {
+    "background": "/images/cases/space-office.webp"
+  },
+  "page10": {
+    "main": "/images/oem/optimized/development-capability.webp"
+  },
+  "page12": {
+    "main": "/images/oem/optimized/oem-hero.webp"
+  },
+  "page13": {
+    "main": "/images/home/future-objects/clock.webp"
+  },
+  "page15": {
+    "main": "/products/rendered/floating-display-sculpture-hero.png"
+  },
+  "page17": {
+    "background": "/images/home/future-objects/oem-module.webp"
+  },
+  "page18": {
+    "detailA": "/images/oem/optimized/custom-surface-finish.webp",
+    "detailB": "/images/oem/optimized/custom-packaging.webp",
+    "main": "/images/oem/optimized/development-capability.webp"
+  },
+  "page19": {
+    "main": "/images/home/future-objects/brand-installation.webp"
+  },
+  "page21": {
+    "detailA": "/images/cases/space-retail-store.webp",
+    "detailB": "/images/home/applications/retail.webp",
+    "detailC": "/images/cases/application-exhibition.webp"
+  },
+  "page23": {
+    "detailA": "/images/cases/application-exhibition.webp",
+    "detailB": "/images/cases/space-office.webp",
+    "main": "/images/home/future-objects/clock.webp"
+  },
+  "page25": {
+    "main": "/images/home/future-objects/oem-module.webp"
+  },
+  "page27": {
+    "background": "/images/cases/space-retail-store.webp"
+  },
+  "page30": {
+    "qr": "/downloads/amo-whatsapp-qr.png"
+  }
+}

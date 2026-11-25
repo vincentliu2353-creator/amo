@@ -500,6 +500,7 @@ function buildArticleTextCorpus(post: PublicBlogRecord) {
     post.title,
     post.seoTitle,
     post.seoDescription,
+    ...post.seoKeywords,
     post.excerpt,
     post.category,
     ...post.sections.flatMap((section) => [section.heading, section.body]),
@@ -512,7 +513,7 @@ function buildArticleTopicKeywords(post: PublicBlogRecord) {
   const corpus = buildArticleTextCorpus(post);
   const matchedKeywords = BLOG_SEO_KEYWORDS.filter((keyword) => corpus.includes(keyword.toLowerCase()));
 
-  return dedupeKeywords([post.category, ...matchedKeywords]).slice(0, 20);
+  return dedupeKeywords([...post.seoKeywords, post.category, ...matchedKeywords]).slice(0, 20);
 }
 
 function extractInternalArticleLinks(post: PublicBlogRecord) {
@@ -575,7 +576,7 @@ export function buildBlogArticleMetadata(post: PublicBlogRecord): Metadata {
       path: `/blog/${post.slug}`,
       image: post.coverImage,
       type: "article",
-      keywords: [post.category, post.title, ...BLOG_SEO_KEYWORDS],
+      keywords: [post.category, post.title, ...post.seoKeywords, ...BLOG_SEO_KEYWORDS],
     }),
     openGraph: {
       title,
@@ -597,7 +598,14 @@ export function buildBlogArticleMetadata(post: PublicBlogRecord): Metadata {
 
 export function generateArticleJsonLd(post: PublicBlogRecord) {
   const metadataImageUrl = resolveMetadataImageUrl(post.coverImage);
-  const keywords = dedupeKeywords([post.category, post.title, post.seoTitle || "", post.seoDescription || "", ...BLOG_SEO_KEYWORDS]);
+  const keywords = dedupeKeywords([
+    post.category,
+    post.title,
+    post.seoTitle || "",
+    post.seoDescription || "",
+    ...post.seoKeywords,
+    ...BLOG_SEO_KEYWORDS,
+  ]);
   const topicKeywords = buildArticleTopicKeywords(post);
   const internalLinks = extractInternalArticleLinks(post);
 

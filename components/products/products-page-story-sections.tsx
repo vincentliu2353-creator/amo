@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/home/home-scroll";
@@ -72,6 +72,7 @@ function RelatedProductCard({ product }: { product: ProductShowcaseProduct }) {
       <Link href={`/products/${product.slug}`} className="flex h-full flex-col">
         <div className="relative flex min-h-[18rem] items-center justify-center overflow-hidden bg-white p-6">
           <Image
+            thumbnail
             src={image}
             alt={product.galleryImages[0]?.alt || product.name}
             fill

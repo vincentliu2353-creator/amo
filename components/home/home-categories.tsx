@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "@/components/ui/responsive-image";
 import { useState } from "react";
 
 interface ProductCategorySlide {
@@ -9,7 +9,7 @@ interface ProductCategorySlide {
   details: string[];
   idLabel: string;
   imageAlt: string;
-  imageSrc: StaticImageData;
+  imageSrc: string;
   title: string;
 }
 

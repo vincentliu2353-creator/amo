@@ -41,6 +41,17 @@ function resolveBlogCoverImage(slug: string, url: unknown) {
   return LEGACY_BLOG_IMAGE_FALLBACKS[slug] ?? DEFAULT_BLOG_IMAGE_FALLBACK;
 }
 
+function normalizeStringArray(value: unknown) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .filter((item): item is string => typeof item === "string")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function mapBlogRow(row: Record<string, unknown>): PublicBlogRecord {
   const sections = parseBlogBody(row.body);
   const publishedAt =
@@ -67,6 +78,7 @@ function mapBlogRow(row: Record<string, unknown>): PublicBlogRecord {
     ),
     seoTitle: typeof row.seo_title === "string" ? row.seo_title : "",
     seoDescription: typeof row.seo_description === "string" ? row.seo_description : "",
+    seoKeywords: normalizeStringArray(row.seo_keywords),
   });
 }
 
@@ -85,7 +97,7 @@ export async function getPublishedBlogs() {
   const { data, error } = await supabase
     .from("blogs")
     .select(
-      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, og_image_url, published_at, created_at, updated_at",
+      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, seo_keywords, og_image_url, published_at, created_at, updated_at",
     )
     .eq("status", "published")
     .order("published_at", { ascending: false })
@@ -103,7 +115,7 @@ export async function getPublishedBlogBySlug(slug: string) {
   const { data, error } = await supabase
     .from("blogs")
     .select(
-      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, og_image_url, published_at, created_at, updated_at",
+      "id, slug, title, excerpt, body, category_label, seo_title, seo_description, seo_keywords, og_image_url, published_at, created_at, updated_at",
     )
     .eq("status", "published")
     .eq("slug", slug)

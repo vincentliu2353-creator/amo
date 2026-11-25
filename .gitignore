@@ -9,3 +9,8 @@ dist
 coverage
 *.log
 
+
+# Large AMO company profile files
+/public/downloads/AMO_Company_Profile_Deck.key
+/public/downloads/AMO_Company_Profile_Deck_EDITABLE.key
+/public/downloads/AMO_Company_Profile_Deck_EDITABLE.pptx

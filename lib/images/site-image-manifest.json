@@ -1,0 +1,954 @@
+{
+  "/amo-favicon.png": {
+    "base": "/image-variants/amo-favicon-png",
+    "widths": [
+      22
+    ]
+  },
+  "/amo-logo-white.png": {
+    "base": "/image-variants/amo-logo-white-png",
+    "widths": [
+      37
+    ]
+  },
+  "/downloads/amo-whatsapp-qr.png": {
+    "base": "/image-variants/downloads/amo-whatsapp-qr-png",
+    "widths": [
+      64,
+      128,
+      256,
+      512
+    ]
+  },
+  "/images/about/about-ch02-question-reality.webp": {
+    "base": "/image-variants/images/about/about-ch02-question-reality-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/about/about-ch04-light-reflection.webp": {
+    "base": "/image-variants/images/about/about-ch04-light-reflection-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch04-magnetic-pattern.webp": {
+    "base": "/image-variants/images/about/about-ch04-magnetic-pattern-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch04-metal-surface.webp": {
+    "base": "/image-variants/images/about/about-ch04-metal-surface-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch04-precision-edge.webp": {
+    "base": "/image-variants/images/about/about-ch04-precision-edge-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch05-balance-system.webp": {
+    "base": "/image-variants/images/about/about-ch05-balance-system-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch05-levitation-ring.webp": {
+    "base": "/image-variants/images/about/about-ch05-levitation-ring-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch05-magnetic-field.webp": {
+    "base": "/image-variants/images/about/about-ch05-magnetic-field-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch05-motion-path.webp": {
+    "base": "/image-variants/images/about/about-ch05-motion-path-webp",
+    "widths": [
+      384,
+      768,
+      1122
+    ]
+  },
+  "/images/about/about-ch07-architecture.webp": {
+    "base": "/image-variants/images/about/about-ch07-architecture-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/about/about-ch07-future-workspace.webp": {
+    "base": "/image-variants/images/about/about-ch07-future-workspace-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/about/about-ch07-hospitality.webp": {
+    "base": "/image-variants/images/about/about-ch07-hospitality-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/about/about-ch07-museum.webp": {
+    "base": "/image-variants/images/about/about-ch07-museum-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/about/about-ch07-retail.webp": {
+    "base": "/image-variants/images/about/about-ch07-retail-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/about/original/about-ch02-question-reality.jpg": {
+    "base": "/image-variants/images/about/original/about-ch02-question-reality-jpg",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/blog/heroes/2026-retail-display-trends-how-brands-create-attention-without-more-advertising.webp": {
+    "base": "/image-variants/images/blog/heroes/2026-retail-display-trends-how-brands-create-attention-without-more-advertising-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/branded-magnetic-levitation-logo-customization-packaging.webp": {
+    "base": "/image-variants/images/blog/heroes/branded-magnetic-levitation-logo-customization-packaging-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/can-magnetic-levitation-displays-run-all-day.webp": {
+    "base": "/image-variants/images/blog/heroes/can-magnetic-levitation-displays-run-all-day-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/compare-magnetic-levitation-rfq-pricing-hidden-costs.webp": {
+    "base": "/image-variants/images/blog/heroes/compare-magnetic-levitation-rfq-pricing-hidden-costs-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/corporate-gifts-that-people-actually-remember.webp": {
+    "base": "/image-variants/images/blog/heroes/corporate-gifts-that-people-actually-remember-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/custom-magnetic-levitation-display-manufacturer.webp": {
+    "base": "/image-variants/images/blog/heroes/custom-magnetic-levitation-display-manufacturer-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/floating-display-for-jewelry-stores.webp": {
+    "base": "/image-variants/images/blog/heroes/floating-display-for-jewelry-stores-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/floating-display-for-perfume-brands.webp": {
+    "base": "/image-variants/images/blog/heroes/floating-display-for-perfume-brands-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/floating-display-for-watch-brands.webp": {
+    "base": "/image-variants/images/blog/heroes/floating-display-for-watch-brands-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/floating-display-manufacturer-guide.webp": {
+    "base": "/image-variants/images/blog/heroes/floating-display-manufacturer-guide-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/global-procurement-checklist-magnetic-levitation-products.webp": {
+    "base": "/image-variants/images/blog/heroes/global-procurement-checklist-magnetic-levitation-products-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/high-end-magnetic-levitation-materials-finishes-quality.webp": {
+    "base": "/image-variants/images/blog/heroes/high-end-magnetic-levitation-materials-finishes-quality-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/how-does-a-magnetic-levitation-display-work.webp": {
+    "base": "/image-variants/images/blog/heroes/how-does-a-magnetic-levitation-display-work-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/how-much-does-a-custom-magnetic-levitation-display-cost.webp": {
+    "base": "/image-variants/images/blog/heroes/how-much-does-a-custom-magnetic-levitation-display-cost-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/how-to-choose-a-magnetic-levitation-display-stand.webp": {
+    "base": "/image-variants/images/blog/heroes/how-to-choose-a-magnetic-levitation-display-stand-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/how-to-choose-a-magnetic-levitation-manufacturer.webp": {
+    "base": "/image-variants/images/blog/heroes/how-to-choose-a-magnetic-levitation-manufacturer-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/how-to-set-up-a-magnetic-levitation-display.webp": {
+    "base": "/image-variants/images/blog/heroes/how-to-set-up-a-magnetic-levitation-display-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/ip-tooling-ownership-contract-custom-levitation-projects.webp": {
+    "base": "/image-variants/images/blog/heroes/ip-tooling-ownership-contract-custom-levitation-projects-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/is-magnetic-levitation-safe-for-watches-and-electronics.webp": {
+    "base": "/image-variants/images/blog/heroes/is-magnetic-levitation-safe-for-watches-and-electronics-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/less-object-more-experience.webp": {
+    "base": "/image-variants/images/blog/heroes/less-object-more-experience-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/magnetic-levitation-corporate-gifts.webp": {
+    "base": "/image-variants/images/blog/heroes/magnetic-levitation-corporate-gifts-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/magnetic-levitation-display-manufacturer-china.webp": {
+    "base": "/image-variants/images/blog/heroes/magnetic-levitation-display-manufacturer-china-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/magnetic-levitation-feasibility-review-before-oem-design.webp": {
+    "base": "/image-variants/images/blog/heroes/magnetic-levitation-feasibility-review-before-oem-design-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/magnetic-levitation-gift-ideas.webp": {
+    "base": "/image-variants/images/blog/heroes/magnetic-levitation-gift-ideas-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/magnetic-levitation-mass-production-quality-control.webp": {
+    "base": "/image-variants/images/blog/heroes/magnetic-levitation-mass-production-quality-control-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/magnetic-levitation-vs-rotating-display-stand.webp": {
+    "base": "/image-variants/images/blog/heroes/magnetic-levitation-vs-rotating-display-stand-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/moq-sampling-lead-time-magnetic-levitation-products.webp": {
+    "base": "/image-variants/images/blog/heroes/moq-sampling-lead-time-magnetic-levitation-products-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/museum-displays-creating-distance-focus-and-curiosity.webp": {
+    "base": "/image-variants/images/blog/heroes/museum-displays-creating-distance-focus-and-curiosity-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/oem-floating-display-projects.webp": {
+    "base": "/image-variants/images/blog/heroes/oem-floating-display-projects-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/oem-magnetic-levitation-products-from-concept-to-production.webp": {
+    "base": "/image-variants/images/blog/heroes/oem-magnetic-levitation-products-from-concept-to-production-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/pilot-order-to-multi-location-magnetic-levitation-rollout.webp": {
+    "base": "/image-variants/images/blog/heroes/pilot-order-to-multi-location-magnetic-levitation-rollout-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/shortlist-magnetic-levitation-supplier-premium-oem.webp": {
+    "base": "/image-variants/images/blog/heroes/shortlist-magnetic-levitation-supplier-premium-oem-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/the-complete-b2b-sourcing-guide-for-magnetic-levitation-products.webp": {
+    "base": "/image-variants/images/blog/heroes/the-complete-b2b-sourcing-guide-for-magnetic-levitation-products-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/the-future-of-floating-objects-why-magnetic-levitation-is-changing-product-presentation.webp": {
+    "base": "/image-variants/images/blog/heroes/the-future-of-floating-objects-why-magnetic-levitation-is-changing-product-presentation-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/validate-magnetic-levitation-prototype-sample-approval.webp": {
+    "base": "/image-variants/images/blog/heroes/validate-magnetic-levitation-prototype-sample-approval-webp",
+    "widths": [
+      480,
+      768,
+      1200
+    ]
+  },
+  "/images/blog/heroes/what-is-magnetic-levitation-used-for.webp": {
+    "base": "/image-variants/images/blog/heroes/what-is-magnetic-levitation-used-for-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/what-objects-can-float-on-a-magnetic-levitation-display.webp": {
+    "base": "/image-variants/images/blog/heroes/what-objects-can-float-on-a-magnetic-levitation-display-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/why-attention-is-the-most-valuable-space-in-retail.webp": {
+    "base": "/image-variants/images/blog/heroes/why-attention-is-the-most-valuable-space-in-retail-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/blog/heroes/why-luxury-retail-stores-use-floating-product-displays.webp": {
+    "base": "/image-variants/images/blog/heroes/why-luxury-retail-stores-use-floating-product-displays-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/cases/after-levitation-display.webp": {
+    "base": "/image-variants/images/cases/after-levitation-display-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1254
+    ]
+  },
+  "/images/cases/application-exhibition.webp": {
+    "base": "/image-variants/images/cases/application-exhibition-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1400
+    ]
+  },
+  "/images/cases/application-gifts.webp": {
+    "base": "/image-variants/images/cases/application-gifts-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1400
+    ]
+  },
+  "/images/cases/application-hotel.webp": {
+    "base": "/image-variants/images/cases/application-hotel-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1400
+    ]
+  },
+  "/images/cases/application-museum.webp": {
+    "base": "/image-variants/images/cases/application-museum-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1400
+    ]
+  },
+  "/images/cases/application-office.webp": {
+    "base": "/image-variants/images/cases/application-office-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1400
+    ]
+  },
+  "/images/cases/application-retail.webp": {
+    "base": "/image-variants/images/cases/application-retail-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1400
+    ]
+  },
+  "/images/cases/before-standard-display.webp": {
+    "base": "/image-variants/images/cases/before-standard-display-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1254
+    ]
+  },
+  "/images/cases/featured-case-retail.webp": {
+    "base": "/image-variants/images/cases/featured-case-retail-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1254
+    ]
+  },
+  "/images/cases/space-exhibition.webp": {
+    "base": "/image-variants/images/cases/space-exhibition-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/cases/space-hotel.webp": {
+    "base": "/image-variants/images/cases/space-hotel-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/cases/space-museum.webp": {
+    "base": "/image-variants/images/cases/space-museum-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/cases/space-office.webp": {
+    "base": "/image-variants/images/cases/space-office-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/cases/space-premium-gifts.webp": {
+    "base": "/image-variants/images/cases/space-premium-gifts-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/cases/space-retail-store.webp": {
+    "base": "/image-variants/images/cases/space-retail-store-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1672
+    ]
+  },
+  "/images/home/applications/exhibition.webp": {
+    "base": "/image-variants/images/home/applications/exhibition-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACQAQCdASoIAAQAAkA4JaQAAudP5GAA/v0gWALGb5BfGH5Zr5sGrAAA"
+  },
+  "/images/home/applications/hotel.webp": {
+    "base": "/image-variants/images/home/applications/hotel-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoIAAQAAkA4JZQCdAEPDq+kOAD+/AjaFgNcoY/WS60ND43txGGfq8AA"
+  },
+  "/images/home/applications/museum.webp": {
+    "base": "/image-variants/images/home/applications/museum-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAACwAQCdASoIAAQAAkA4JZwCdAEO/dXAAP78a2Pec4jHcfP2PM14VPpcajaAAA=="
+  },
+  "/images/home/applications/office.webp": {
+    "base": "/image-variants/images/home/applications/office-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAQCdASoIAAQAAkA4JZwAAudiPerQAP76C7o1G3rIRmq7NWynJWLkAAA="
+  },
+  "/images/home/applications/premium-gifts.webp": {
+    "base": "/image-variants/images/home/applications/premium-gifts-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoIAAQAAkA4JZwCdAEPAKVSgAD+/K3doByec3mBOoLRQ0gA"
+  },
+  "/images/home/applications/retail.webp": {
+    "base": "/image-variants/images/home/applications/retail-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoIAAQAAkA4JZQCdAEO+nG8AAD+/Gq5UmGqZMlE6Mlw4zDBDehTvLgAAAA="
+  },
+  "/images/home/future-objects/art-object.webp": {
+    "base": "/image-variants/images/home/future-objects/art-object-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoIAAQAAkA4JZwCdAD0bRugAP78Ds3I5R4Ta9o0geXTWmwuos4zYgAA"
+  },
+  "/images/home/future-objects/brand-installation.webp": {
+    "base": "/image-variants/images/home/future-objects/brand-installation-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADQAQCdASoIAAQAAkA4JZwCdAEPAMAFgAD+/M9PRQsQKkfJFRZ5njEgJcAAAA=="
+  },
+  "/images/home/future-objects/clock.webp": {
+    "base": "/image-variants/images/home/future-objects/clock-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoIAAQAAkA4JZwCdAEf3Uzi4AD+++y3tG6Ux7qhgqdH40AA"
+  },
+  "/images/home/future-objects/display-base.webp": {
+    "base": "/image-variants/images/home/future-objects/display-base-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoIAAQAAkA4JZwCdAEO/gLsAP78zvZtVcWfv8pmkjOINyDuKWk30AAA"
+  },
+  "/images/home/future-objects/lamp.webp": {
+    "base": "/image-variants/images/home/future-objects/lamp-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoIAAQAAkA4JZQCdAEfbhD+uAD++ycN2kFTcx/kKLv+iYT+8BdBS0fEDWTbHhZWiM1wAA=="
+  },
+  "/images/home/future-objects/oem-module.webp": {
+    "base": "/image-variants/images/home/future-objects/oem-module-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACwAQCdASoIAAQAAkA4JZwAAu18sn/gAP77DNbPy1mMszWw0J3oNLMAAAA="
+  },
+  "/images/home/hero/hero-bg.webp": {
+    "base": "/image-variants/images/home/hero/hero-bg-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoIAAQAAkA4JaQAAu0ddkyoAAD+/ljfSkdNm9yC1KfgAAAA"
+  },
+  "/images/home/technology/technology-bg.webp": {
+    "base": "/image-variants/images/home/technology/technology-bg-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1920
+    ],
+    "blur": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAQCdASoIAAQAAkA4JaQAAxf8iDAAAP780TYnH1YV8XmQOAA="
+  },
+  "/images/oem/optimized/custom-branding.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-branding-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-lighting.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-lighting-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-magnetic-module.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-magnetic-module-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-material.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-material-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-motion-effect.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-motion-effect-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-packaging.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-packaging-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-product-shape.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-product-shape-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/custom-surface-finish.webp": {
+    "base": "/image-variants/images/oem/optimized/custom-surface-finish-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/development-capability.webp": {
+    "base": "/image-variants/images/oem/optimized/development-capability-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1600
+    ]
+  },
+  "/images/oem/optimized/industry-brand-activations.webp": {
+    "base": "/image-variants/images/oem/optimized/industry-brand-activations-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/images/oem/optimized/industry-corporate-gifts.webp": {
+    "base": "/image-variants/images/oem/optimized/industry-corporate-gifts-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/images/oem/optimized/industry-exhibitions.webp": {
+    "base": "/image-variants/images/oem/optimized/industry-exhibitions-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/images/oem/optimized/industry-hospitality.webp": {
+    "base": "/image-variants/images/oem/optimized/industry-hospitality-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/images/oem/optimized/industry-museums.webp": {
+    "base": "/image-variants/images/oem/optimized/industry-museums-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/images/oem/optimized/industry-retail.webp": {
+    "base": "/image-variants/images/oem/optimized/industry-retail-webp",
+    "widths": [
+      384,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/images/oem/optimized/oem-hero.webp": {
+    "base": "/image-variants/images/oem/optimized/oem-hero-webp",
+    "widths": [
+      480,
+      768,
+      1200,
+      1717
+    ]
+  },
+  "/products/rendered/floating-display-sculpture-hero.png": {
+    "base": "/image-variants/products/rendered/floating-display-sculpture-hero-png",
+    "widths": [
+      160,
+      320,
+      480,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/products/rendered/levitating-clock-hero.png": {
+    "base": "/image-variants/products/rendered/levitating-clock-hero-png",
+    "widths": [
+      160,
+      320,
+      480,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/products/rendered/levitating-lamp-hero.png": {
+    "base": "/image-variants/products/rendered/levitating-lamp-hero-png",
+    "widths": [
+      160,
+      320,
+      480,
+      768,
+      1200,
+      1536
+    ]
+  },
+  "/products/rendered/oem-maglev-platform-hero.png": {
+    "base": "/image-variants/products/rendered/oem-maglev-platform-hero-png",
+    "widths": [
+      160,
+      320,
+      480,
+      768,
+      1200,
+      1536
+    ]
+  }
+}

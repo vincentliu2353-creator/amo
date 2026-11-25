@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
+import Image from "@/components/ui/responsive-image";
 import Link from "next/link";
 
 import { ApprovedHomeFooter } from "@/components/layout/approved-home-footer";
